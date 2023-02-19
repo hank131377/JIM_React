@@ -1,0 +1,179 @@
+.map-basic-style{
+  color: white;
+  background-image: linear-gradient(-135deg,black,red);
+}
+.map-title-font{
+  font-family: 'Jost';
+  font-style: normal;
+  color: #FFFFFF;
+  letter-spacing: 0.75em;
+  align-items: center;
+  text-align: center;
+}
+
+.leaflet-container{
+    width: 100vw;
+    height: 100vh;
+  }
+
+  /* Group style
+  .cluster-icon{
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: red;
+    text-align: center;
+    line-height: 3rem;
+  } */
+
+  .sidebar{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 450px;
+    height: 100vh;
+    transform: translateX(0);
+    transition: 1s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+  }
+
+  .sidebar.close{
+    transform: translateX(-100%);
+  }
+
+  .sidebar .time span{
+    float: right;
+    font-size: 20px;
+    line-height: 35px;
+  }
+
+  .togglebutton{
+    position: fixed;
+    font-size: 30px;
+    color: #FFFFFF;
+    background-image: linear-gradient(-135deg,black,red);
+    left: 450px;
+    top: 10%;
+    padding: 5px;
+    z-index: 9999;
+    transition: 1s;
+    cursor: pointer;
+  }
+
+  /* +- */
+  /* .leaflet-control-zoom.leaflet-bar.leaflet-control{
+    position: fixed;
+    left: 25%;
+    transition: 5s;
+  } */
+
+  .togglebutton.close{
+    left: 0%;
+  }
+
+  .searchSelect{
+    text-align: center;
+    width: 45%;
+    height: 32px;
+    font-size: 18px;
+    border-radius: 50px;
+  }
+  
+
+  .searchBar{
+    text-align: center;
+    position: relative;
+    height: 60px;
+    /* background: #74C0D8; */
+}
+
+.searchBar i {
+  cursor: pointer;
+}
+
+.search{
+  text-indent: 10px;
+  font-size: 24px;
+  width: 90%;
+  height: 48px;
+  border-radius: 25px;
+}
+
+.bar{
+  font-size: 24px;
+  height: 32px;
+  color: #BDBDBD;
+  text-decoration: none;
+  position: absolute;
+  top: 12px;
+  right: 50px;
+}
+
+.body{
+  display: none;
+  transition: 5s;
+}
+
+
+
+.game-card i,.map-card i{
+  margin-right: 10px;
+} 
+
+.game-title img{
+  /* display: block; */
+  /* position: relative; */
+  width: 100%;aspect-ratio: 2/1;
+}
+
+/* .game-card::before {
+  content: "";
+  display: block;
+  background-size: cover;
+  background-image: url('https://images.unsplash.com/photo-1676707695430-b63389a77216?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60');
+  width: 100%;
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+} */
+
+.game-body img{
+  width: 180px;
+  aspect-ratio: 1/1;
+ 
+}
+
+.map-card img{
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.PhoneSidebar{
+  display: none;
+}
+
+.PhoneSidebar i {
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px){
+  .sidebar{
+    display: none;
+  }
+  .PhoneSidebar{
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    z-index: 9999;
+   }
+}
+
