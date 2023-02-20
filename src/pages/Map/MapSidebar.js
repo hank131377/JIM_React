@@ -1,13 +1,9 @@
-import { useState } from 'react'
+import { useContextValue } from './MapDashbard'
 import MapSidebarBody from './MapSidebarBody'
 import MapSidebarTitle from './MapSidebarTitle'
 
-const MapSidebar = ({
-  sidebarState,
-  mapData,
-  searchKeyword,
-  setSearchKeyword,
-}) => {
+const MapSidebar = ({ mapData }) => {
+  const { sidebarState, searchKeyword, setSearchKeyword } = useContextValue()
   return (
     <div
       className={
@@ -16,11 +12,8 @@ const MapSidebar = ({
           : 'map-basic-style sidebar'
       }
     >
-      <MapSidebarTitle
-        searchKeyword={searchKeyword}
-        setSearchKeyword={setSearchKeyword}
-      />
-      <MapSidebarBody mapData={mapData} searchKeyword={searchKeyword} />
+      <MapSidebarTitle />
+      <MapSidebarBody mapData={mapData} />
     </div>
   )
 }

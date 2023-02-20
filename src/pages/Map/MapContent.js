@@ -1,16 +1,16 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-cluster'
+import { FaPhoneAlt, FaLocationArrow, FaRegCalendarAlt } from 'react-icons/fa'
 import 'leaflet/dist/leaflet.css'
 
+import { useContextValue } from './MapDashbard'
 import { customIcon, nowIcon } from './MapIcons'
-import { useState } from 'react'
-import { FaPhoneAlt, FaLocationArrow, FaRegCalendarAlt } from 'react-icons/fa'
 const MapContent = ({ mapData }) => {
-  const [nowcenter, setNowcenter] = useState([
-    25.03387410019818, 121.54339144016454,
-  ])
+  const { nowcenter, RecenterAutomatically, setSearchKeyword, moveClient } =
+    useContextValue()
+
   return (
-    <MapContainer center={nowcenter} zoom="15">
+    <MapContainer center={nowcenter} zoom="19">
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -20,7 +20,10 @@ const MapContent = ({ mapData }) => {
       // chunkedLoading
       // iconCreateFunction={markerClusterGroupIcon}
       >
-        <Marker position={nowcenter} icon={nowIcon}>
+        <Marker
+          position={[25.03387410019818, 121.54339144016454]}
+          icon={nowIcon}
+        >
           <Popup>
             <div>
               <p>現在的位置</p>
@@ -30,25 +33,13 @@ const MapContent = ({ mapData }) => {
         {mapData.map((v, i) => {
           return (
             <Marker
-              onClick={() => {
-                console.log(123)
-              }}
               position={[+v.storelat, +v.storelon]}
               icon={customIcon}
               key={i}
             >
-              <Popup
-                onClick={() => {
-                  console.log(123)
-                }}
-              >
+              <Popup>
                 <div>
-                  <div
-                    className="position-relative map-card"
-                    onClick={() => {
-                      console.log(123)
-                    }}
-                  >
+                  <div className="position-relative map-card">
                     <div className="position-absolute top-0 start-0 translate-middle">
                       <img src={`/storeimages/${v.storeLogo}`} alt="" />
                     </div>
@@ -66,7 +57,15 @@ const MapContent = ({ mapData }) => {
                       營業時間：{v.storeTime}
                       {v.storeRest ? `,休息日：${v.storeRest}` : ''}
                     </p>
-                    <button className="btn btn-primary">了解更多</button>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        setSearchKeyword(v.storeName)
+                        moveClient(+v.storelat, +v.storelon)
+                      }}
+                    >
+                      了解更多
+                    </button>
                   </div>
                 </div>
               </Popup>
@@ -74,6 +73,7 @@ const MapContent = ({ mapData }) => {
           )
         })}
       </MarkerClusterGroup>
+      <RecenterAutomatically zoom={13} />
     </MapContainer>
   )
 }

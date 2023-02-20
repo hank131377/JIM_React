@@ -1,7 +1,10 @@
 import { FaAngleRight, FaAngleLeft } from 'react-icons/fa'
 
-const MapSidebarToggle = ({ sidebarState, setSidebarState }) => {
-  const sidebarToggle = (e) => {
+import { useContextValue } from './MapDashbard'
+
+const MapSidebarToggle = () => {
+  const { sidebarState, setSidebarState } = useContextValue()
+  const sidebarToggle = () => {
     sidebarState ? setSidebarState(false) : setSidebarState(true)
   }
   return (

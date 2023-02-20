@@ -1,7 +1,9 @@
 import moment from 'moment/moment'
-import { FaSearch } from 'react-icons/fa'
 
-const MapSidebarTitle = ({ searchKeyword, setSearchKeyword }) => {
+import { useContextValue } from './MapDashbard'
+
+const MapSidebarTitle = () => {
+  const { searchKeyword, setSearchKeyword } = useContextValue()
   return (
     <div>
       <h2 className="p-2 map-title-font">JOIN IN ME</h2>
@@ -20,7 +22,6 @@ const MapSidebarTitle = ({ searchKeyword, setSearchKeyword }) => {
             setSearchKeyword(e.target.value)
           }}
         />
-        <FaSearch className="search-icon" />
       </div>
     </div>
   )

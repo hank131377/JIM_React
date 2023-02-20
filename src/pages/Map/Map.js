@@ -3,11 +3,10 @@ import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import { MapSidebarToggle, MapSidebar, MapContent, MapPhone } from './Index'
+import MapDashbard from './MapDashbard'
 import './Map.css'
 
 const Map = () => {
-  const [sidebarState, setSidebarState] = useState(false)
-  const [searchKeyword, setSearchKeyword] = useState('')
   const [mapData, setMapData] = useState([])
 
   const getData = async () => {
@@ -23,30 +22,13 @@ const Map = () => {
     getData()
   }, [])
 
-  // Group style
-  // const markerClusterGroupIcon = (v) => {
-  //   return new divIcon({
-  //     html: `<div className="cluster-icon">${v.getChildCount()}</div>`,
-  //     className: 'custom-marker-cluster',
-  //     iconSize: point(33, 33, true),
-  //   })
-  // }
   return (
-    <div className="d-flex position-relative">
-      <MapSidebarToggle
-        sidebarState={sidebarState}
-        setSidebarState={setSidebarState}
-      />
-      <MapSidebar
-        sidebarState={sidebarState}
-        mapData={mapData}
-        searchKeyword={searchKeyword}
-        setSearchKeyword={setSearchKeyword}
-      />
+    <MapDashbard>
+      <MapSidebarToggle />
+      <MapSidebar mapData={mapData} />
       <MapContent mapData={mapData} />
-      {/* phone */}
-      <MapPhone />
-    </div>
+      <MapPhone mapData={mapData} />
+    </MapDashbard>
   )
 }
 
