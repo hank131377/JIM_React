@@ -1,7 +1,13 @@
+import { useState } from 'react'
 import MapSidebarBody from './MapSidebarBody'
 import MapSidebarTitle from './MapSidebarTitle'
 
-const MapSidebar = ({ sidebarState, mapData }) => {
+const MapSidebar = ({
+  sidebarState,
+  mapData,
+  searchKeyword,
+  setSearchKeyword,
+}) => {
   return (
     <div
       className={
@@ -10,8 +16,11 @@ const MapSidebar = ({ sidebarState, mapData }) => {
           : 'map-basic-style sidebar'
       }
     >
-      <MapSidebarTitle />
-      <MapSidebarBody mapData={mapData} />
+      <MapSidebarTitle
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+      />
+      <MapSidebarBody mapData={mapData} searchKeyword={searchKeyword} />
     </div>
   )
 }

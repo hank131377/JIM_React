@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import { MapSidebarToggle, MapSidebar, MapContent, MapPhone } from './Index'
@@ -6,15 +7,14 @@ import './Map.css'
 
 const Map = () => {
   const [sidebarState, setSidebarState] = useState(false)
-
+  const [searchKeyword, setSearchKeyword] = useState('')
   const [mapData, setMapData] = useState([])
 
   const getData = async () => {
     try {
-      const r = await fetch('http://localhost:3005/getmap')
-      const row = await r.json()
-      // console.log(row)
-      setMapData(row)
+      const r = await axios.get('http://localhost:3005/getmap')
+      console.log(r.data)
+      setMapData(r.data)
     } catch (error) {
       console.log(error)
     }
@@ -37,7 +37,12 @@ const Map = () => {
         sidebarState={sidebarState}
         setSidebarState={setSidebarState}
       />
-      <MapSidebar sidebarState={sidebarState} mapData={mapData} />
+      <MapSidebar
+        sidebarState={sidebarState}
+        mapData={mapData}
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+      />
       <MapContent mapData={mapData} />
       {/* phone */}
       <MapPhone />

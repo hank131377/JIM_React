@@ -1,12 +1,30 @@
-const MapSidebarBody = ({ mapData }) => {
-  console.log(mapData)
+import {
+  FaHome,
+  FaAngleDoubleDown,
+  FaPhoneAlt,
+  FaLocationArrow,
+  FaRegCalendarAlt,
+  FaTrophy,
+  FaFeatherAlt,
+  FaDollarSign,
+  FaStar,
+} from 'react-icons/fa'
+
+const MapSidebarBody = ({ mapData, searchKeyword }) => {
+  const searchData = [...mapData].filter((v, i) => {
+    console.log(v.storeCity)
+    return (
+      v.storeCity.includes(searchKeyword) || v.storeCity.includes(searchKeyword)
+    )
+  })
+  console.log(searchData)
   return (
     <div>
       <div
         className="accordion accordion-flush game-card"
         id="accordionFlushExample"
       >
-        {[...mapData].map((v, i) => {
+        {[...searchData].map((v, i) => {
           return (
             <div className="accordion-item" key={v.storeSid}>
               <h2
@@ -23,19 +41,20 @@ const MapSidebarBody = ({ mapData }) => {
                   aria-controls={`flush-collapse${i}`}
                 >
                   <p>
-                    <i className="fa-solid fa-shop"></i>
+                    <FaHome style={{ marginRight: '10px' }} />
                     <span>{v.storeName}</span>
-                    <i className="fa-solid fa-angles-down float-end"></i>
+                    <FaAngleDoubleDown style={{ float: 'right' }} />
                   </p>
                   <p>
-                    <i className="fa-solid fa-phone"></i> {v.storeMobile}
+                    <FaPhoneAlt style={{ marginRight: '10px' }} />
+                    {v.storeMobile}
                   </p>
                   <p>
-                    <i className="fa-solid fa-location-dot"></i>
+                    <FaLocationArrow style={{ marginRight: '10px' }} />
                     {v.storeAddress}
                   </p>
                   <p>
-                    <i className="fa-regular fa-calendar-days"></i>
+                    <FaRegCalendarAlt style={{ marginRight: '10px' }} />
                     營業時間：{v.storeTime}
                     {v.storeRest ? `,休息日：${v.storeRest}` : ''}
                   </p>
@@ -48,25 +67,27 @@ const MapSidebarBody = ({ mapData }) => {
                 data-bs-parent="#accordionFlushExample"
               >
                 {[...v.game].map((k, i) => {
-                  console.log(k)
                   return (
-                    <div className="accordion-body d-flex game-body">
+                    <div className="accordion-body d-flex game-body" key={i}>
                       <div className="left me-3">
                         <img src={`/gamesImages/${k.gamesImages}`} alt="" />
                       </div>
                       <div className="right">
                         <p>
-                          <i className="fa-solid fa-trophy"></i>
+                          <FaTrophy style={{ marginRight: '10px' }} />
                           {k.gamesName}
                         </p>
                         <p>
-                          <i className="fa-solid fa-feather-pointed"></i>
+                          <FaFeatherAlt style={{ marginRight: '10px' }} />
                           等敘述
                         </p>
                         <p>
-                          <i className="fa-solid fa-dollar-sign"></i>{' '}
+                          <FaDollarSign style={{ marginRight: '10px' }} />
                           {k.gamesPrice}
-                          <i className="fa-solid fa-star ps-2"></i>5(565)
+                          <FaStar
+                            style={{ marginRight: '10px', marginLeft: '10px' }}
+                          />
+                          5(565)
                         </p>
                         <button className="btn btn-outline-secondary">
                           立刻前往

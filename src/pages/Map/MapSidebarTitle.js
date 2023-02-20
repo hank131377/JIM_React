@@ -1,6 +1,7 @@
 import moment from 'moment/moment'
+import { FaSearch } from 'react-icons/fa'
 
-const MapSidebarTitle = () => {
+const MapSidebarTitle = ({ searchKeyword, setSearchKeyword }) => {
   return (
     <div>
       <h2 className="p-2 map-title-font">JOIN IN ME</h2>
@@ -8,17 +9,18 @@ const MapSidebarTitle = () => {
         {moment().format('dddd')}
         <span>{moment().format('YYYY-MM-DD')}</span>
       </h3>
-      <div className="d-flex justify-content-around pb-3">
-        <select className="searchSelect">
-          <option>- - 請選擇市區 - -</option>
-        </select>
-        <select className="searchSelect">
-          <option>- - 請選擇店名 - -</option>
-        </select>
-      </div>
+
       <div className="searchBar">
-        <input type="text" className="search" placeholder="搜尋店名、遊戲" />
-        <i className="fa-solid fa-magnifying-glass bar"></i>
+        <input
+          type="text"
+          className="search"
+          placeholder="搜尋地區、店名"
+          value={searchKeyword}
+          onChange={(e) => {
+            setSearchKeyword(e.target.value)
+          }}
+        />
+        <FaSearch className="search-icon" />
       </div>
     </div>
   )

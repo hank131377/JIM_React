@@ -1,3 +1,5 @@
+import { FaAngleRight, FaAngleLeft } from 'react-icons/fa'
+
 const MapSidebarToggle = ({ sidebarState, setSidebarState }) => {
   const sidebarToggle = (e) => {
     sidebarState ? setSidebarState(false) : setSidebarState(true)
@@ -9,11 +11,7 @@ const MapSidebarToggle = ({ sidebarState, setSidebarState }) => {
         sidebarState ? 'toggle togglebutton close' : 'toggle togglebutton'
       }
     >
-      <i
-        className={
-          sidebarState ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'
-        }
-      ></i>
+      {sidebarState ? <FaAngleRight /> : <FaAngleLeft />}
     </div>
   )
 }

@@ -89,9 +89,7 @@
     /* background: #74C0D8; */
 }
 
-.searchBar i {
-  cursor: pointer;
-}
+
 
 .search{
   text-indent: 10px;
@@ -101,26 +99,25 @@
   border-radius: 25px;
 }
 
-.bar{
-  font-size: 24px;
-  height: 32px;
-  color: #BDBDBD;
-  text-decoration: none;
-  position: absolute;
-  top: 12px;
-  right: 50px;
-}
+
 
 .body{
   display: none;
   transition: 5s;
 }
 
+.search-icon{
+  font-size: 24px;
+  height: 32px;
+  color: #BDBDBD;
+  text-decoration: none;
+  position: absolute;
+  top: 8px;
+  right: 40px;
+  cursor: pointer;
+}
 
 
-.game-card i,.map-card i{
-  margin-right: 10px;
-} 
 
 .game-title img{
   /* display: block; */
@@ -175,5 +172,8 @@
     bottom: 10px;
     z-index: 9999;
    }
+
+  
+  
 }
 
