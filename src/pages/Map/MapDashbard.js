@@ -3,7 +3,6 @@ import { useMap } from 'react-leaflet'
 
 const Context = createContext(null)
 const MapDashbard = ({ children }) => {
-  const [sidebarState, setSidebarState] = useState(false)
   const [searchKeyword, setSearchKeyword] = useState('')
   const [nowcenter, setNowcenter] = useState([
     25.03387410019818, 121.54339144016454,
@@ -32,8 +31,6 @@ const MapDashbard = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        sidebarState,
-        setSidebarState,
         searchKeyword,
         setSearchKeyword,
         nowcenter,

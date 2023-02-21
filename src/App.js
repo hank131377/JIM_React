@@ -6,8 +6,8 @@ import Map from './pages/Map/Map'
 const App = () => {
   return (
     <ContextDashbard>
-      {/* <Map /> */}
-      <Form />
+      <Map />
+      {/* <Form /> */}
     </ContextDashbard>
   )
 }

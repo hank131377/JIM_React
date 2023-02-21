@@ -14,7 +14,7 @@ import {
 import { useContextValue } from './MapDashbard'
 
 const MapSidebarBody = ({ mapData }) => {
-  const { searchKeyword, setNowcenter, moveClient } = useContextValue()
+  const { searchKeyword, moveClient } = useContextValue()
   const searchData = useMemo(() => {
     return [...mapData].filter((v, i) => {
       return (

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 
@@ -14,8 +14,9 @@ const Form = () => {
     try {
       const r = await axios.post('http://localhost:3005/login', data)
       console.log(r.data)
-      if (r.data.success) {
+      if (r?.data?.success) {
         const { account, accountId, token } = r.data
+
         localStorage.setItem(
           'myAuth',
           JSON.stringify({
@@ -29,6 +30,8 @@ const Form = () => {
       console.log(error)
     }
   }
+  const [state, setState] = useState('')
+  useEffect(() => {}, [])
   return (
     <div className="container">
       <form onSubmit={handleSubmit(submit)}>
@@ -62,6 +65,8 @@ const Form = () => {
           Submit
         </button>
       </form>
+      {state}
+      {state ? <button>登出</button> : <button>登入</button>}
     </div>
   )
 }

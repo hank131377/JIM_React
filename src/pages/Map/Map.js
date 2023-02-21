@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
 
-import { MapSidebarToggle, MapSidebar, MapContent, MapPhone } from './Index'
+import { MapSidebar, MapContent, MapPhone } from './Index'
 import MapDashbard from './MapDashbard'
 import './Map.css'
 
@@ -24,7 +24,6 @@ const Map = () => {
 
   return (
     <MapDashbard>
-      <MapSidebarToggle />
       <MapSidebar mapData={mapData} />
       <MapContent mapData={mapData} />
       <MapPhone mapData={mapData} />
