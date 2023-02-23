@@ -1,0 +1,146 @@
+.menu h1 {
+  font-family: 'Jost', sans-serif;
+}
+
+.navigation {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.5s;
+  transition-delay: 0.5s;
+  border-radius: 60px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navigation.active {
+  width: 800px;
+}
+
+.navigation .toggle-menu {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: red;
+  border-radius: 50%;
+  transition: 0.5s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  transition-delay: 0.5s;
+}
+
+.navigation.active .toggle-menu {
+  background: #fff;
+  transition-delay: 0s;
+  transform: translateY(60px);
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+.navigation .toggle-menu::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  border-radius: 3px;
+  background: #000000;
+  transform: translateY(-5px);
+  transition: 0.5s;
+}
+
+.navigation .toggle-menu::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  border-radius: 3px;
+  background: #000000;
+  transform: translateY(5px);
+  transition: 0.5s;
+}
+
+.navigation.active .toggle-menu::before {
+  background: #000000;
+  transform: translateY(0px) rotate(45deg) scale(0.6);
+}
+
+.navigation.active .toggle-menu::after {
+  background: #000000;
+  transform: translateY(0px) rotate(-45deg) scale(0.6);
+}
+
+.navigation li {
+  list-style: none;
+  transition: 0.5s;
+  transform: scale(0);
+}
+.navigation.active li {
+  transition-delay: 0.75s;
+  display: flex;
+  transform: scale(1);
+}
+
+.navigation li a {
+  text-decoration: none;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 5px 15px;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+
+.navigation li a:hover {
+  background: red;
+  color: #fff;
+}
+
+.clicked {
+  background-color: red;
+}
+
+.phone-navigation {
+  display: none;
+}
+@media (max-width: 768px) {
+  .navigation {
+    display: none;
+  }
+  .phone-navigation {
+    display: block;
+  }
+  .menu-model {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phone-navigation li {
+    list-style: none;
+    padding: 10px;
+  }
+
+  .phone-navigation li:hover {
+    background-color: red;
+  }
+
+  .phone-navigation li a {
+    text-decoration: none;
+    color: #fff;
+  }
+}

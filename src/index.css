@@ -1,0 +1,43 @@
+body {
+  font-family: 'Noto Sans TC';
+  color: #ffffff;
+  font-size: 20px;
+  background-color: #000;
+}
+
+.index {
+  margin: 0 120px;
+}
+
+.index-hot {
+  width: 500px;
+}
+
+.index-header img {
+  aspect-ratio: 1.5/1;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    display: none;
+  }
+
+  .index-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .index-hot {
+    width: 100vw;
+    padding: 0px 10px;
+  }
+
+  .index-header img {
+    width: 100vw !important;
+  }
+
+  .index-header button {
+    padding: 5px !important;
+    margin: 15px !important;
+  }
+}

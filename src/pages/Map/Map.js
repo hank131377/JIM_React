@@ -12,7 +12,6 @@ const Map = () => {
   const getData = async () => {
     try {
       const r = await axios.get('http://localhost:3005/getmap')
-      console.log(r.data)
       setMapData(r.data)
     } catch (error) {
       console.log(error)

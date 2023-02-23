@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap');
+
+.footer-title {
+  font-family: 'Jost', sans-serif;
+  font-size: 100px;
+  line-height: 144px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.footer li {
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .foot-context {
+    display: none !important;
+  }
+}

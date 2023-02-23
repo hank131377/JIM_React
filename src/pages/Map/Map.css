@@ -1,22 +1,22 @@
-.map-basic-style{
+.map-basic-style {
   color: white;
-  background-image: linear-gradient(-135deg,black,red);
+  background-image: linear-gradient(-135deg, black, red);
 }
-.map-title-font{
+.map-title-font {
   font-family: 'Jost';
   font-style: normal;
-  color: #FFFFFF;
+  color: #ffffff;
   letter-spacing: 0.75em;
   align-items: center;
   text-align: center;
 }
 
-.leaflet-container{
-    width: 100vw;
-    height: 100vh;
-  }
+.leaflet-container {
+  width: 100vw;
+  height: 100vh;
+}
 
-  /* Group style
+/* Group style
   .cluster-icon{
     height: 3rem;
     width: 3rem;
@@ -26,67 +26,61 @@
     line-height: 3rem;
   } */
 
-  .sidebar{
-    overflow-x: hidden;
-    overflow-y: scroll;
-    width: 450px;
-    height: 100vh;
-    transform: translateX(0);
-    transition: 1s;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-  }
+.sidebar {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 450px;
+  height: 100vh;
+  transform: translateX(0);
+  transition: 1s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
 
- 
+.sidebar .time span {
+  float: right;
+  font-size: 20px;
+  line-height: 35px;
+}
 
-  .sidebar .time span{
-    float: right;
-    font-size: 20px;
-    line-height: 35px;
-  }
+.togglebutton {
+  position: fixed;
+  font-size: 30px;
+  color: #ffffff;
+  background-image: linear-gradient(-135deg, black, red);
+  left: 450px;
+  top: 10%;
+  padding: 5px;
+  z-index: 9999;
+  transition: 1s;
+  cursor: pointer;
+}
 
-  .togglebutton{
-    position: fixed;
-    font-size: 30px;
-    color: #FFFFFF;
-    background-image: linear-gradient(-135deg,black,red);
-    left: 450px;
-    top: 10%;
-    padding: 5px;
-    z-index: 9999;
-    transition: 1s;
-    cursor: pointer;
-  }
-
-  /* +- */
-  /* .leaflet-control-zoom.leaflet-bar.leaflet-control{
+/* +- */
+/* .leaflet-control-zoom.leaflet-bar.leaflet-control{
     position: fixed;
     left: 25%;
     transition: 5s;
   } */
 
-
-  .searchSelect{
-    text-align: center;
-    width: 45%;
-    height: 32px;
-    font-size: 18px;
-    border-radius: 50px;
-  }
-  
-
-  .searchBar{
-    text-align: center;
-    position: relative;
-    height: 60px;
-    /* background: #74C0D8; */
+.searchSelect {
+  text-align: center;
+  width: 45%;
+  height: 32px;
+  font-size: 18px;
+  border-radius: 50px;
 }
 
+.searchBar {
+  text-align: center;
+  position: relative;
+  height: 60px;
+  /* background: #74C0D8; */
+}
 
-
-.search{
+.search {
   text-indent: 10px;
   font-size: 24px;
   width: 90%;
@@ -94,17 +88,15 @@
   border-radius: 25px;
 }
 
-
-
-.body{
+.body {
   display: none;
   transition: 5s;
 }
 
-.search-icon{
+.search-icon {
   font-size: 24px;
   height: 32px;
-  color: #BDBDBD;
+  color: #bdbdbd;
   text-decoration: none;
   position: absolute;
   top: 8px;
@@ -112,12 +104,11 @@
   cursor: pointer;
 }
 
-
-
-.game-title img{
+.game-title img {
   /* display: block; */
   /* position: relative; */
-  width: 100%;aspect-ratio: 2/1;
+  width: 100%;
+  aspect-ratio: 2/1;
 }
 
 /* .game-card::before {
@@ -134,19 +125,18 @@
   right: 0;
 } */
 
-.game-body img{
+.game-body img {
   width: 180px;
   aspect-ratio: 1/1;
- 
 }
 
-.map-card img{
+.map-card img {
   width: 50px;
   aspect-ratio: 1/1;
   border-radius: 50%;
 }
 
-.PhoneSidebar{
+.PhoneSidebar {
   display: none;
 }
 
@@ -154,21 +144,21 @@
   cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .leaflet-container {
+    height: 50vh;
+  }
 
-@media (max-width: 768px){
-  .sidebar{
+  .sidebar {
     display: none;
   }
-  .PhoneSidebar{
+  .PhoneSidebar {
     display: block;
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 10px;
-    z-index: 9999;
-   }
-
-  
-  
+    bottom: -10px;
+    z-index: 9990;
+    color: black;
+  }
 }
-
