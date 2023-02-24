@@ -48,7 +48,7 @@ const LinePay = () => {
 
   return (
     <div className="container">
-      <h1>模擬表單(LinePay)</h1>
+      <h1>LinePay</h1>
       {produsts.map((v, i) => {
         const { packages } = v
         return (

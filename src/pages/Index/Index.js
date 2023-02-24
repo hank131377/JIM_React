@@ -1,18 +1,36 @@
 import React from 'react'
 import Logo from '../../components/Logo/Logo'
 import './Index.css'
+import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
 
 const Index = () => {
   return (
     <>
-      <div className="index">
+      <div className="index" style={{ marginTop: '150px' }}>
         <div className="d-flex align-items-center justify-content-around index-header">
           <Logo />
           <div className="mx-5 index-hot">
             <div>
               <p style={{ fontSize: '30px', color: '#7F7F7F' }}>熱門推薦</p>
               <h3 style={{ fontSize: '60px' }}>
-                紅衣女孩<span>star</span>
+                紅衣女孩
+                <ul className="d-flex list-unstyled">
+                  <li className="me-1">
+                    <BloodSvg />
+                  </li>
+                  <li className="me-1">
+                    <BloodSvg />
+                  </li>
+                  <li className="me-1">
+                    <BloodSvg />
+                  </li>
+                  <li className="me-1">
+                    <BloodSvg />
+                  </li>
+                  <li className="me-1">
+                    <UnfillBlood />
+                  </li>
+                </ul>
               </h3>
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
@@ -30,7 +48,7 @@ const Index = () => {
               </p>
             </div>
           </div>
-          <div className="text-center">
+          <div className="text-center index-header-body">
             <img className="w-100" src="gamesImages/1.jpg" alt="" />
             <button
               className="btn btn-danger px-5 py-2 my-4 rounded-pill"

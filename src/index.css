@@ -32,9 +32,13 @@ body {
     padding: 0px 10px;
   }
 
-  .index-header img {
+  .index-header .index-header-body img {
     width: 100vw !important;
   }
+
+  .fillBlood,.unfillBlood{
+    width: 50px !important;
+}
 
   .index-header button {
     padding: 5px !important;
