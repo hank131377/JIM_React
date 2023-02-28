@@ -26,19 +26,14 @@ const GameSinglePage = () => {
   return (
     <>
       <div className="index">
-        <div className="d-flex">
+        <div className="d-flex flex-sm-row flex-column">
           <Logo />
           <div className="mx-5 my-5">
             {gameInfoData.map((v, i) => {
               return (
                 <img
                   key={v.gamesSid}
-                  style={{
-                    width: '700px',
-                    aspectRatio: '1/1',
-                    backgroundSive: 'cover',
-                    backgroundPosition: 'center center',
-                  }}
+                  className="game-single-img"
                   src={`/gamesImages/${v.gamesImages}`}
                   alt=""
                 />
@@ -46,8 +41,8 @@ const GameSinglePage = () => {
             })}
           </div>
           <div className="mx-5">
-            <ul className="list-unstyled d-flex justify-content-around game-navlink">
-              <li className="me-3">
+            <ul className="list-unstyled d-flex justify-content-around game-navlink flex-sm-row flex-column">
+              <li className="me-3 mb-sm-0 mb-3">
                 <NavLink
                   className={({ isActive }) => {
                     return isActive
@@ -59,7 +54,7 @@ const GameSinglePage = () => {
                   遊戲說明
                 </NavLink>
               </li>
-              <li className="me-3">
+              <li className="me-3 mb-sm-0 mb-3">
                 <NavLink
                   className={({ isActive }) => {
                     return isActive ? 'checked' : ''
@@ -72,7 +67,7 @@ const GameSinglePage = () => {
                   預約
                 </NavLink>
               </li>
-              <li className="me-3">
+              <li className="me-3 mb-sm-0 mb-3">
                 <NavLink
                   className={({ isActive }) => {
                     return isActive ? 'checked' : ''

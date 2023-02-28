@@ -10,6 +10,7 @@ import {
 } from 'react-icons/fa'
 
 import { BsFillPeopleFill } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 const Index = () => {
   const getBackData = useContextValue()
@@ -101,12 +102,13 @@ const Index = () => {
                       </div>
                       <div className="text-center d-flex flex-column index-header-body">
                         <img src={`gamesImages/${v.gamesImages}`} alt="" />
-                        <button
+                        <Link
+                          to={`/game/${v.gamesSid}`}
                           className="btn btn-danger px-5 py-2 my-4 rounded-pill"
                           style={{ fontSize: '25px' }}
                         >
                           馬上預約
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   )

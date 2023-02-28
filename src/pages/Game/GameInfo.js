@@ -1,24 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import Logo from '../../components/Logo/Logo'
 import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
-import { useContextValue } from '../../ContextDashbard'
-import {
-  FaRegArrowAltCircleLeft,
-  FaRegArrowAltCircleRight,
-  FaMapMarkerAlt,
-  FaClock,
-} from 'react-icons/fa'
 
 import { BsFillPeopleFill } from 'react-icons/bs'
 import Calendars from '../../components/Calendar/Calendars'
 import { NavLink, Outlet, useOutletContext, useParams } from 'react-router-dom'
 import axios from 'axios'
 const GameInfo = () => {
-  // const gameInfoData = useMemo(async () => {
-  //   const r = await axios.get(`http://localhost:3005/gameSingle?sid=${id}`)
-  //   console.log(r.data, 456)
-  //   return r.data
-  // }, [])
   const data = useOutletContext()
   console.log(data)
   return (
@@ -28,7 +16,16 @@ const GameInfo = () => {
         return (
           <div key={v.gamesSid}>
             <p style={{ fontSize: '40px' }}>{v.gamesName}</p>
-            <span>
+            <p>
+              特色：
+              {v.feature01}
+              {v.feature02}
+            </p>
+            <p>
+              遊戲人數：{v.gamesPeopleMin}-{v.gamesPeopleMax}人
+            </p>
+            <p>遊戲時間：{v.Time}分</p>
+            <p>
               難度：
               {[...Array(5)].map((n, i) => {
                 return (
@@ -37,8 +34,8 @@ const GameInfo = () => {
                   </span>
                 )
               })}
-            </span>
-            <span>
+            </p>
+            <p>
               評價(暫無)：
               {[...Array(5)].map((n, i) => {
                 return (
@@ -47,12 +44,17 @@ const GameInfo = () => {
                   </span>
                 )
               })}
-            </span>
-            <p className="mt-3">{v.gamesContent}</p>
+            </p>
+            <p className="mt-3">
+              遊戲介紹：
+              <br />
+              {v.gamesContent}
+            </p>
             <ul className="list-unstyled">
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
+              <li>場館名稱：{v.storeName}</li>
+              <li>場館地址：{v.storeAddress}</li>
+              <li>營業時間：{v.storeTime}</li>
+              <li>場館電話：{v.storeMobile}</li>
             </ul>
           </div>
         )
