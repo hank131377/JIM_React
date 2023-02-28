@@ -2,23 +2,26 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
 
-import { MapSidebar, MapContent, MapPhone } from './Index'
+import { useContextValue } from '../../ContextDashbard'
+import { MapSidebar, MapContent, MapPhone } from './MapComponent'
 import MapDashbard from './MapDashbard'
 import './Map.css'
 
 const Map = () => {
   const [mapData, setMapData] = useState([])
+  const getBackData = useContextValue()
 
-  const getData = async () => {
-    try {
-      const r = await axios.get('http://localhost:3005/getmap')
-      setMapData(r.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const getData = async () => {
+  //   try {
+  //     const r = await axios.get('http://localhost:3005/getmap')
+  //     setMapData(r.data)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
   useEffect(() => {
-    getData()
+    getBackData('http://localhost:3005/getmap', setMapData)
+    // getData()
   }, [])
 
   return (

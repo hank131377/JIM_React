@@ -1,3 +1,4 @@
-.fillBlood,.unfillBlood{
-    width: 50px !important;
+.fillBlood,
+.unfillBlood {
+  width: 30px !important;
 }

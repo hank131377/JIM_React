@@ -37,7 +37,7 @@ const Menu = () => {
           </li>
           <li>
             <NavLink
-              to="/1"
+              to="/game"
               className={({ isActive }) => {
                 return isActive ? 'clicked' : ''
               }}
@@ -126,10 +126,10 @@ const Menu = () => {
             <NavLink to="/">首頁</NavLink>
           </li>
           <li>
-            <NavLink to="/1">遊戲總覽</NavLink>
+            <NavLink to="/game">遊戲總覽</NavLink>
           </li>
           <li>
-            <NavLink to="/2">分類</NavLink>
+            <NavLink to="/2">工作室</NavLink>
           </li>
           <li>
             <NavLink to="/map">地圖</NavLink>

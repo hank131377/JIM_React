@@ -25,10 +25,7 @@ const MapSidebarBody = ({ mapData }) => {
   })
   return (
     <div>
-      <div
-        className="accordion accordion-flush game-card"
-        id="accordionFlushExample"
-      >
+      <div className="accordion accordion-flush" id="accordionFlushExample">
         {[...searchData].map((v, i) => {
           return (
             <div className="accordion-item" key={v.storeSid}>
@@ -50,20 +47,20 @@ const MapSidebarBody = ({ mapData }) => {
                   }}
                 >
                   <p>
-                    <FaHome style={{ marginRight: '10px' }} />
+                    <FaHome className="map-icon" />
                     <span>{v.storeName}</span>
                     <FaAngleDoubleDown style={{ float: 'right' }} />
                   </p>
                   <p>
-                    <FaPhoneAlt style={{ marginRight: '10px' }} />
+                    <FaPhoneAlt className="map-icon" />
                     {v.storeMobile}
                   </p>
                   <p>
-                    <FaLocationArrow style={{ marginRight: '10px' }} />
+                    <FaLocationArrow className="map-icon" />
                     {v.storeAddress}
                   </p>
                   <p>
-                    <FaRegCalendarAlt style={{ marginRight: '10px' }} />
+                    <FaRegCalendarAlt className="map-icon" />
                     營業時間：{v.storeTime}
                     {v.storeRest ? `,休息日：${v.storeRest}` : ''}
                   </p>
@@ -71,7 +68,7 @@ const MapSidebarBody = ({ mapData }) => {
               </h2>
               <div
                 id={`flush-collapse${i}`}
-                className="accordion-collapse collapse map"
+                className="accordion-collapse collapse "
                 aria-labelledby={`flush-heading${i}`}
                 data-bs-parent="#accordionFlushExample"
               >
@@ -83,18 +80,19 @@ const MapSidebarBody = ({ mapData }) => {
                       </div>
                       <div className="right">
                         <p>
-                          <FaTrophy style={{ marginRight: '10px' }} />
+                          <FaTrophy className="map-icon" />
                           {k.gamesName}
                         </p>
                         <p>
-                          <FaFeatherAlt style={{ marginRight: '10px' }} />
+                          <FaFeatherAlt className="map-icon" />
                           等敘述
                         </p>
                         <p>
-                          <FaDollarSign style={{ marginRight: '10px' }} />
+                          <FaDollarSign className="map-icon" />
                           {k.gamesPrice}
                           <FaStar
-                            style={{ marginRight: '10px', marginLeft: '10px' }}
+                            className="map-icon"
+                            style={{ marginLeft: '10px' }}
                           />
                           5(565)
                         </p>

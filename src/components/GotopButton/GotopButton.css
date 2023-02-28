@@ -1,0 +1,9 @@
+.gotop-button {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  font-size: 50px;
+  background: transparent;
+  z-index: 9999;
+  border: 0;
+}

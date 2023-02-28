@@ -24,7 +24,7 @@ const MapPhone = ({ mapData }) => {
     })
   })
   return (
-    <div className="PhoneSidebar">
+    <div className="phone-sidebar">
       <div className="searchBar">
         <input
           type="text"
@@ -37,15 +37,7 @@ const MapPhone = ({ mapData }) => {
         />
         <FaSearch className="search-icon" />
       </div>
-      <div
-        className="d-flex flex-column"
-        style={{
-          overflowX: 'scroll',
-          height: '30vh',
-          width: '100vw',
-          marginBottom: '10px',
-        }}
-      >
+      <div className="d-flex flex-column phone-sidebar-body">
         {[...searchData].map((v, i) => {
           return (
             <div className="accordion-item" key={v.storeSid}>

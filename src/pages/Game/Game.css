@@ -1,0 +1,103 @@
+.game-search {
+  width: 400px;
+  height: 40px;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 6px 16px;
+  background-color: #7f7f7f;
+}
+
+.game-search::placeholder {
+  color: #ffffff;
+}
+
+.game-select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: url('./../../../public/icon/arrow_down _icon.png') no-repeat right
+    center transparent;
+  background-size: 30px;
+  border: 0px;
+  width: 150px;
+  height: 34px;
+  background-color: #7f7f7f;
+  color: #ffffff;
+  text-align: center;
+}
+
+.game-select::placeholder {
+  color: #ffffff;
+}
+
+.game-searchbar.close {
+  display: none !important;
+}
+
+.subtitle {
+  font-size: 16px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+}
+.subtitle span {
+  margin-left: 20px;
+}
+.game-card {
+  border-radius: 20px;
+}
+.game-card-body {
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .game-search {
+    width: 350px;
+    margin-bottom: 20px;
+  }
+  .game-select {
+    margin-bottom: 20px;
+  }
+  .game-toggle-button {
+    margin-left: 20px;
+  }
+  .game-searchbar ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .game-searchbar ul li {
+    margin-bottom: 5px;
+  }
+}
+
+.game-navlink {
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+  border-bottom: solid 1px red;
+}
+
+.game-navlink .checked {
+  color: red;
+}
+
+.game-navlink a {
+  padding: 0 30px;
+  padding-bottom: 10px;
+  border-bottom: solid 3px transparent;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.game-navlink a:hover {
+  border-bottom: solid 3px red;
+  color: red;
+}

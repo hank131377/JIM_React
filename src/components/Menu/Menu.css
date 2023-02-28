@@ -1,3 +1,7 @@
+.menu {
+  padding-bottom: 0 !important;
+}
+
 .menu h1 {
   font-family: 'Jost', sans-serif;
 }
@@ -111,6 +115,10 @@
   display: none;
 }
 @media (max-width: 768px) {
+  .menu {
+    padding: 15px !important;
+  }
+
   .navigation {
     display: none;
   }

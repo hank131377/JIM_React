@@ -45,15 +45,15 @@ const MapContent = ({ mapData }) => {
                     </div>
                     <h5 style={{ marginLeft: '30px' }}>{v.storeName}</h5>
                     <p>
-                      <FaPhoneAlt style={{ marginRight: '10px' }} />
+                      <FaPhoneAlt className="map-icon" />
                       {v.storeMobile}
                     </p>
                     <p>
-                      <FaLocationArrow style={{ marginRight: '10px' }} />
+                      <FaLocationArrow className="map-icon" />
                       {v.storeAddress}
                     </p>
                     <p>
-                      <FaRegCalendarAlt style={{ marginRight: '10px' }} />
+                      <FaRegCalendarAlt className="map-icon" />
                       營業時間：{v.storeTime}
                       {v.storeRest ? `,休息日：${v.storeRest}` : ''}
                     </p>
