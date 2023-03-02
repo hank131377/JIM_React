@@ -22,22 +22,30 @@ const SigninChange = ({ name, chceked, setChceked }) => {
   return (
     <div className="d-flex text-center justify-content-center signin-router">
       <div
-        className="signin-router-right"
-        style={{ background: chceked ? 'red' : '' }}
-        onClick={() => {
-          setChceked(true)
-        }}
+        className="w-100"
+        style={{ background: chceked ? 'red' : '', borderRadius: '20px 0 0 0' }}
       >
-        <p className="">{name}登入</p>
+        <div
+          className="signin-router-right"
+          onClick={() => {
+            setChceked(true)
+          }}
+        >
+          <p className="">{name}登入</p>
+        </div>
       </div>
       <div
-        className="signin-router-left"
-        style={{ background: chceked ? '' : 'red' }}
-        onClick={() => {
-          setChceked(false)
-        }}
+        className="w-100"
+        style={{ background: chceked ? '' : 'red', borderRadius: '0 20px 0 0' }}
       >
-        <p className="">{name}註冊</p>
+        <div
+          className="signin-router-left"
+          onClick={() => {
+            setChceked(false)
+          }}
+        >
+          <p className="">{name}註冊</p>
+        </div>
       </div>
     </div>
   )

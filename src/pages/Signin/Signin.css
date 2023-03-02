@@ -43,14 +43,14 @@
 .signin-router-right {
   border-right: solid 1px #ffffff;
   border-radius: 20px 0 0 0;
-  padding: 0 166.5px;
+  padding: 0 30px;
   cursor: pointer;
 }
 
 .signin-router-left {
   border-left: solid 1px #ffffff;
   border-radius: 0 20px 0 0;
-  padding: 0 166.5px;
+  padding: 0 30px;
   cursor: pointer;
 }
 
