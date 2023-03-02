@@ -4,6 +4,7 @@ const GameComment = () => {
   return (
     <div>
       <Calendars />
+      <p>評論</p>
     </div>
   )
 }

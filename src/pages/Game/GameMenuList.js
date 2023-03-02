@@ -1,8 +1,6 @@
-import React from 'react'
 import { useParams } from 'react-router-dom'
-import GameComment from './GameComment'
-import GameInfo from './GameInfo'
-import GameReserve from './GameReserve'
+
+import { GameComment, GameInfo, GameReserve } from './GameComponent'
 
 const GameMenuList = () => {
   const { page } = useParams()

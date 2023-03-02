@@ -10,6 +10,7 @@ import {
   FaDollarSign,
   FaStar,
 } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 import { useContextValue } from './MapDashbard'
 
@@ -43,7 +44,6 @@ const MapSidebarBody = ({ mapData }) => {
                   aria-controls={`flush-collapse${i}`}
                   onClick={() => {
                     moveClient(+v.storelat, +v.storelon)
-                    // setNowcenter([+v.storelat, +v.storelon])
                   }}
                 >
                   <p>
@@ -85,7 +85,8 @@ const MapSidebarBody = ({ mapData }) => {
                         </p>
                         <p>
                           <FaFeatherAlt className="map-icon" />
-                          等敘述
+                          {k.feature01}
+                          {k.feature02}
                         </p>
                         <p>
                           <FaDollarSign className="map-icon" />
@@ -96,9 +97,12 @@ const MapSidebarBody = ({ mapData }) => {
                           />
                           5(565)
                         </p>
-                        <button className="btn btn-outline-secondary">
+                        <Link
+                          to={`/game/${k.gamesSid}`}
+                          className="btn btn-outline-secondary"
+                        >
                           立刻前往
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   )

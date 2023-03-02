@@ -1,0 +1,58 @@
+.process {
+  width: 50vw;
+}
+
+.process li {
+  position: relative;
+  border: solid 3px #ffffff;
+  border-radius: 50%;
+  width: 50px;
+  aspect-ratio: 1/1;
+  text-align: center;
+  line-height: 50px;
+}
+
+.process-text {
+  width: 48.5vw;
+}
+
+.process .clicked {
+  background: red;
+  border: solid 3px red;
+}
+
+.order-body {
+  margin-left: 250px;
+}
+.order-card {
+  width: 50vw;
+  margin-top: 50px;
+}
+
+.order-card img {
+  width: 500px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (max-width: 768px) {
+  .order-body {
+    margin-left: 0px;
+  }
+  .process {
+    width: 70vw;
+  }
+  .process li {
+  }
+  .process-text {
+    width: 70vw;
+  }
+  .process-text li {
+    font-size: 14px;
+  }
+
+  .order-card img {
+    width: 60vw;
+  }
+}

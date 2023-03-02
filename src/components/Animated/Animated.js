@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Animated = () => {
   return (
     <div className="index-carousel">

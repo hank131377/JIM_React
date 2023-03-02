@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Calendar from 'react-calendar'
+import moment from 'moment'
+
 import 'react-calendar/dist/Calendar.css'
 import './Calendars.css'
-const Calendars = () => {
+const Calendars = ({ setFilterDate }) => {
   const [date, setDate] = useState(new Date())
-
   const onChnage = (date) => {
-    console.log(date)
+    const orderDate = `${moment(date).get('year')}-${
+      moment(date).get('month') + 1
+    }-${moment(date).get('date')}`
+    console.log(orderDate)
+    setFilterDate(orderDate)
     setDate(date)
   }
   return (

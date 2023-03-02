@@ -1,13 +1,6 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { NavLink } from 'react-router-dom'
-import {
-  FaFacebook,
-  FaInstagramSquare,
-  FaYoutube,
-  FaLine,
-  FaEquals,
-} from 'react-icons/fa'
-import { BsFillPeopleFill } from 'react-icons/bs'
+import { FaEquals } from 'react-icons/fa'
 
 import './Menu.css'
 const Menu = () => {
@@ -47,7 +40,7 @@ const Menu = () => {
           </li>
           <li>
             <NavLink
-              to="/2"
+              to="/signin"
               className={({ isActive }) => {
                 return isActive ? 'clicked' : ''
               }}
@@ -103,7 +96,7 @@ const Menu = () => {
         <div>
           {/* <BsFillPeopleFill style={{ fontSize: '30px', cursor: 'pointer' }} /> */}
           <img
-            src="/storeimages/Logo02.jpg"
+            src="WOW.png"
             alt=""
             style={{ width: '45px', borderRadius: '50%', cursor: 'pointer' }}
           />
@@ -129,7 +122,7 @@ const Menu = () => {
             <NavLink to="/game">遊戲總覽</NavLink>
           </li>
           <li>
-            <NavLink to="/2">工作室</NavLink>
+            <NavLink to="/signin">工作室</NavLink>
           </li>
           <li>
             <NavLink to="/map">地圖</NavLink>

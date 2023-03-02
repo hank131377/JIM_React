@@ -1,18 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import Logo from '../../components/Logo/Logo'
-import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
+import { useOutletContext } from 'react-router-dom'
 
-import { BsFillPeopleFill } from 'react-icons/bs'
-import Calendars from '../../components/Calendar/Calendars'
-import { NavLink, Outlet, useOutletContext, useParams } from 'react-router-dom'
-import axios from 'axios'
+import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
 const GameInfo = () => {
   const data = useOutletContext()
-  console.log(data)
   return (
     <>
       {data.map((v, i) => {
-        console.log(v)
         return (
           <div key={v.gamesSid}>
             <p style={{ fontSize: '40px' }}>{v.gamesName}</p>

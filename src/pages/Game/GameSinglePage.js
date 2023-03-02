@@ -1,23 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import Logo from '../../components/Logo/Logo'
-import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
-import { useContextValue } from '../../ContextDashbard'
-import {
-  FaRegArrowAltCircleLeft,
-  FaRegArrowAltCircleRight,
-  FaMapMarkerAlt,
-  FaClock,
-} from 'react-icons/fa'
-
-// import './Game.css'
-import { BsFillPeopleFill } from 'react-icons/bs'
-import Calendars from '../../components/Calendar/Calendars'
+import React, { useEffect, useState } from 'react'
 import { NavLink, Outlet, useParams } from 'react-router-dom'
 
+import { useContextValue } from '../../ContextDashbard'
+import Logo from '../../components/Logo/Logo'
 const GameSinglePage = () => {
   const getBackData = useContextValue()
 
-  const [gameNavLinkDefault, setGameNavLinkDefault] = useState(true)
+  const [gameNavLinkDefault, setGameNavLinkDefault] = useState(1)
   const [gameInfoData, setGameInfoData] = useState([])
   const { id } = useParams()
   useEffect(() => {
@@ -44,24 +33,21 @@ const GameSinglePage = () => {
             <ul className="list-unstyled d-flex justify-content-around game-navlink flex-sm-row flex-column">
               <li className="me-3 mb-sm-0 mb-3">
                 <NavLink
-                  className={({ isActive }) => {
-                    return isActive
-                      ? 'checked'
-                      : `${gameNavLinkDefault ? 'checked' : ''}`
+                  className={gameNavLinkDefault == 1 ? 'checked' : ''}
+                  to={`/game/${id}`}
+                  onClick={() => {
+                    setGameNavLinkDefault(1)
                   }}
-                  to={`/game/${id}/`}
                 >
                   遊戲說明
                 </NavLink>
               </li>
               <li className="me-3 mb-sm-0 mb-3">
                 <NavLink
-                  className={({ isActive }) => {
-                    return isActive ? 'checked' : ''
-                  }}
+                  className={gameNavLinkDefault == 2 ? 'checked' : ''}
                   to={`/game/${id}/reserve`}
                   onClick={() => {
-                    setGameNavLinkDefault(false)
+                    setGameNavLinkDefault(2)
                   }}
                 >
                   預約
@@ -69,12 +55,10 @@ const GameSinglePage = () => {
               </li>
               <li className="me-3 mb-sm-0 mb-3">
                 <NavLink
-                  className={({ isActive }) => {
-                    return isActive ? 'checked' : ''
-                  }}
+                  className={gameNavLinkDefault == 3 ? 'checked' : ''}
                   to={`/game/${id}/comment`}
                   onClick={() => {
-                    setGameNavLinkDefault(false)
+                    setGameNavLinkDefault(3)
                   }}
                 >
                   評論
