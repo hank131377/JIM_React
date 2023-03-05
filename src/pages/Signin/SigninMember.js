@@ -1,5 +1,9 @@
 import React, { useState } from 'react'
-import { SigninChange, SigninObjectIn, SigninRegister } from './SigninModel'
+import {
+  SigninChange,
+  SigninMemberIn,
+  SigninMemberRegister,
+} from './SigninModel'
 
 const SigninMember = () => {
   const [chceked, setChceked] = useState(true)
@@ -8,9 +12,9 @@ const SigninMember = () => {
       <div className="w-50 signin-router-outbody">
         <SigninChange name="會員" chceked={chceked} setChceked={setChceked} />
         {chceked ? (
-          <SigninObjectIn name="會員" />
+          <SigninMemberIn name="會員" />
         ) : (
-          <SigninRegister name="會員" />
+          <SigninMemberRegister name="會員" />
         )}
       </div>
     </div>

@@ -1,0 +1,38 @@
+.Menu-horizontal {
+  width: 15vw;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+}
+
+.Menu-horizontal li {
+  padding: 15px 30px;
+}
+
+.Menu-horizontal a {
+  padding: 5px 50px;
+  border-radius: 50px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.clicked {
+  background-color: red;
+}
+
+@media (max-width: 768px) {
+  .Menu-horizontal {
+    width: 100vw;
+    height: 50px;
+    border-radius: 0;
+  }
+
+  .Menu-horizontal li {
+    padding: 0;
+    padding-top: 10px;
+  }
+
+  .Menu-horizontal a {
+    padding: 5px;
+  }
+}

@@ -51,7 +51,14 @@ const ShowPage = ({ nowData }) => {
                   </div>
                 </div>
                 <div className="text-center d-flex flex-column index-header-body">
-                  <img src={`gamesImages/${v.gamesImages}`} alt="" />
+                  <img
+                    src={`${
+                      v.gamesImages.length < 20
+                        ? `/gamesImages/${v.gamesImages}`
+                        : `${v.gamesImages}`
+                    }`}
+                    alt=""
+                  />
                   <Link
                     to={`/game/${v.gamesSid}`}
                     className="btn btn-danger px-5 py-2 my-4 rounded-pill"

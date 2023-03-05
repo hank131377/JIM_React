@@ -23,7 +23,11 @@ const HotSelect = ({ hotData, changePage, setTargetNum }) => {
             <div
               className="index-carousel"
               style={{
-                backgroundImage: `url('gamesImages/${v.gamesImages}')`,
+                backgroundImage: `${
+                  v.gamesImages.length < 20
+                    ? `url('gamesImages/${v.gamesImages}')`
+                    : `url('${v.gamesImages}')`
+                }`,
               }}
               onClick={() => {
                 setTargetNum(v.gamesSid)

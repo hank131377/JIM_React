@@ -19,6 +19,13 @@ import OrdersList from './pages/Orders/OrdersList'
 import Signin from './pages/Signin/Signin'
 import SigninIndex from './pages/Signin/SigninIndex'
 import SigninTarget from './pages/Signin/SigninTarget'
+import StoreIndex from './pages/Store/StoreIndex'
+import Store from './pages/Store/Store'
+import StoreAdd from './pages/Store/StoreAdd'
+import StoreMenuList from './pages/Store/StoreMenuList'
+import MemberIndex from './pages/Member/MemberIndex'
+import Member from './pages/Member/Member'
+import MemberMenuList from './pages/Member/MemberMenuList'
 
 const App = () => {
   return (
@@ -40,6 +47,14 @@ const App = () => {
         <Route path="/signin" element={<SigninIndex />}>
           <Route index element={<Signin />}></Route>
           <Route path=":target" element={<SigninTarget />}></Route>
+        </Route>
+        <Route path="/store" element={<StoreIndex />}>
+          <Route index element={<Store />}></Route>
+          <Route path=":action" element={<StoreMenuList />}></Route>
+        </Route>
+        <Route path="/member" element={<MemberIndex />}>
+          <Route index element={<Member />}></Route>
+          <Route path=":action" element={<MemberMenuList />}></Route>
         </Route>
       </Routes>
       <Footer />

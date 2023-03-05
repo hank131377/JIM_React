@@ -30,7 +30,14 @@ const OrdersList = () => {
               <p className="text-danger">總金額：NT$ {search.get('cash')}</p>
             </div>
             <div>
-              <img src={`/gamesImages/${v.gamesImages}`} alt="" />
+              <img
+                src={`${
+                  v.gamesImages < 10
+                    ? `/gamesImages/${v.gamesImages}`
+                    : `${v.gamesImages}`
+                }`}
+                alt=""
+              />
             </div>
           </div>
         )

@@ -1,11 +1,13 @@
 import { useRef } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate, Link } from 'react-router-dom'
 import { FaEquals } from 'react-icons/fa'
 
 import './Menu.css'
+import { useContextValue, checkToken } from '../../ContextDashbard'
 const Menu = () => {
   const navigationRef = useRef(null)
   const menuModelRef = useRef(null)
+  const navigate = useNavigate()
   return (
     <div
       style={{
@@ -38,16 +40,34 @@ const Menu = () => {
               遊戲總覽
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/signin"
-              className={({ isActive }) => {
-                return isActive ? 'clicked' : ''
-              }}
-            >
-              工作室
-            </NavLink>
-          </li>
+          {!!checkToken()?.token ? (
+            checkToken().target === 'store' ? (
+              <li>
+                <NavLink
+                  to="/store"
+                  className={({ isActive }) => {
+                    return isActive ? 'clicked' : ''
+                  }}
+                >
+                  工作室
+                </NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink
+                  to="/member"
+                  className={({ isActive }) => {
+                    return isActive ? 'clicked' : ''
+                  }}
+                >
+                  會員中心
+                </NavLink>
+              </li>
+            )
+          ) : (
+            ''
+          )}
+
           <li>
             <NavLink
               to="/map"
@@ -60,7 +80,7 @@ const Menu = () => {
           </li>
           <li>
             <NavLink
-              to="/4"
+              to="/5"
               className={({ isActive }) => {
                 return isActive ? 'clicked' : ''
               }}
@@ -76,15 +96,6 @@ const Menu = () => {
             }}
           ></span>
         </ul>
-
-        {/* <h1
-          className="m-0"
-          style={{
-            fontFamily: 'Jost, sans-serif',
-          }}
-        >
-          J O I N M E
-        </h1> */}
         <FaEquals
           className=" phone-navigation"
           style={{ fontSize: '30px' }}
@@ -94,14 +105,63 @@ const Menu = () => {
           }}
         />
         <div>
-          {/* <BsFillPeopleFill style={{ fontSize: '30px', cursor: 'pointer' }} /> */}
-          <img
-            src="WOW.png"
-            alt=""
-            style={{ width: '45px', borderRadius: '50%', cursor: 'pointer' }}
-          />
-          <button className="btn btn-outline-danger mx-3">登出</button>
-          {/* <button className="btn btn-outline-danger mx-3">登入</button> */}
+          {!!checkToken()?.token ? (
+            checkToken()?.target == 'store' ? (
+              <Link to="/store">
+                <img
+                  src={`${
+                    checkToken()?.logo.length < 20
+                      ? `/storeimages/${checkToken()?.logo}`
+                      : `${checkToken()?.logo}`
+                  }`}
+                  alt=""
+                  style={{
+                    width: '70px',
+                    aspectRatio: '1/1',
+                    borderRadius: '50%',
+                    objectPosition: 'center center',
+                    objectFit: 'cover',
+                  }}
+                />
+              </Link>
+            ) : (
+              <Link to="/member">
+                <img
+                  src={`${
+                    checkToken()?.logo.length < 20
+                      ? `/storeimages/${checkToken()?.logo}`
+                      : `${checkToken()?.logo}`
+                  }`}
+                  alt=""
+                  style={{
+                    width: '70px',
+                    aspectRatio: '1/1',
+                    borderRadius: '50%',
+                    objectPosition: 'center center',
+                    objectFit: 'cover',
+                  }}
+                />
+              </Link>
+            )
+          ) : (
+            ''
+          )}
+          {!!checkToken()?.token ? (
+            <button
+              className="btn btn-outline-danger mx-3"
+              onClick={() => {
+                localStorage.removeItem('token')
+                alert('登出成功')
+                navigate('/')
+              }}
+            >
+              登出
+            </button>
+          ) : (
+            <Link to="/signin" className="btn btn-outline-danger mx-3">
+              登入
+            </Link>
+          )}
         </div>
       </div>
       <div className="phone-navigation menu-model" ref={menuModelRef}>
@@ -128,7 +188,7 @@ const Menu = () => {
             <NavLink to="/map">地圖</NavLink>
           </li>
           <li>
-            <NavLink to="/3">評論</NavLink>
+            <NavLink to="/5">評論</NavLink>
           </li>
         </ul>
       </div>

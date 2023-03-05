@@ -41,7 +41,14 @@ const MapContent = ({ mapData }) => {
                 <div>
                   <div className="position-relative map-card">
                     <div className="position-absolute top-0 start-0 translate-middle">
-                      <img src={`/storeimages/${v.storeLogo}`} alt="" />
+                      <img
+                        src={`${
+                          v.storeLogo.length < 20
+                            ? `/storeimages/${v.storeLogo}`
+                            : `${v.storeLogo}`
+                        }`}
+                        alt=""
+                      />
                     </div>
                     <h5 style={{ marginLeft: '30px' }}>{v.storeName}</h5>
                     <p>

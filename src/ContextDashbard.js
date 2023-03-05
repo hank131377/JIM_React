@@ -19,3 +19,9 @@ const ContextDashbard = ({ children }) => {
 export default ContextDashbard
 
 export const useContextValue = () => useContext(Context)
+
+const checkToken = () => {
+  return JSON.parse(localStorage.getItem('token'))
+}
+
+export { checkToken }

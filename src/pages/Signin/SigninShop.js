@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SigninChange, SigninObjectIn, SigninRegister } from './SigninModel'
+import { SigninChange, SigninStortIn, SigninStoreRegister } from './SigninModel'
 
 const SigninShop = () => {
   const [chceked, setChceked] = useState(true)
@@ -8,9 +8,9 @@ const SigninShop = () => {
       <div className="w-50 signin-router-outbody">
         <SigninChange name="廠商" chceked={chceked} setChceked={setChceked} />
         {chceked ? (
-          <SigninObjectIn name="廠商" />
+          <SigninStortIn name="廠商" />
         ) : (
-          <SigninRegister name="廠商" />
+          <SigninStoreRegister name="廠商" />
         )}
       </div>
     </div>

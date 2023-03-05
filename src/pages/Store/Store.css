@@ -1,0 +1,58 @@
+.store-add-body {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0 50px;
+}
+
+.store-add-body p {
+  font-size: 32px;
+  margin: 0;
+}
+
+.store {
+  margin-left: 60px;
+}
+
+.store-title {
+  width: 70vw;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.store-title p {
+  text-align: center;
+  font-size: 48px;
+  color: #000000;
+  font-weight: bolder;
+}
+
+.diff input[type='radio'] {
+  display: none;
+  border: none;
+}
+
+.store-add-img {
+  width: 800px;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+  object-position: center center;
+}
+@media (max-width: 768px) {
+  .store {
+    margin-left: 0px;
+  }
+  .store-title p {
+    font-size: 32px;
+    margin-top: 20px;
+  }
+  .store-title {
+    width: 100vw;
+  }
+  .store-add-img {
+    width: 200px;
+    aspect-ratio: 2/1;
+    object-fit: cover;
+    object-position: center center;
+  }
+  .store-add-button {
+    width: 80vw !important;
+  }
+}

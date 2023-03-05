@@ -34,7 +34,15 @@ const MapSidebarBody = ({ mapData }) => {
                 className="accordion-header game-title"
                 id={`flush-heading${v.storeSid}`}
               >
-                <img src={`/storeimages/${v.storeLogo}`} alt="" />
+                {/* <img src={`/storeimages/${v.storeLogo}`} alt="" /> */}
+                <img
+                  src={`${
+                    v.storeLogo.length < 20
+                      ? `/storeimages/${v.storeLogo}`
+                      : `${v.storeLogo}`
+                  }`}
+                  alt=""
+                />
                 <button
                   className="map-basic-style accordion-button collapsed d-block"
                   type="button"

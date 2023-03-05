@@ -6,13 +6,20 @@ const GameList = ({ gameData, state }) => {
   return (
     <>
       {gameData.map((v, i) => {
+        if (v.gamesImages.length > 15) {
+          console.log(v.gamesImages)
+        }
         if (state.currentPage * 20 < i) return
         return (
           <div className="col game-card px-2" key={v.gamesSid}>
             <div className="position-relative">
               <Link to={`/game/${v.gamesSid}`}>
                 <img
-                  src={`/gamesImages/${v.gamesImages}`}
+                  src={`${
+                    v.gamesImages.length < 20
+                      ? `/gamesImages/${v.gamesImages}`
+                      : `${v.gamesImages}`
+                  }`}
                   alt=""
                   className="w-100"
                   style={{

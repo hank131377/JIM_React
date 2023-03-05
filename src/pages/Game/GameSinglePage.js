@@ -23,7 +23,11 @@ const GameSinglePage = () => {
                 <img
                   key={v.gamesSid}
                   className="game-single-img"
-                  src={`/gamesImages/${v.gamesImages}`}
+                  src={`${
+                    v.gamesImages.length < 10
+                      ? `/gamesImages/${v.gamesImages}`
+                      : `${v.gamesImages}`
+                  }`}
                   alt=""
                 />
               )

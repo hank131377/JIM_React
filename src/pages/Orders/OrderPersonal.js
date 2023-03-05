@@ -156,7 +156,7 @@ const OrderPersonal = () => {
             errors={errors}
             id={'name'}
             idText={'姓名'}
-            type={'name'}
+            type={'text'}
             rules={{
               required: {
                 value: true,
