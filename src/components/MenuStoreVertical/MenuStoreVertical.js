@@ -7,16 +7,6 @@ const MenuHorizontal = () => {
       <ul className="list-unstyled text-center d-sm-block d-flex justify-content-evenly">
         <li>
           <NavLink
-            to="/store/"
-            className={({ isActive }) => {
-              return isActive ? 'clicked' : ''
-            }}
-          >
-            廠商中心
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
             to="/store/1"
             className={({ isActive }) => {
               return isActive ? 'clicked' : ''
@@ -27,12 +17,12 @@ const MenuHorizontal = () => {
         </li>
         <li>
           <NavLink
-            to="/store/3"
+            to="/store/gamelist"
             className={({ isActive }) => {
               return isActive ? 'clicked' : ''
             }}
           >
-            商品列表
+            遊戲管理
           </NavLink>
         </li>
         <li>
@@ -42,7 +32,7 @@ const MenuHorizontal = () => {
               return isActive ? 'clicked' : ''
             }}
           >
-            新增商品
+            新增遊戲
           </NavLink>
         </li>
       </ul>

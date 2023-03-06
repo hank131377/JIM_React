@@ -32,7 +32,7 @@ const OrdersList = () => {
             <div>
               <img
                 src={`${
-                  v.gamesImages < 10
+                  v.gamesImages.length < 20
                     ? `/gamesImages/${v.gamesImages}`
                     : `${v.gamesImages}`
                 }`}

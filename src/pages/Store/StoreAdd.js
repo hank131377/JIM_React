@@ -94,48 +94,46 @@ const StoreAdd = ({ name }) => {
       const r = await axios.post('http://localhost:3005/putgame', data)
       if (r.data.affectedRows) {
         alert('新增成功')
-        navigate('/')
+        navigate('/store')
       }
     }
   }
   const [imgUrl, setImgUrl] = useState()
 
   const typeSelect = useRef([
-    { value: '1', name: '偵探推理' },
-    { value: '2', name: '機關重重' },
-    { value: '3', name: '劇情厲害' },
-    { value: '4', name: '場景逼真' },
-    { value: '5', name: '互動操作' },
-    { value: '6', name: '謎題邏輯' },
-    { value: '7', name: '輕鬆歡樂' },
-    { value: '8', name: '恐怖驚悚' },
-    { value: '9', name: '緊張刺激' },
-    { value: '10', name: '勾心鬥角' },
-    { value: '11', name: '團隊合作' },
-    { value: '12', name: '親子同遊' },
-    { value: '13', name: '玩法特別' },
-    { value: '14', name: '角色扮演' },
+    { value: 1, name: '偵探推理' },
+    { value: 2, name: '機關重重' },
+    { value: 3, name: '劇情厲害' },
+    { value: 4, name: '場景逼真' },
+    { value: 5, name: '互動操作' },
+    { value: 6, name: '謎題邏輯' },
+    { value: 7, name: '輕鬆歡樂' },
+    { value: 8, name: '恐怖驚悚' },
+    { value: 9, name: '緊張刺激' },
+    { value: 10, name: '勾心鬥角' },
+    { value: 11, name: '團隊合作' },
+    { value: 12, name: '親子同遊' },
+    { value: 13, name: '玩法特別' },
+    { value: 14, name: '角色扮演' },
   ])
   const filterTypeSelect = useMemo(() => {
     if (!!getValues().feature01) {
       return typeSelect.current.filter((v, i) => {
-        if (v.value !== getValues().feature01) {
-          return v
-        }
+        return v.value !== +getValues().feature01
       })
     }
   }, [getValues().feature01])
   const [num, setNum] = useState(0)
   const otherSelect = useRef([
-    { value: '1', name: '密室逃脫' },
-    { value: '2', name: '劇本殺' },
-    { value: '3', name: '時境解謎' },
+    { value: 1, name: '密室逃脫' },
+    { value: 2, name: '劇本殺' },
+    { value: 3, name: '時境解謎' },
   ])
   const [colse, setColse] = useState(-1)
   return (
     <div className="store-add-body text-center py-5">
       <div>
-        <p>新增商品</p>
+        <p>新增遊戲</p>
       </div>
       <form onSubmit={handleSubmit(submit)}>
         <input
@@ -219,7 +217,7 @@ const StoreAdd = ({ name }) => {
         </div>
         <div className="mb-3">
           <label htmlFor="remark" className="form-label">
-            遊戲資訊
+            遊戲簡介
           </label>
           <textarea
             id="remark"
@@ -228,7 +226,7 @@ const StoreAdd = ({ name }) => {
             {...register('remark', {
               required: {
                 value: true,
-                message: '請輸入遊戲資訊',
+                message: '請輸入遊戲簡介',
               },
             })}
           />
@@ -259,7 +257,8 @@ const StoreAdd = ({ name }) => {
                       defaultChecked={i == 0 ? true : false}
                     />
                     <label
-                      className="form-check-label px-3"
+                      style={{ cursor: 'pointer' }}
+                      className="form-check-label px-1 px-sm-3"
                       htmlFor={i}
                       onClick={() => {
                         setNum(i)
@@ -506,7 +505,7 @@ const StoreAdd = ({ name }) => {
           </div>
         </div>
 
-        <button className="w-75 signin-botton">送出</button>
+        <button className="w-75 signin-botton">新增遊戲</button>
       </form>
     </div>
   )

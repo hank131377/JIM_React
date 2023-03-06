@@ -23,7 +23,7 @@ const MapSidebarBody = ({ mapData }) => {
         v.storeCity.includes(searchKeyword)
       )
     })
-  })
+  }, [searchKeyword, mapData])
   return (
     <div>
       <div className="accordion accordion-flush" id="accordionFlushExample">
