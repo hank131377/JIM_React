@@ -37,8 +37,8 @@ const Footer = () => {
           >
             合作夥伴
           </li>
-          <li>註冊廠商</li>
-          <li>廠商登入</li>
+          <li>工作室註冊</li>
+          <li>工作室登入</li>
           <li>同業合作</li>
         </ul>
         <ul className="pt-5 px-5 list-unstyled text-center">

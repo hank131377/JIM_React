@@ -52,7 +52,7 @@ const Store = () => {
         <div className="my-3 float-end">
           <label>訂單編號：</label>
           <input
-            className="me-3"
+            className="me-3 mb-3"
             type="text"
             name=""
             id=""

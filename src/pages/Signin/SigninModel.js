@@ -614,7 +614,7 @@ const SigninStoreRegister = ({ name }) => {
             }}
           />
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <Input
             register={register}
             errors={errors}
@@ -632,7 +632,7 @@ const SigninStoreRegister = ({ name }) => {
               },
             }}
           />
-        </div>
+        </div> */}
         <div className="mb-3">
           <Input
             register={register}
@@ -737,7 +737,7 @@ const SigninStoreRegister = ({ name }) => {
                 message: '營業時間為必填',
               },
               pattern: {
-                value: /^\d{2}:\d{2}-\d{2}:\d{2}/,
+                value: /^\d{2}:\d{2}-\d{2}:\d{2}$/,
                 message: '請輸入正確的營業時間格式',
               },
             }}
@@ -1097,7 +1097,7 @@ const SigninMemberRegister = ({ name }) => {
                   message: '生日為必填',
                 },
                 pattern: {
-                  value: /^[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]/,
+                  value: /^[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$/,
                   message: '請填寫正確生日格式',
                 },
               }}

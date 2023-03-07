@@ -183,7 +183,7 @@ const Game = () => {
           <GameSequentialSearch
             state={state}
             dispatch={dispatch}
-            setSearchParam={setSearchParam}
+            Searchdispatch={Searchdispatch}
             searchParam={searchParam}
             searchbarRef={searchbarRef}
           />

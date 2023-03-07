@@ -12,7 +12,7 @@ const StoreIndex = () => {
         <MenuStoreVertical />
         <div className="store">
           <div className="store-title">
-            <p>廠商管理中心</p>
+            <p>工作室管理中心</p>
           </div>
           <Outlet />
         </div>

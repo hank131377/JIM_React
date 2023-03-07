@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useOutletContext, useSearchParams } from 'react-router-dom'
+import { useContextValue, checkToken } from '../../ContextDashbard'
 
 const OrderPayInfo = () => {
   const { personalInfo } = useOutletContext()
@@ -11,7 +12,7 @@ const OrderPayInfo = () => {
     const r = await axios.post(
       `http://localhost:3005/linepay/createOrder/${orderId}?sid=${searchParams.get(
         'sid'
-      )}&member=555&gamesid=${searchParams.get(
+      )}&member=${checkToken().sid}&gamesid=${searchParams.get(
         'sid'
       )}&people=3&cash=${searchParams.get('cash')}&prod=${searchParams.get(
         'prod'

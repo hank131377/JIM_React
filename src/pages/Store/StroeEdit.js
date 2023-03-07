@@ -174,7 +174,10 @@ const StroeEdit = ({ sid }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ color: '#000000', padding: '5px' }}>
-          <div className="d-flex justify-content-center bg-secondary">
+          <div
+            className="d-flex justify-content-center bg-secondary"
+            style={{ color: '#ffffff' }}
+          >
             <form onSubmit={handleSubmit(submit)}>
               <input
                 type="text"

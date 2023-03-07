@@ -35,6 +35,16 @@ const MenuHorizontal = () => {
             新增遊戲
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/store/information"
+            className={({ isActive }) => {
+              return isActive ? 'clicked' : ''
+            }}
+          >
+            工作室資料
+          </NavLink>
+        </li>
       </ul>
     </div>
   )

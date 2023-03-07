@@ -266,7 +266,7 @@ const StoreAdd = ({ name }) => {
                     >
                       {num >= i ? <BloodSvg /> : <UnfillBlood />}
                     </label>
-                    {errors[name] && (
+                    {errors['difficulty'] && (
                       <div className="invalid-feedback">
                         {errors['difficulty']?.message}
                       </div>

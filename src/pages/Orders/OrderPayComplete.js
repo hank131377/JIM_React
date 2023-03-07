@@ -32,9 +32,6 @@ const OrderPayComplete = () => {
               <Link to="/" className="mx-5 btn btn-outline-danger">
                 回首頁
               </Link>
-              <Link to="/" className="mx-5 btn btn-outline-danger">
-                查看預約
-              </Link>
             </div>
           </div>
         )

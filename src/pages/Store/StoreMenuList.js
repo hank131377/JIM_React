@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Store from './Store'
 import StoreAdd from './StoreAdd'
 import StoreGameList from './StoreGameList'
+import StoreInformation from './StoreInformation'
 
 const StoreMenuList = () => {
   console.log(useParams())
@@ -16,6 +17,10 @@ const StoreMenuList = () => {
     }
     case 'gamelist': {
       currentPage = <StoreGameList />
+      break
+    }
+    case 'information': {
+      currentPage = <StoreInformation />
       break
     }
     default: {

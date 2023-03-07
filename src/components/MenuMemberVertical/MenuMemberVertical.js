@@ -12,37 +12,27 @@ const MenuMemberVertical = () => {
               return isActive ? 'clicked' : ''
             }}
           >
-            會員中心
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/member/1"
-            className={({ isActive }) => {
-              return isActive ? 'clicked' : ''
-            }}
-          >
             訂單紀錄
           </NavLink>
         </li>
         <li>
           <NavLink
-            to="/member/3"
-            className={({ isActive }) => {
-              return isActive ? 'clicked' : ''
-            }}
-          >
-            評論列表
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/member/4"
+            to="/member/collect"
             className={({ isActive }) => {
               return isActive ? 'clicked' : ''
             }}
           >
             收藏
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/member/information"
+            className={({ isActive }) => {
+              return isActive ? 'clicked' : ''
+            }}
+          >
+            個人資料
           </NavLink>
         </li>
       </ul>

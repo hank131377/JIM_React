@@ -6,10 +6,9 @@ import { useNavigate } from 'react-router-dom'
 import { checkToken, useContextValue } from './../../ContextDashbard'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
-import StroeEdit from './StroeEdit'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-const StoreOrder = ({ orderSid }) => {
+const MemberOrder = ({ orderSid }) => {
   const navigate = useNavigate()
   const getBackData = useContextValue()
   const [render, setRender] = useState(true)
@@ -43,12 +42,9 @@ const StoreOrder = ({ orderSid }) => {
         </Modal.Header>
         <Modal.Body style={{ color: '#000000', padding: '5px' }}>
           {orderData.map((v, i) => {
+            console.log(v)
             return (
-              <div
-                key={v.orderSid}
-                className="bg-secondary"
-                style={{ color: '#ffffff' }}
-              >
+              <React.Fragment key={v.orderSid}>
                 <div className="mb-3 d-flex justify-content-center">
                   <div className="w-50">
                     <label htmlFor={'memberSid'} className="form-label">
@@ -217,7 +213,7 @@ const StoreOrder = ({ orderSid }) => {
                     />
                   </div>
                 </div>
-                <div className="mb-3 pb-3">
+                <div className="mb-3 ">
                   <div className="d-flex">
                     <label htmlFor={'orderState'} className="form-label">
                       訂購者備註：
@@ -243,7 +239,7 @@ const StoreOrder = ({ orderSid }) => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </React.Fragment>
             )
           })}
         </Modal.Body>
@@ -252,4 +248,4 @@ const StoreOrder = ({ orderSid }) => {
   )
 }
 
-export default StoreOrder
+export default MemberOrder

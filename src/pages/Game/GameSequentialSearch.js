@@ -6,6 +6,7 @@ const GameSequentialSearch = ({
   setSearchParam,
   searchParam,
   searchbarRef,
+  Searchdispatch,
 }) => {
   const searchButtonRef = useRef(null)
   const citySelect = useRef([
@@ -30,9 +31,9 @@ const GameSequentialSearch = ({
             type: 'searchKey',
             payload: e.target.value,
           })
-          setSearchParam({
-            ...searchParam,
-            searchKey: e.target.value,
+          Searchdispatch({
+            type: 'searchKey',
+            payload: e.target.value,
           })
         }}
       />
@@ -46,9 +47,9 @@ const GameSequentialSearch = ({
                 type: 'city',
                 payload: e.target.value,
               })
-              setSearchParam({
-                ...searchParam,
-                city: e.target.value,
+              Searchdispatch({
+                type: 'city',
+                payload: e.target.value,
               })
             }}
           >
@@ -69,9 +70,9 @@ const GameSequentialSearch = ({
                 type: 'minLimit',
                 payload: e.target.value,
               })
-              setSearchParam({
-                ...searchParam,
-                minLimit: e.target.value,
+              Searchdispatch({
+                type: 'minLimit',
+                payload: e.target.value,
               })
             }}
           >
