@@ -6,9 +6,11 @@ const Orders = () => {
   const [orderNum, setOrderNum] = useState(1)
   const [personalInfo, setPersonalInfo] = useState()
   return (
-    <Outlet
-      context={{ orderNum, setOrderNum, personalInfo, setPersonalInfo }}
-    />
+    <div className="game-index">
+      <Outlet
+        context={{ orderNum, setOrderNum, personalInfo, setPersonalInfo }}
+      />
+    </div>
   )
 }
 

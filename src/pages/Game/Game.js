@@ -176,10 +176,10 @@ const Game = () => {
 
   return (
     <>
-      <div className="index position-relative">
+      <div className="game-index">
         <GotopButton />
         {isLoading ? <Loading /> : ''}
-        <div className="container mt-5 d-block d-sm-flex">
+        <div className="container d-flex flex-xl-row flex-column align-items-center">
           <GameSequentialSearch
             state={state}
             dispatch={dispatch}
@@ -199,7 +199,10 @@ const Game = () => {
           />
         </div>
         <div className="container mt-5">
-          <div className="row row-cols-1 row-cols-sm-4 g-3" ref={cardbodyRef}>
+          <div
+            className="row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-3"
+            ref={cardbodyRef}
+          >
             <GameList
               cardbodyRef={cardbodyRef}
               gameData={gameData}

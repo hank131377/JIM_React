@@ -88,7 +88,7 @@
   color: #ffffff;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
   .signin-outcard {
     margin: 0;
     margin-bottom: 25px;

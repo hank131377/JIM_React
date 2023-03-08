@@ -38,11 +38,11 @@ const OrdersList = () => {
     }
   }
   return (
-    <div className="index">
-      <div className="d-flex">
+    <div>
+      <div className="d-flex justify-content-center justify-content-xxl-start">
         <Logo />
         <div className="d-flex flex-column align-items-center order-body">
-          <div className="mx-5 w-100 d-flex flex-column align-items-center">
+          <div className="mx-5 d-flex flex-column align-items-center">
             <ul className="d-flex list-unstyled justify-content-sm-evenly justify-content-between process">
               <li className={orderNum == 1 ? 'clicked' : ''}>1</li>
               <li className={orderNum == 2 ? 'clicked' : ''}>2</li>
@@ -58,7 +58,7 @@ const OrdersList = () => {
           </div>
           <div className="mt-sm-5 d-sm-block d-flex">
             <button
-              className="mx-sm-5 px-sm-5 btn btn-outline-danger mx-3"
+              className="mx-3 px-sm-5 btn btn-outline-danger"
               style={{ display: orderNum == 4 ? 'none' : '' }}
               onClick={() => {
                 {
@@ -70,7 +70,7 @@ const OrdersList = () => {
             </button>
             <button
               disabled={orderNum == 4 ? true : false}
-              className="mx-sm-5 px-sm-5 btn btn-outline-danger mx-3"
+              className="mx-3 px-sm-5 btn btn-outline-danger"
               style={{ display: orderNum > 1 ? 'none' : '' }}
               onClick={() => {
                 setOrderNum(orderNum + 1)

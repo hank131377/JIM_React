@@ -2,23 +2,15 @@ import { useRef } from 'react'
 import { NavLink, useNavigate, Link } from 'react-router-dom'
 import { FaEquals } from 'react-icons/fa'
 
+import { checkToken } from '../../ContextDashbard'
 import './Menu.css'
-import { useContextValue, checkToken } from '../../ContextDashbard'
 const Menu = () => {
   const navigationRef = useRef(null)
   const menuModelRef = useRef(null)
   const navigate = useNavigate()
   return (
-    <div
-      style={{
-        position: 'fixed',
-        left: '0px',
-        right: '0',
-        top: '0',
-        zIndex: '99999',
-      }}
-    >
-      <div className="menu d-flex justify-content-between p-5">
+    <div className="menu">
+      <div className=" d-flex justify-content-between p-3">
         <ul className="navigation p-0" ref={navigationRef}>
           <li>
             <NavLink
@@ -78,16 +70,6 @@ const Menu = () => {
               地圖
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/5"
-              className={({ isActive }) => {
-                return isActive ? 'clicked' : ''
-              }}
-            >
-              評論
-            </NavLink>
-          </li>
 
           <span
             className="toggle-menu"
@@ -115,13 +97,6 @@ const Menu = () => {
                       : `${checkToken()?.logo}`
                   }`}
                   alt=""
-                  style={{
-                    width: '70px',
-                    aspectRatio: '1/1',
-                    borderRadius: '50%',
-                    objectPosition: 'center center',
-                    objectFit: 'cover',
-                  }}
                 />
               </Link>
             ) : (
@@ -133,13 +108,6 @@ const Menu = () => {
                       : `${checkToken()?.logo}`
                   }`}
                   alt=""
-                  style={{
-                    width: '70px',
-                    aspectRatio: '1/1',
-                    borderRadius: '50%',
-                    objectPosition: 'center center',
-                    objectFit: 'cover',
-                  }}
                 />
               </Link>
             )
@@ -174,7 +142,7 @@ const Menu = () => {
             menuModelRef.current.style.display = 'none'
           }}
         ></button>
-        <ul className="p-0 py-5 text-center phone-navigation">
+        <ul className="p-0 py-5 text-center phone-navigation h-100">
           <li>
             <NavLink to="/">首頁</NavLink>
           </li>
@@ -186,9 +154,6 @@ const Menu = () => {
           </li>
           <li>
             <NavLink to="/map">地圖</NavLink>
-          </li>
-          <li>
-            <NavLink to="/5">評論</NavLink>
           </li>
         </ul>
       </div>

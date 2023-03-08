@@ -224,7 +224,7 @@ const MemberComment = ({ orderSid }) => {
                                 >
                                   {num >= i ? (
                                     <FaStar
-                                      color="yellow"
+                                      color="#D01B1B"
                                       className="mb-3"
                                       style={{ fontSize: '40px' }}
                                     />

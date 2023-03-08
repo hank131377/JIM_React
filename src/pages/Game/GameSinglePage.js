@@ -14,10 +14,10 @@ const GameSinglePage = () => {
   }, [])
   return (
     <>
-      <div className="index">
-        <div className="d-flex flex-sm-row flex-column">
+      <div className="game-index">
+        <div className="d-flex flex-xxl-row flex-column">
           <Logo />
-          <div className="mx-5 my-5">
+          <div className="mx-5 my-5 d-flex justify-content-center">
             {gameInfoData.map((v, i) => {
               return (
                 <img
@@ -34,7 +34,7 @@ const GameSinglePage = () => {
             })}
           </div>
           <div className="mx-5">
-            <ul className="list-unstyled d-flex justify-content-around game-navlink flex-sm-row flex-column">
+            <ul className="list-unstyled d-flex justify-content-around game-navlink flex-sm-row flex-column game-comment-list">
               <li className="me-3 mb-sm-0 mb-3">
                 <NavLink
                   className={gameNavLinkDefault == 1 ? 'checked' : ''}

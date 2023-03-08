@@ -8,7 +8,7 @@ const MemberIndex = () => {
   return (
     <>
       <LogoHorizontal />
-      <div className="d-block index d-sm-flex">
+      <div className="d-flex flex-column flex-xl-row">
         <MenuMemberVertical />
         <div className="store">
           <div className="store-title">

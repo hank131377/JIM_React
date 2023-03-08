@@ -17,7 +17,7 @@ const OrdersList = () => {
       {orderListData.map((v, i) => {
         return (
           <div
-            className="d-flex order-card justify-content-between flex-sm-row flex-column"
+            className="d-flex justify-content-between flex-xl-row flex-column order-card"
             key={v.gamesSid}
           >
             <div>

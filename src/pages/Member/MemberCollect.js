@@ -5,7 +5,7 @@ const MemberCollect = () => {
   return (
     <div className="store-list-body text-center py-5">
       {' '}
-      <table className="table mt-3 store-table text-nowrap">
+      <table className="table mt-3 store-table">
         <thead>
           <tr>
             <th>新增時間</th>

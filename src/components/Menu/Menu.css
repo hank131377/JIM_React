@@ -1,7 +1,19 @@
-.menu {
+/* .menu {
   padding-bottom: 0 !important;
-}
+} */
+/* .menu {
+  padding: 15px;
+} */
 
+.menu {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99999;
+  height: 10px;
+}
 .menu h1 {
   font-family: 'Jost', sans-serif;
 }
@@ -114,10 +126,19 @@
 .phone-navigation {
   display: none;
 }
-@media (max-width: 768px) {
-  .menu {
+
+.menu img {
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+@media (max-width: 1200px) {
+  /* .menu {
     padding: 15px !important;
-  }
+  } */
 
   .navigation {
     display: none;
@@ -132,8 +153,8 @@
     right: 0;
     left: 0;
     backdrop-filter: blur(5px);
-    z-index: 9999;
-    display: block;
+    z-index: 99999;
+
     justify-content: center;
     align-items: center;
   }

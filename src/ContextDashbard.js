@@ -13,7 +13,11 @@ const getBackData = async (url, medhod) => {
 
 const Context = createContext(null)
 const ContextDashbard = ({ children }) => {
-  return <Context.Provider value={getBackData}>{children}</Context.Provider>
+  return (
+    <Context.Provider value={getBackData}>
+      <div className="index">{children}</div>
+    </Context.Provider>
+  )
 }
 
 export default ContextDashbard

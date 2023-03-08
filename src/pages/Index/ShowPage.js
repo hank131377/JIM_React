@@ -10,14 +10,14 @@ const ShowPage = ({ nowData }) => {
         ? nowData?.map((v, i) => {
             return (
               <div
-                className="d-flex align-items-center justify-content-between index-hot"
+                className="d-flex flex-xl-row flex-column align-items-center justify-content-between text-sm-start text-center index-body"
                 key={i}
               >
                 <div>
-                  <p className="index-hot-text">熱門推薦</p>
+                  <h2 className="index-title">熱門推薦</h2>
                   <div>
-                    <h3 className="index-hot-header">{v.gamesName}</h3>
-                    <ul className="d-flex list-unstyled">
+                    <h3 className="index-header">{v.gamesName}</h3>
+                    <ul className="d-flex list-unstyled justify-content-sm-start justify-content-center">
                       {[...Array(5)].map((n, i) => {
                         return (
                           <li className="me-4" key={i}>
@@ -30,27 +30,29 @@ const ShowPage = ({ nowData }) => {
                         )
                       })}
                     </ul>
-                    <p className="index-content-text">{v.gamesContent}</p>
-                    <ul className="d-flex list-unstyled index-item">
-                      <li className="px-3 mx-2 btn btn-outline-danger index-item-btn">
+                    <p className="index-content text-center text-sm-start">
+                      {v.gamesContent}
+                    </p>
+                    <ul className="d-flex list-unstyled index-item justify-content-sm-start justify-content-center">
+                      <li className="px-3 my-3 mx-sm-3 mx-3 btn btn-outline-danger index-sort">
                         {v.feature01}
                       </li>
-                      <li className="px-3 mx-2 btn btn-outline-danger index-item-btn">
+                      <li className="px-3 my-3 mx-3 btn btn-outline-danger index-sort">
                         {v.feature02}
                       </li>
-                      <li className="px-3 mx-2 btn btn-outline-danger index-item-btn">
+                      <li className="px-3 my-3 mx-3 btn btn-outline-danger index-sort">
                         {v.gamesPeopleMin}-{v.gamesPeopleMax}人
                       </li>
-                      <li className="px-3 mx-2 btn btn-outline-danger index-item-btn">
+                      <li className="px-3 my-3 mx-3 btn btn-outline-danger index-sort">
                         {v.Time}分鐘
                       </li>
                     </ul>
-                    <p className=" mx-2 btn btn-outline-danger">
+                    <p className=" btn btn-outline-danger w-75 ms-3">
                       {v.storeAddress}
                     </p>
                   </div>
                 </div>
-                <div className="text-center d-flex flex-column index-header-body">
+                <div className="text-center d-flex flex-column align-items-center index-show">
                   <img
                     src={`${
                       v.gamesImages.length < 20

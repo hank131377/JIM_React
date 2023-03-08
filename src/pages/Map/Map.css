@@ -131,13 +131,9 @@
   margin-bottom: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .index-map {
     margin-top: 70px;
-  }
-
-  .leaflet-container {
-    height: 50vh;
   }
 
   .sidebar {

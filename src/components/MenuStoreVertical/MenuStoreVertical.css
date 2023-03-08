@@ -1,5 +1,5 @@
 .Menu-horizontal {
-  width: 15vw;
+  /* width: 15vw; */
   height: 100%;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 20px;
@@ -10,7 +10,7 @@
 }
 
 .Menu-horizontal a {
-  padding: 5px 50px;
+  padding: 5px 30px;
   border-radius: 50px;
   text-decoration: none;
   color: #ffffff;
@@ -20,9 +20,9 @@
   background-color: red;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .Menu-horizontal {
-    width: 100vw;
+    width: 100%;
     height: 50px;
     border-radius: 0;
   }

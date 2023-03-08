@@ -1,4 +1,4 @@
-/* body {
+body {
   font-family: 'Noto Sans TC';
   color: #ffffff;
   font-size: 20px;
@@ -6,35 +6,50 @@
 }
 
 .index {
-  margin: 150px 120px;
+  margin: 120px;
+  margin-bottom: 30px;
 }
 
-.index-hot {
+.index-body {
   margin: 100px;
 }
 
-.index-hot-text {
-  font-size: 30px;
+.index-title {
   color: #7f7f7f;
 }
 
-.index-content-text {
+.index-content {
   width: 500px;
 }
 
-.index-hot-header {
+.index-header {
   font-size: 60px;
 }
 
-.index-header-body {
+.index-show {
   margin-left: 100px;
 }
 
-.index-header-body img {
+.index-sort {
+  width: 100px;
+}
+
+.index-show img {
+  width: 30vw;
+  aspect-ratio: 1.5/1;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* .index-header-body img {
   width: 700px;
   aspect-ratio: 1.5/1;
   object-fit: cover;
   object-position: center center;
+} */
+
+.index-hot {
+  font-size: 32px;
 }
 
 .index-arrow-left {
@@ -42,6 +57,7 @@
   color: red;
   position: absolute;
   top: 50%;
+  left: 0;
   cursor: pointer;
   z-index: 10;
 }
@@ -56,17 +72,6 @@
   z-index: 10;
 }
 
-.index-cards {
-  position: relative;
-  display: flex;
-  margin-bottom: 20px;
-  height: 400px;
-}
-
-.index-hot-select {
-  font-size: 32px;
-}
-
 .index-carousel {
   width: 450px;
   aspect-ratio: 1/1;
@@ -77,38 +82,71 @@
   cursor: pointer;
 }
 
-.index-carousel:hover {
-  opacity: 1;
-}
-
 .index-carousel-text {
   padding-top: 205px !important;
+}
+
+@media (max-width: 1400px) {
+  .index {
+    margin: 0 60px;
+  }
+  .logo {
+    display: none;
+  }
+  .index-show {
+    margin-left: 0;
+  }
+  .index-show img {
+    width: 30vw;
+    aspect-ratio: 1.5/1;
+    object-fit: cover;
+    object-position: center center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .index-show {
+    margin: 0;
+  }
+  .index-show img {
+    width: 80vw;
+    aspect-ratio: 1.5/1;
+    object-fit: cover;
+    object-position: center center;
+  }
+  .index-carousel {
+    width: 85vw;
+    aspect-ratio: 3/1;
+  }
+  .index-arrow-right {
+    right: 30px;
+  }
 }
 @media (max-width: 768px) {
   .index {
     margin: 0;
-    margin-top: 70px;
+    /* margin-top: 50px; */
   }
 
-  .index-hot {
-    flex-wrap: wrap !important;
-    margin: 0;
+  /* .index-hot {
+      flex-wrap: wrap !important;
+      margin: 0;
+    } */
+
+  .index-content {
+    width: 90vw;
   }
 
-  .index-content-text {
-    width: 280px;
-  }
-
-  .index-hot-header {
-    font-size: 35px;
+  .index-header {
+    font-size: 48px;
   }
 
   .index-header-body {
     margin: 0;
   }
 
-  .index-header-body img {
-    width: 100vw;
+  .index-show img {
+    width: 90vw;
     aspect-ratio: 1.5/1;
     object-fit: cover;
     object-position: center center;
@@ -117,34 +155,39 @@
   .index-item {
     flex-wrap: wrap;
   }
-  .index-item-btn {
+  /* .index-item-btn {
     width: 50%;
     margin: 0 !important;
     margin-bottom: 10px !important;
-  }
+  } */
 
-  .index-header-body img {
+  /* .index-header-body img {
     width: 100%;
-  }
+  } */
 
-  .logo {
+  /* .logo {
     display: none;
-  }
+  } */
 
   .index-cards {
     flex-direction: column;
     margin-left: 30px;
+    /* z-index: -1; */
   }
 
   .index-arrow-right {
     right: 20px;
   }
 
-  .index-hot-select {
+  .index-hot {
     padding-left: 30px;
   }
-
   .index-carousel {
+    width: 85vw;
+    aspect-ratio: 2/1;
+  }
+
+  /* .index-carousel {
     width: 300px !important;
     height: 115px;
     aspect-ratio: 1/1;
@@ -153,43 +196,54 @@
     background-size: cover;
     opacity: 0.5;
     cursor: pointer;
-  }
-  .index-carousel-text {
+  } */
+  /* .index-carousel-text {
     padding-top: 0 !important;
-  }
+  } */
 
-  .index-carousel-phone {
+  .index-carousel-icon {
     margin: 0 !important;
     padding: 0 !important;
     padding-left: 5px !important;
-    font-size: 10px;
+    font-size: 30px;
   }
 
-  .index-blood-phone {
+  .iindex-blood {
     padding-left: 5px;
   }
 
-  .index-carousel-phone svg {
-    font-size: 20px;
+  .index-carousel-icon svg {
+    font-size: 30px;
   }
 
-  .index-carousel-card {
+  /* .index-carousel-card {
     margin: 0 !important;
     padding: 3px !important;
-  }
-  .index-carousel-card img {
+  } */
+  /* .index-carousel-card img {
     width: 10px !important;
-  }
+  } */
 
-  .index-carousel-text {
+  /* .index-carousel-text {
     padding: 0 !important;
-  }
+  } */
 
-  .index-arrow-left {
+  /* .index-arrow-left {
     left: -30px;
-  }
+  } */
 
   .index-arrow-right {
-    right: 0;
+    right: 30px;
   }
-} */
+}
+
+.index-cards {
+  position: relative;
+  display: flex;
+  /* margin-bottom: 20px; */
+  /* height: 400px; */
+}
+
+.index-carousel:hover {
+  opacity: 1;
+}

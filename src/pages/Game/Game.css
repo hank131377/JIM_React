@@ -1,3 +1,8 @@
+.game-index {
+  /* z-index: -1; */
+  margin-top: 120px;
+}
+
 .game-search {
   width: 400px;
   height: 40px;
@@ -34,20 +39,17 @@
   display: none !important;
 }
 
-.subtitle {
-  font-size: 16px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-}
 .subtitle span {
   margin-left: 20px;
 }
 .game-card {
-  border-radius: 20px;
+  border-radius: 0 0 20px 20px;
+}
+.game-card img {
+  aspect-ratio: 2/1;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 20px 20px 0 0;
 }
 .game-card-body {
   background-color: #ffffff;
@@ -56,31 +58,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 0 0 20px 20px;
 }
 
-@media (max-width: 768px) {
-  .game-search {
-    width: 350px;
-    margin-bottom: 20px;
-  }
-  .game-select {
-    margin-bottom: 20px;
-  }
-  .game-toggle-button {
-    margin-left: 20px;
-  }
-  .game-searchbar ul {
-    margin-left: 20px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-  .game-searchbar ul li {
-    margin-bottom: 5px;
-  }
+.subtitle {
+  font-size: 16px;
+  margin: -25px;
+  background: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  display: flex;
+  color: #ffffff;
+}
+.game-card-underline {
+  border-bottom: solid 1px gray;
 }
 
 .game-single-img {
-  width: 700px;
+  width: 30vw;
   aspect-ratio: 1/1;
   background-size: cover;
   background-position: center center;
@@ -108,9 +102,51 @@
   border-bottom: solid 3px red;
   color: red;
 }
+.game-comment-list {
+  min-width: 38vw;
+}
+.game-comment-list {
+  /* min-width: 680px; */
+}
+@media (max-width: 1400px) {
+  .game-index {
+    margin-top: 60px !important;
+  }
+  .game-single-img {
+    width: 70vw;
+    aspect-ratio: 2/1;
+  }
+}
+@media (max-width: 1200px) {
+  .game-search {
+    width: 50vw;
+    /* margin-bottom: 20px; */
+  }
+}
 
 @media (max-width: 768px) {
-  .game-single-img {
+  .game-search {
+    width: 70vw;
+    /* margin-bottom: 20px; */
+  }
+  .game-select {
+    margin-bottom: 20px;
+  }
+  /* .game-toggle-button {
+    margin-left: 20px;
+  } */
+  .game-searchbar ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  /* .game-searchbar ul li {
+    margin-bottom: 5px;
+  } */
+  /* .game-single-img {
     width: 280px;
+  } */
+  .game-comment-list {
+    min-width: 50vw;
   }
 }

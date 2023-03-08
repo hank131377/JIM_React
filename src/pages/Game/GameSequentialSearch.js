@@ -38,10 +38,10 @@ const GameSequentialSearch = ({
         }}
       />
       <div>
-        <div className="d-flex d-sm-block">
+        <div className="d-flex ">
           <select
             value={state.city}
-            className="game-select mx-3"
+            className="game-select mx-3 my-3"
             onChange={(e) => {
               dispatch({
                 type: 'city',
@@ -64,7 +64,7 @@ const GameSequentialSearch = ({
           </select>
           <select
             value={state.minLimit}
-            className="game-select mx-3"
+            className="game-select mx-3 my-3"
             onChange={(e) => {
               dispatch({
                 type: 'minLimit',
@@ -89,7 +89,7 @@ const GameSequentialSearch = ({
       </div>
 
       <button
-        className="btn btn-secondary game-toggle-button"
+        className="btn btn-secondary"
         onClick={() => {
           searchbarRef.current.classList.toggle('close')
           searchButtonRef.current.classList.toggle('btn-danger')

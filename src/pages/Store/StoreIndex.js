@@ -8,7 +8,7 @@ const StoreIndex = () => {
   return (
     <>
       <LogoHorizontal />
-      <div className="d-block index d-sm-flex">
+      <div className="d-flex  flex-xl-row flex-column">
         <MenuStoreVertical />
         <div className="store">
           <div className="store-title">

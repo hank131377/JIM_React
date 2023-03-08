@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './MenuStoreVertical.css'
 const MenuHorizontal = () => {
+  const [num, setNum] = useState(1)
   return (
     <div className="Menu-horizontal">
-      <ul className="list-unstyled text-center d-sm-block d-flex justify-content-evenly">
+      <ul className="list-unstyled text-center d-xl-block d-flex justify-content-evenly text-nowrap">
         <li>
           <NavLink
-            to="/store/1"
-            className={({ isActive }) => {
-              return isActive ? 'clicked' : ''
+            to="/store"
+            className={num == 1 ? 'clicked' : ''}
+            onClick={() => {
+              setNum(1)
             }}
           >
             訂單紀錄
@@ -18,8 +20,9 @@ const MenuHorizontal = () => {
         <li>
           <NavLink
             to="/store/gamelist"
-            className={({ isActive }) => {
-              return isActive ? 'clicked' : ''
+            className={num == 2 ? 'clicked' : ''}
+            onClick={() => {
+              setNum(2)
             }}
           >
             遊戲管理
@@ -28,8 +31,9 @@ const MenuHorizontal = () => {
         <li>
           <NavLink
             to="/store/add"
-            className={({ isActive }) => {
-              return isActive ? 'clicked' : ''
+            className={num == 3 ? 'clicked' : ''}
+            onClick={() => {
+              setNum(3)
             }}
           >
             新增遊戲
@@ -38,8 +42,9 @@ const MenuHorizontal = () => {
         <li>
           <NavLink
             to="/store/information"
-            className={({ isActive }) => {
-              return isActive ? 'clicked' : ''
+            className={num == 4 ? 'clicked' : ''}
+            onClick={() => {
+              setNum(4)
             }}
           >
             工作室資料

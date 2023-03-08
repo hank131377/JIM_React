@@ -35,7 +35,6 @@ const MapPhone = ({ mapData }) => {
             setSearchKeyword(e.target.value)
           }}
         />
-        <FaSearch className="search-icon" />
       </div>
       <div className="d-flex flex-column phone-sidebar-body">
         {[...searchData].map((v, i) => {
@@ -60,7 +59,9 @@ const MapPhone = ({ mapData }) => {
                   <p>
                     <FaHome style={{ marginRight: '10px' }} />
                     <span>{v.storeName}</span>
-                    <FaAngleDoubleDown style={{ float: 'right' }} />
+                    <FaAngleDoubleDown
+                      style={{ float: 'right', fontSize: '30px' }}
+                    />
                   </p>
                   <p>
                     <FaPhoneAlt style={{ marginRight: '10px' }} />

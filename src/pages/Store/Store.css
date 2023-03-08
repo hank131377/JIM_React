@@ -86,7 +86,7 @@
 .store-search-target {
   background-color: red;
 }
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .store {
     margin-left: 0px;
   }
@@ -95,7 +95,7 @@
     margin-top: 20px;
   }
   .store-title {
-    width: 100vw;
+    width: 100%;
   }
   .store-table td {
     border: none;

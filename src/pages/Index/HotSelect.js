@@ -33,28 +33,28 @@ const HotSelect = ({ hotData, changePage, setTargetNum }) => {
                 setTargetNum(v.gamesSid)
               }}
             >
-              <p className="m-0 d-flex align-items-center p-2">
+              <p className="d-flex align-items-center p-3 fs-2">
                 <FaMapMarkerAlt />
                 {v.storeCity}
               </p>
               <div className="p-3 index-carousel-text">
-                <ul className="d-flex list-unstyled m-0 index-blood-phone">
+                <ul className="d-flex list-unstyled m-0 index-blood">
                   {[...Array(5)].map((n, i) => {
                     return (
-                      <li className="me-3 mb-3 index-carousel-card" key={i}>
+                      <li className="me-3 mb-3" key={i}>
                         {i < v.gamesDifficulty ? <BloodSvg /> : <UnfillBlood />}
                       </li>
                     )
                   })}
                 </ul>
-                <h3 className="index-carousel-phone">{v.gamesName}</h3>
-                <div className="d-flex index-carousel-phone">
+                <h3 className="index-carousel-icon">{v.gamesName}</h3>
+                <div className="d-flex index-carousel-icon">
                   <span className="d-flex align-items-center">
-                    <BsFillPeopleFill className="index-carousel-phone" />
+                    <BsFillPeopleFill className="index-carousel-icon" />
                     {v.gamesPeopleMin}-{v.gamesPeopleMax}
                   </span>
                   <span className="d-flex align-items-center ps-3">
-                    <FaClock className="index-carousel-phone" /> {v.Time}
+                    <FaClock className="index-carousel-icon" /> {v.Time}
                   </span>
                 </div>
               </div>

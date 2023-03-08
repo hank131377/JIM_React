@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useContextValue } from '../../ContextDashbard'
 import Logo from '../../components/Logo/Logo'
 import { ShowPage, HotSelect } from './IndexComponent'
+import './indes.css'
 
 const Index = () => {
   const getBackData = useContextValue()
@@ -43,21 +44,19 @@ const Index = () => {
 
   return (
     <>
-      <div className="index">
-        <div className="d-flex align-items-center">
-          <Logo />
-          <div className="mx-5">
-            <ShowPage nowData={nowData} />
-          </div>
+      <div className="d-flex align-items-center justify-content-between">
+        <Logo />
+        <div className="container">
+          <ShowPage nowData={nowData} />
         </div>
-        <p className="index-hot-select">熱門推薦</p>
-        <div className="index-cards">
-          <HotSelect
-            hotData={hotData}
-            changePage={changePage}
-            setTargetNum={setTargetNum}
-          />
-        </div>
+      </div>
+      <p className="index-hot">熱門推薦</p>
+      <div className="position-relative d-flex flex-xl-row flex-column mb-3 index-cards">
+        <HotSelect
+          hotData={hotData}
+          changePage={changePage}
+          setTargetNum={setTargetNum}
+        />
       </div>
     </>
   )

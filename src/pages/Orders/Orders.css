@@ -25,15 +25,21 @@
   margin-left: 250px;
 }
 .order-card {
-  width: 50vw;
   margin-top: 50px;
 }
 
 .order-card img {
-  width: 500px;
+  margin-left: 50px;
+  width: 30vw;
   aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center center;
+}
+
+@media (max-width: 1400px) {
+  .order-body {
+    margin-left: 0px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -43,8 +49,7 @@
   .process {
     width: 70vw;
   }
-  .process li {
-  }
+
   .process-text {
     width: 70vw;
   }
