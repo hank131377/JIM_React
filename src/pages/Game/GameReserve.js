@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Calendars from '../../components/Calendar/Calendars'
 import { Link, useParams } from 'react-router-dom'
 import {
@@ -6,10 +6,10 @@ import {
   MdOutlineRemoveCircle,
 } from 'react-icons/md'
 import moment from 'moment'
-import { useContextValue } from '../../ContextDashbard'
+import { checkToken, useContextValue } from '../../ContextDashbard'
 
 const GameReserve = () => {
-  const getBackData = useContextValue()
+  const { getBackData } = useContextValue()
   const { id } = useParams()
   const [gameReserve, setGameReserve] = useState([])
   const [timeGap, setTimeGap] = useState([])
@@ -17,8 +17,23 @@ const GameReserve = () => {
   const [targetData, setTargetData] = useState('')
   const [headcount, setHeadcount] = useState(1)
   const [numState, setNumState] = useState(0)
+  const now = new Date()
+  const str = `${moment(now).get('year')}-${
+    moment(now).get('month') + 1
+  }-${moment(now).get('date')}`
+  const [filterDate, setFilterDate] = useState(str)
+  const [dateData, setDateData] = useState([])
   useEffect(() => {
-    getBackData(`http://localhost:3005/gameSingle?sid=${id}`, setGameReserve)
+    getBackData(
+      `http://localhost:3005/games/filterDate?sid=${id}&date=${filterDate}`,
+      setDateData
+    )
+  }, [filterDate])
+  useEffect(() => {
+    getBackData(
+      `http://localhost:3005/games/gameSingle?sid=${id}`,
+      setGameReserve
+    )
   }, [])
   useEffect(() => {
     if (gameReserve[0]) {
@@ -54,22 +69,9 @@ const GameReserve = () => {
     }
   }, [gameReserve])
 
-  const now = new Date()
-  const str = `${moment(now).get('year')}-${
-    moment(now).get('month') + 1
-  }-${moment(now).get('date')}`
-  const [filterDate, setFilterDate] = useState(str)
-  const [dateData, setDateData] = useState([])
-  useEffect(() => {
-    getBackData(
-      `http://localhost:3005/filterDate?sid=${id}&date=${filterDate}`,
-      setDateData
-    )
-  }, [filterDate])
   return (
     <>
       <Calendars setFilterDate={setFilterDate} />
-      {dateData.map((v, i) => {})}
       <ul className="list-unstyled d-flex flex-wrap row-cols-2 flex-sm-wrap row-cols-sm-5">
         {timeGap.map((v, i) => {
           return (
@@ -130,7 +132,17 @@ const GameReserve = () => {
             gameReserve[0]?.gamesName
           }`}
           className="btn btn-danger float-end"
-          onClick={target !== -1 ? '' : (e) => e.preventDefault()}
+          onClick={(e) => {
+            if (checkToken()?.target !== 'member') {
+              e.preventDefault()
+              return alert('請先登入會員')
+            } else {
+              if (target == -1) {
+                e.preventDefault()
+                alert('請選擇時段')
+              }
+            }
+          }}
         >
           前往預約
         </Link>

@@ -1,29 +1,18 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import './MenuMemberVertical.css'
+import { NavLink, useParams } from 'react-router-dom'
 const MenuMemberVertical = () => {
-  const [num, setNum] = useState(1)
+  const { action } = useParams()
   return (
     <div className="Menu-horizontal">
-      <ul className="list-unstyled text-center d-xl-block d-flex justify-content-evenly text-nowrap">
+      <ul className="list-unstyled text-center d-flex flex-xxl-column flex-row justify-content-evenly text-nowrap">
         <li>
-          <NavLink
-            to="/member"
-            className={num == 1 ? 'clicked' : ''}
-            onClick={() => {
-              setNum(1)
-            }}
-          >
+          <NavLink to="/member" className={!action ? 'clicked' : ''}>
             訂單紀錄
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/member/collect"
-            className={num == 2 ? 'clicked' : ''}
-            onClick={() => {
-              setNum(2)
-            }}
+            className={action == 'collect' ? 'clicked' : ''}
           >
             收藏
           </NavLink>
@@ -31,10 +20,7 @@ const MenuMemberVertical = () => {
         <li>
           <NavLink
             to="/member/information"
-            className={num == 3 ? 'clicked' : ''}
-            onClick={() => {
-              setNum(3)
-            }}
+            className={action == 'information' ? 'clicked' : ''}
           >
             個人資料
           </NavLink>

@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 const MemberOrder = ({ orderSid }) => {
   const navigate = useNavigate()
-  const getBackData = useContextValue()
+  const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [storeOrderList, setStoreOrderList] = useState([])
   const [orderData, setOrderData] = useState([])
@@ -21,13 +21,12 @@ const MemberOrder = ({ orderSid }) => {
         style={{ cursor: 'pointer' }}
         onClick={() => {
           getBackData(
-            `http://localhost:3005/storeOredrData/${orderSid}`,
+            `http://localhost:3005/store/storeOredrData/${orderSid}`,
             setOrderData
           )
           setLgShow(true)
         }}
       />
-      {console.log(orderData)}
       <Modal
         size="lg"
         show={lgShow}
@@ -42,7 +41,6 @@ const MemberOrder = ({ orderSid }) => {
         </Modal.Header>
         <Modal.Body style={{ color: '#000000', padding: '5px' }}>
           {orderData.map((v, i) => {
-            console.log(v)
             return (
               <React.Fragment key={v.orderSid}>
                 <div className="mb-3 d-flex justify-content-center">

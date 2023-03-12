@@ -1,99 +1,15 @@
-import React from 'react'
-import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { useContextValue, checkToken } from '../../ContextDashbard'
 import moment from 'moment/moment'
-const Input = ({
-  register,
-  errors,
-  id,
-  idText,
-  type,
-  rules,
-  placeholder = '',
-}) => {
-  return (
-    <>
-      <label htmlFor={id} className="form-label">
-        {idText}
-      </label>
-      <input
-        id={id}
-        type={type}
-        className={`form-control ${errors[id] && 'is-invalid'}`}
-        name={id}
-        {...register(id, rules)}
-        placeholder={placeholder}
-      />
-      {errors[id] && (
-        <div id="validationServer03Feedback" className="invalid-feedback">
-          {errors[id]?.message}
-        </div>
-      )}
-    </>
-  )
-}
+import { Input, CheckboxRadio } from './MemberModel'
 
-const Select = ({ register, errors, id, idText, rules, children }) => {
-  return (
-    <>
-      <label htmlFor={id} className="form-label">
-        {idText}
-      </label>
-      <select
-        id={id}
-        {...register(id, rules)}
-        className={`form-select ${errors[id] ? 'is-invalid' : ''}`}
-      >
-        {children}
-      </select>
-      {errors[id] && (
-        <div id="validationServer03Feedback" className="invalid-feedback">
-          {errors[id]?.message}
-        </div>
-      )}
-    </>
-  )
-}
-const CheckboxRadio = ({
-  id,
-  labelText,
-  register,
-  type,
-  errors,
-  rules,
-  value,
-  name,
-}) => {
-  return (
-    <>
-      <div className="form-check pe-3">
-        <input
-          className={`form-check-input ${errors[name] && 'is-invalid'}`}
-          type={type}
-          name={name}
-          id={id}
-          value={value}
-          {...register(name, rules)}
-        />
-        <label className="form-check-label" htmlFor={id}>
-          {labelText}
-        </label>
-        {errors[name] && (
-          <div className="invalid-feedback">{errors[name]?.message}</div>
-        )}
-      </div>
-    </>
-  )
-}
-
-const MemberInformation = ({ name }) => {
-  console.log(checkToken(), 99999999999)
+const MemberInformation = () => {
   const { sid } = checkToken()
-  const getBackData = useContextValue()
+  const { getBackData, setRender, render } = useContextValue()
   const {
     register,
     handleSubmit,
@@ -106,22 +22,22 @@ const MemberInformation = ({ name }) => {
   } = useForm({
     mode: 'onTouched',
   })
-  const watchForm = useWatch({
-    control,
-  })
   const navigate = useNavigate()
-  useEffect(() => {
-    console.log('state', watch())
-    console.log('errors', errors)
-  }, [watchForm])
+  // const watchForm = useWatch({
+  //   control,
+  // })
+  // useEffect(() => {
+  //   console.log('state', watch())
+  //   console.log('errors', errors)
+  // }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
-      console.log('準備更新')
       const r = await axios.post(
-        `http://localhost:3005/memberInfo/${sid}`,
+        `http://localhost:3005/member/memberInfo/${sid}`,
         data
       )
       if (r.data.affectedRows) {
+        setRender(!render)
         alert('更新成功')
         navigate('/member')
       }
@@ -130,8 +46,9 @@ const MemberInformation = ({ name }) => {
   const [imgUrl, setImgUrl] = useState()
   const [eyeIcon, setEyeIcon] = useState(true)
   const [memberInfo, setMemberInfo] = useState([])
+
   useEffect(() => {
-    getBackData(`http://localhost:3005/memberInfo/${sid}`, setMemberInfo)
+    getBackData(`http://localhost:3005/member/memberInfo/${sid}`, setMemberInfo)
   }, [])
   useEffect(() => {
     setImgUrl(memberInfo[0]?.memHeadshot)
@@ -146,56 +63,52 @@ const MemberInformation = ({ name }) => {
     setValue('phone', memberInfo[0]?.memMobile)
     setValue('email', memberInfo[0]?.memEmail)
   }, [memberInfo])
-  const [countyList, setCountyList] = useState([
-    '基隆市',
-    '台北市',
-    '新北市',
-    '桃園縣',
-    '新竹市',
-    '新竹縣',
-    '苗栗縣',
-    '台中市',
-    '彰化縣',
-    '南投縣',
-    '雲林縣',
-    '嘉義市',
-    '嘉義縣',
-    '台南市',
-    '高雄市',
-    '屏東縣',
-    '花蓮縣',
-    '宜蘭縣',
-    '澎湖縣',
-    '金門縣',
-    '連江縣',
-  ])
+
   return (
     <div className="signin-router-body text-center py-5">
       <div>
         <p>個人資料</p>
       </div>
-      <form onSubmit={handleSubmit(submit)}>
-        <div className="my-3 d-sm-flex justify-content-around align-items-center">
+      <form
+        onSubmit={handleSubmit(submit)}
+        className="d-flex flex-column align-items-center"
+      >
+        <div className="my-3 d-flex flex-column justify-content-around align-items-center">
+          <div className="mb-3 mt-sm-0">
+            <img
+              src={
+                imgUrl?.length > 20
+                  ? imgUrl
+                  : `/storeimages/${memberInfo[0]?.memHeadshot}`
+              }
+              alt=""
+              style={{
+                width: '250px',
+                aspectRatio: '1/1',
+                objectFit: 'cover',
+                objectPosition: 'center center',
+              }}
+            />
+          </div>
           <div>
-            <label htmlFor={'Logo'} className="form-label btn btn-danger">
-              {'更改會員大頭貼'}
+            <label htmlFor={'Logo'} className="form-label">
+              {'會員照片'}
             </label>
             <input
-              style={{ opacity: 0 }}
               id={'Logo'}
               type={'file'}
               className={`form-control  ${errors['Logo'] && 'is-invalid'}`}
               name={'Logo'}
               {...register('Logo', {
                 required: {
-                  value: false,
+                  value: true,
                   message: '請上傳Logo圖片',
                 },
                 validate: {
                   checkUrl: async (v) => {
                     const formData = new FormData()
                     formData.append('photos', v[0])
-                    if (!!v[0].name) {
+                    if (!!v[0]?.name) {
                       const r = await axios.post(
                         'http://localhost:3005/post',
                         formData
@@ -221,24 +134,8 @@ const MemberInformation = ({ name }) => {
               </div>
             )}
           </div>
-          <div className="mt-3 mt-sm-0">
-            <img
-              src={
-                imgUrl?.length > 20
-                  ? imgUrl
-                  : `/storeimages/${memberInfo[0]?.memHeadshot}`
-              }
-              alt=""
-              style={{
-                width: '250px',
-                aspectRatio: '1/1',
-                objectFit: 'cover',
-                objectPosition: 'center center',
-              }}
-            />
-          </div>
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <label htmlFor={'account'} className="form-label">
             {'會員帳號'}
           </label>
@@ -250,40 +147,8 @@ const MemberInformation = ({ name }) => {
             {...register('account')}
             disabled={true}
           />
-          {/* <Input
-            register={register}
-            errors={errors}
-            id={'account'}
-            idText={'會員帳號'}
-            type={'text'}
-            placeholder={'請輸入至少8字元'}
-            rules={{
-              required: {
-                value: true,
-                message: '會員帳號為必填',
-              },
-              minLength: {
-                value: 8,
-                message: '帳號至少8個字元',
-              },
-              validate: {
-                checkUrl: async (v) => {
-                  const regex = new RegExp('^[a-zA-Z0-9 ]+$')
-                  if (!regex.test(v)) return '請輸入正確格式'
-                  if (parseInt(v.length) >= 8) {
-                    const r = await axios.get(
-                      `http://localhost:3005/memberformcheck/account/?search=${v}`
-                    )
-                    if (!!r.data[0]) {
-                      return '此帳號已被使用請選擇其他帳號'
-                    }
-                  }
-                },
-              },
-            }}
-          /> */}
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <div className="position-relative">
             <Input
               register={register}
@@ -323,7 +188,7 @@ const MemberInformation = ({ name }) => {
             </div>
           </div>
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <Input
             register={register}
             errors={errors}
@@ -338,7 +203,7 @@ const MemberInformation = ({ name }) => {
             }}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <Input
             register={register}
             errors={errors}
@@ -353,7 +218,7 @@ const MemberInformation = ({ name }) => {
             }}
           />
         </div>
-        <div className="mb-5">
+        <div className="mb-3 w-75">
           <label htmlFor={'identity'} className="form-label">
             {'身分證'}
           </label>
@@ -365,39 +230,8 @@ const MemberInformation = ({ name }) => {
             {...register('identity')}
             disabled={true}
           />
-          {/* <Input
-            register={register}
-            errors={errors}
-            id={'identity'}
-            idText={'身分證'}
-            type={'text'}
-            rules={{
-              required: {
-                value: true,
-                message: '身分證為必填',
-              },
-              pattern: {
-                value: /^[A-Za-z][12]\d{8}$/,
-                message: '請填寫正確身分證格式',
-              },
-              validate: {
-                checkUrl: async (v) => {
-                  const regex = new RegExp('^[A-Za-z][12]d{8}$')
-                  if (!!regex.test(v)) return '請填寫正確身分證格式'
-                  if (!regex.test(v)) {
-                    const r = await axios.get(
-                      `http://localhost:3005/memberformcheck/identity/?search=${v}`
-                    )
-                    if (!!r.data[0]) {
-                      return '此身分證已被使用'
-                    }
-                  }
-                },
-              },
-            }}
-          /> */}
         </div>
-        <div className="mb-5 d-flex justify-content-evenly align-items-center">
+        <div className="mb-5 d-flex justify-content-evenly align-items-center w-75">
           <div className="d-sm-flex">
             <div className="form-label pe-3">性別</div>
             <CheckboxRadio
@@ -450,7 +284,7 @@ const MemberInformation = ({ name }) => {
             />
           </div>
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <Input
             register={register}
             errors={errors}
@@ -469,7 +303,7 @@ const MemberInformation = ({ name }) => {
             }}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <Input
             register={register}
             errors={errors}

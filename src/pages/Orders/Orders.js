@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import './Orders.css'
 const Orders = () => {
   const [orderNum, setOrderNum] = useState(1)
   const [personalInfo, setPersonalInfo] = useState()

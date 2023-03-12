@@ -74,7 +74,6 @@ const CheckboxRadio = ({
   )
 }
 const MemberComment = ({ orderSid }) => {
-  console.log(checkToken())
   const {
     register,
     handleSubmit,
@@ -87,20 +86,19 @@ const MemberComment = ({ orderSid }) => {
   } = useForm({
     mode: 'onTouched',
   })
-  const watchForm = useWatch({
-    control,
-  })
   const navigate = useNavigate()
-  useEffect(() => {
-    console.log('state', watch())
-    console.log('errors', errors)
-  }, [watchForm])
+  // const watchForm = useWatch({
+  //   control,
+  // })
+  // useEffect(() => {
+  //   console.log('state', watch())
+  //   console.log('errors', errors)
+  // }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
-      console.log('準備寫入')
       if (!!editData[0]?.sid) {
         const r = await axios.put(
-          `http://localhost:3005/editMember/${orderSid}`,
+          `http://localhost:3005/member/editMember/${orderSid}`,
           data
         )
         if (r.data.affectedRows) {
@@ -109,7 +107,7 @@ const MemberComment = ({ orderSid }) => {
         }
       } else {
         const r = await axios.post(
-          `http://localhost:3005/setMemberOrderData/${orderSid}`,
+          `http://localhost:3005/member/setMemberOrderData/${orderSid}`,
           data
         )
 
@@ -120,14 +118,17 @@ const MemberComment = ({ orderSid }) => {
       }
     }
   }
-  const getBackData = useContextValue()
+  const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [editData, setEditData] = useState([])
   const [orderData, setOrderData] = useState([])
   const [lgShow, setLgShow] = useState(false)
   const [num, setNum] = useState(0)
   useEffect(() => {
-    getBackData(`http://localhost:3005/editMemberData/${orderSid}`, setEditData)
+    getBackData(
+      `http://localhost:3005/member/editMemberData/${orderSid}`,
+      setEditData
+    )
     if (!!editData[0]?.rate) {
       setNum(editData[0]?.rate)
       setValue('comment', editData[0]?.content)
@@ -139,13 +140,12 @@ const MemberComment = ({ orderSid }) => {
         style={{ cursor: 'pointer' }}
         onClick={() => {
           getBackData(
-            `http://localhost:3005/storeOredrData/${orderSid}`,
+            `http://localhost:3005/store/storeOredrData/${orderSid}`,
             setOrderData
           )
           setLgShow(true)
         }}
       />
-      {console.log(orderData)}
       <Modal
         size="lg"
         show={lgShow}
@@ -160,7 +160,6 @@ const MemberComment = ({ orderSid }) => {
         </Modal.Header>
         <Modal.Body style={{ color: '#000000', padding: '5px' }}>
           {orderData.map((v, i) => {
-            console.log(v)
             return (
               <React.Fragment key={v.orderSid}>
                 <div className="bg-secondary" style={{ color: '#ffffff' }}>

@@ -1,10 +1,10 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import axios from 'axios'
 
 const getBackData = async (url, medhod) => {
   try {
     const r = await axios.get(url)
-    console.log(r.data)
+    console.log(r.data, r.data[0])
     medhod(r.data)
   } catch (error) {
     console.log(error)
@@ -13,8 +13,9 @@ const getBackData = async (url, medhod) => {
 
 const Context = createContext(null)
 const ContextDashbard = ({ children }) => {
+  const [render, setRender] = useState(false)
   return (
-    <Context.Provider value={getBackData}>
+    <Context.Provider value={{ getBackData, render, setRender }}>
       <div className="index">{children}</div>
     </Context.Provider>
   )

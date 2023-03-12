@@ -28,17 +28,28 @@
   margin-top: 50px;
 }
 
-.order-card img {
+.orderInfo-img {
   margin-left: 50px;
   width: 30vw;
   aspect-ratio: 1/1;
+}
+
+.orderInfo-img img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
 }
-
-@media (max-width: 1400px) {
+.order-peronsal-info {
+  width: 50vw;
+}
+@media (max-width: 1200px) {
   .order-body {
     margin-left: 0px;
+  }
+  .orderInfo-img {
+    margin: 0;
+    width: 85vw;
   }
 }
 
@@ -56,8 +67,7 @@
   .process-text li {
     font-size: 14px;
   }
-
-  .order-card img {
-    width: 60vw;
+  .order-peronsal-info {
+    width: 80vw;
   }
 }

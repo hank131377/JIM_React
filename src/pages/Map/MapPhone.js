@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import { FaSearch } from 'react-icons/fa'
 import {
   FaHome,
   FaAngleDoubleDown,
@@ -43,6 +42,7 @@ const MapPhone = ({ mapData }) => {
               <h2
                 className="accordion-header game-title"
                 id={`flush-heading${v.storeSid}`}
+                style={{ background: '#FFFFFFFF' }}
               >
                 <img src={`/storeimages/${v.storeLogo}`} alt="" />
                 <button

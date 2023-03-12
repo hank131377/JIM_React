@@ -1,16 +1,32 @@
-import { useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { NavLink, useNavigate, Link } from 'react-router-dom'
 import { FaEquals } from 'react-icons/fa'
 
-import { checkToken } from '../../ContextDashbard'
+import { checkToken, useContextValue } from '../../ContextDashbard'
 import './Menu.css'
 const Menu = () => {
+  const { getBackData, render } = useContextValue()
   const navigationRef = useRef(null)
   const menuModelRef = useRef(null)
   const navigate = useNavigate()
+  const [logoData, setLogoData] = useState([])
+  useEffect(() => {
+    if (!checkToken()?.token) return
+    if (checkToken().target == 'store') {
+      getBackData(
+        `http://localhost:3005/store/storeInfo/${checkToken()?.sid}`,
+        setLogoData
+      )
+    } else {
+      getBackData(
+        `http://localhost:3005/member/memberInfo/${checkToken()?.sid}`,
+        setLogoData
+      )
+    }
+  }, [render])
   return (
     <div className="menu">
-      <div className=" d-flex justify-content-between p-3">
+      <div className=" d-flex justify-content-between p-5 pb-0">
         <ul className="navigation p-0" ref={navigationRef}>
           <li>
             <NavLink
@@ -82,7 +98,6 @@ const Menu = () => {
           className=" phone-navigation"
           style={{ fontSize: '30px' }}
           onClick={() => {
-            console.log(menuModelRef.current)
             menuModelRef.current.style.display = 'block'
           }}
         />
@@ -94,7 +109,7 @@ const Menu = () => {
                   src={`${
                     checkToken()?.logo.length < 20
                       ? `/storeimages/${checkToken()?.logo}`
-                      : `${checkToken()?.logo}`
+                      : logoData[0]?.storeLogo
                   }`}
                   alt=""
                 />
@@ -105,7 +120,7 @@ const Menu = () => {
                   src={`${
                     checkToken()?.logo.length < 20
                       ? `/storeimages/${checkToken()?.logo}`
-                      : `${checkToken()?.logo}`
+                      : logoData[0]?.memHeadshot
                   }`}
                   alt=""
                 />
@@ -138,7 +153,6 @@ const Menu = () => {
           className="btn-close btn-close-white m-5 phone-navigation"
           aria-label="Close"
           onClick={() => {
-            console.log(menuModelRef.current)
             menuModelRef.current.style.display = 'none'
           }}
         ></button>

@@ -1,6 +1,6 @@
 import OrdersInfo from './OrdersInfo'
-import OrderPersonal from './OrderPersonal'
-import OrderPayInfo from './OrderPayInfo'
-import OrderPaycomplete from './OrderPayComplete'
+import OrdersPersonal from './OrdersPersonal'
+import OrdersPayInfo from './OrdersPayInfo'
+import OrdersPaycomplete from './OrdersPayComplete'
 
-export { OrdersInfo, OrderPersonal, OrderPayInfo, OrderPaycomplete }
+export { OrdersInfo, OrdersPersonal, OrdersPayInfo, OrdersPaycomplete }

@@ -1,0 +1,154 @@
+body {
+  font-family: 'Noto Sans TC';
+  color: #ffffff;
+  font-size: 20px;
+  background-color: #000;
+}
+
+.jim-bg-red {
+  background-color: #d01b1b !important;
+}
+
+.jim-br-white {
+  border: solid 1px #ffffff !important;
+}
+
+.index {
+  margin: 120px;
+  margin-bottom: 30px;
+}
+
+.index-body {
+  margin: 100px;
+}
+
+.index-title {
+  color: #7f7f7f;
+  margin-bottom: 30px;
+}
+
+.index-header {
+  font-size: 60px;
+  padding-bottom: 30px;
+}
+
+.index-content {
+  width: 500px;
+}
+
+.index-sort {
+  width: 100px;
+}
+
+.index-show {
+  width: 45vw;
+  margin-left: 100px;
+}
+
+.index-show img {
+  width: 100%;
+  aspect-ratio: 1.5/1;
+  object-fit: cover;
+  object-position: center center;
+}
+.index-hot {
+  font-size: 32px;
+}
+
+.index-carousels a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.index-carousel {
+  width: 20vw;
+  aspect-ratio: 1/1;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 0.5;
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.index-carousel:hover {
+  opacity: 1;
+}
+
+.index-carousel-text {
+  padding-top: 180px !important;
+}
+
+@media (max-width: 1800px) {
+  .index-show {
+    margin-left: 50px;
+  }
+}
+
+@media (max-width: 1700px) {
+  .index-show {
+    width: 40vw;
+  }
+  .index-carousel {
+    width: 19vw;
+  }
+}
+
+@media (max-width: 1560px) {
+  .index-show {
+    width: 35vw;
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .index-show {
+    width: 30vw;
+    margin-left: 20px;
+  }
+  .index-carousel {
+    width: 75vw;
+    aspect-ratio: 5/1;
+  }
+}
+
+@media (max-width: 1280px) {
+  .index-show {
+    width: 25vw;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 1199px) {
+  .index {
+    margin: 60px;
+  }
+  .index-show {
+    width: 90vw;
+    margin-left: 0;
+  }
+  .index-body {
+    margin: 0;
+  }
+  .index-item {
+    flex-wrap: wrap;
+  }
+  .index-carousel {
+    width: 75vw;
+  }
+  .index-content {
+    width: 90vw;
+    text-align: start !important;
+  }
+}
+@media (max-width: 950px) {
+  .index-carousel {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .index {
+    margin: 30px;
+  }
+}

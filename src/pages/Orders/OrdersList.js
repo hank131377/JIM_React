@@ -5,12 +5,11 @@ import {
 } from 'react-router-dom'
 
 import Logo from '../../components/Logo/Logo'
-import './Orders.css'
 import {
   OrdersInfo,
-  OrderPersonal,
-  OrderPayInfo,
-  OrderPaycomplete,
+  OrdersPersonal,
+  OrdersPayInfo,
+  OrdersPaycomplete,
 } from './OrdersComponent'
 const OrdersList = () => {
   const { orderNum, setOrderNum } = useOutletContext()
@@ -25,21 +24,21 @@ const OrdersList = () => {
       currentPage = <OrdersInfo />
       break
     case 2:
-      currentPage = <OrderPersonal />
+      currentPage = <OrdersPersonal />
       break
     case 3:
-      currentPage = <OrderPayInfo />
+      currentPage = <OrdersPayInfo />
       break
     case 4:
-      currentPage = <OrderPaycomplete />
+      currentPage = <OrdersPaycomplete />
       break
     default: {
       currentPage = <OrdersInfo />
     }
   }
   return (
-    <div>
-      <div className="d-flex justify-content-center justify-content-xxl-start">
+    <>
+      <div className="d-flex flex-xl-row flex-column justify-content-center justify-content-xxl-start">
         <Logo />
         <div className="d-flex flex-column align-items-center order-body">
           <div className="mx-5 d-flex flex-column align-items-center">
@@ -82,7 +81,7 @@ const OrdersList = () => {
           {currentPage}
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

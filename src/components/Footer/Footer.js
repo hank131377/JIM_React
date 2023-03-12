@@ -8,7 +8,7 @@ import {
 import './Footer.css'
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className="footer mt-5">
       <h2 className="footer-title m-0 foot-context">J O I N M E</h2>
       <div className="d-flex justify-content-center">
         <ul className="pt-5 px-5 list-unstyled text-center foot-context">

@@ -1,12 +1,9 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import Member from './Member'
-import MemberCollect from './MemberCollect'
-import MemberInformation from './MemberInformation'
+import { MemberCollect, MemberInformation } from './MemberComponent'
 const MemberMenuList = () => {
-  console.log(useParams())
   const { action } = useParams()
-  console.log(action)
   let currentPage = ''
   switch (action) {
     case 'collect': {

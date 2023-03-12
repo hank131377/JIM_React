@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { Link, useOutletContext, useSearchParams } from 'react-router-dom'
 import { useContextValue } from '../../ContextDashbard'
 
-const OrderPayComplete = () => {
+const OrdersPayComplete = () => {
   const { orderNum, setOrderNum } = useOutletContext()
   setOrderNum(4)
   const [searchParams, setSearchParams] = useSearchParams()
   const [completeData, setCompleteData] = useState([])
-  const getBackData = useContextValue()
+  const { getBackData } = useContextValue()
   useEffect(() => {
     console.log(searchParams.get('orderId'))
     getBackData(
-      `http://localhost:3005/ordercomplete?orderSid=${searchParams.get(
+      `http://localhost:3005/orders/ordercomplete?orderSid=${searchParams.get(
         'orderId'
       )}`,
       setCompleteData
@@ -21,7 +21,6 @@ const OrderPayComplete = () => {
     <div className="mt-3 w-100 text-center">
       <p>成功預約，祝您玩得愉快!</p>
       {completeData.map((v, i) => {
-        console.log(v)
         return (
           <div className="w-100 bg-dark" key={v.orderSid}>
             <h3 className="py-5">預約編號：{v.orderSid}</h3>
@@ -40,4 +39,4 @@ const OrderPayComplete = () => {
   )
 }
 
-export default OrderPayComplete
+export default OrdersPayComplete

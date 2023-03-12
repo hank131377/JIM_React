@@ -1,12 +1,11 @@
-import React, { useRef } from 'react'
+import { useRef, Fragment } from 'react'
 
 const GameSequentialSearch = ({
   state,
   dispatch,
-  setSearchParam,
-  searchParam,
   searchbarRef,
   Searchdispatch,
+  peopleMinNun,
 }) => {
   const searchButtonRef = useRef(null)
   const citySelect = useRef([
@@ -18,9 +17,8 @@ const GameSequentialSearch = ({
     '高雄市',
   ])
 
-  const minLimitSelect = useRef([2, 3, 4, 5, 6])
   return (
-    <>
+    <div className="container d-flex flex-xl-row flex-column align-items-center">
       <input
         type="search"
         className="game-search"
@@ -38,7 +36,7 @@ const GameSequentialSearch = ({
         }}
       />
       <div>
-        <div className="d-flex ">
+        <div className="d-flex">
           <select
             value={state.city}
             className="game-select mx-3 my-3"
@@ -56,9 +54,9 @@ const GameSequentialSearch = ({
             <option value="">全部地區</option>
             {citySelect.current.map((v, i) => {
               return (
-                <React.Fragment key={v}>
+                <Fragment key={v}>
                   <option value={v}>{v}</option>
-                </React.Fragment>
+                </Fragment>
               )
             })}
           </select>
@@ -77,17 +75,16 @@ const GameSequentialSearch = ({
             }}
           >
             <option value={100}>最少人數</option>
-            {minLimitSelect.current.map((v, i) => {
+            {peopleMinNun.map((v, i) => {
               return (
-                <React.Fragment key={v}>
+                <Fragment key={i}>
                   <option value={v}>{v}人</option>
-                </React.Fragment>
+                </Fragment>
               )
             })}
           </select>
         </div>
       </div>
-
       <button
         className="btn btn-secondary"
         onClick={() => {
@@ -98,7 +95,7 @@ const GameSequentialSearch = ({
       >
         進階篩選
       </button>
-    </>
+    </div>
   )
 }
 

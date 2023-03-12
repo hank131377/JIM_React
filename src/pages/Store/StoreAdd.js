@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
 import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaCheckSquare, FaRegWindowClose } from 'react-icons/fa'
 import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
-import { useContextValue, checkToken } from '../../ContextDashbard'
+import { checkToken } from '../../ContextDashbard'
 const Select = ({
   register,
   errors,
@@ -67,8 +67,7 @@ const Input = ({
   )
 }
 
-const StoreAdd = ({ name }) => {
-  console.log(checkToken())
+const StoreAdd = () => {
   const {
     register,
     handleSubmit,
@@ -81,17 +80,17 @@ const StoreAdd = ({ name }) => {
   } = useForm({
     mode: 'onTouched',
   })
-  const watchForm = useWatch({
-    control,
-  })
   const navigate = useNavigate()
-  useEffect(() => {
-    console.log('state', watch())
-    console.log('errors', errors)
-  }, [watchForm])
+  // const watchForm = useWatch({
+  //   control,
+  // })
+  // useEffect(() => {
+  //   console.log('state', watch())
+  //   console.log('errors', errors)
+  // }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
-      const r = await axios.post('http://localhost:3005/putgame', data)
+      const r = await axios.post('http://localhost:3005/store/putgame', data)
       if (r.data.affectedRows) {
         alert('新增成功')
         navigate('/store')
@@ -165,7 +164,6 @@ const StoreAdd = ({ name }) => {
                     },
                     validate: {
                       checkUrl: async (v) => {
-                        console.log(v)
                         const formData = new FormData()
                         formData.append('photos', v[0])
                         if (!!v[0].name) {

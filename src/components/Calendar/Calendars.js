@@ -10,7 +10,6 @@ const Calendars = ({ setFilterDate }) => {
     const orderDate = `${moment(date).get('year')}-${
       moment(date).get('month') + 1
     }-${moment(date).get('date')}`
-    console.log(orderDate)
     setFilterDate(orderDate)
     setDate(date)
   }

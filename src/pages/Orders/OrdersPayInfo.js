@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useOutletContext, useSearchParams } from 'react-router-dom'
 import { useContextValue, checkToken } from '../../ContextDashbard'
 
-const OrderPayInfo = () => {
+const OrdersPayInfo = () => {
   const { personalInfo } = useOutletContext()
   const [searchParams, setSearchParams] = useSearchParams()
   const [orderList, setorderList] = useState({})
@@ -24,10 +24,8 @@ const OrderPayInfo = () => {
   useEffect(() => {
     console.log(orderList.linePayUrl)
     if (orderList.linePayUrl) {
-      console.log('準備跳網址')
       window.location.href = orderList.linePayUrl
     } else {
-      console.log('驗證失敗')
     }
   }, [orderList])
   return (
@@ -45,4 +43,4 @@ const OrderPayInfo = () => {
   )
 }
 
-export default OrderPayInfo
+export default OrdersPayInfo

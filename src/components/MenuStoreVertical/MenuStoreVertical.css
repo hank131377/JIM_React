@@ -1,8 +1,11 @@
 .Menu-horizontal {
-  /* width: 15vw; */
+  width: 85vw;
   height: 100%;
   background: rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
+}
+
+.Menu-horizontal ul {
+  height: 100%;
 }
 
 .Menu-horizontal li {
@@ -20,19 +23,23 @@
   background-color: red;
 }
 
-@media (max-width: 992px) {
-  .Menu-horizontal {
-    width: 100%;
-    height: 50px;
-    border-radius: 0;
-  }
-
+@media (max-width: 1400px) {
   .Menu-horizontal li {
     padding: 0;
     padding-top: 10px;
   }
-
   .Menu-horizontal a {
-    padding: 5px;
+    padding: 5px 20px;
+  }
+}
+@media (max-width: 1200px) {
+  .Menu-horizontal {
+    width: 90vw;
+  }
+}
+@media (max-width: 576px) {
+  .a {
+    display: flex !important;
+    flex-direction: column !important;
   }
 }

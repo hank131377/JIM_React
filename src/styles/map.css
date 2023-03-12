@@ -1,7 +1,9 @@
 .index-map {
   margin-top: 150px;
 }
-
+.accordion-button:not(.collapsed) {
+  color: red;
+}
 .sidebar {
   overflow-x: hidden;
   overflow-y: scroll;
@@ -67,7 +69,7 @@
 
 .map-basic-style {
   color: white;
-  background-image: linear-gradient(-135deg, black, red);
+  background-color: #000000;
 }
 .map-title-font {
   font-family: 'Jost';
@@ -125,10 +127,10 @@
 }
 
 .phone-sidebar-body {
-  overflow-x: scroll;
   height: 30vh;
-  width: 100vw;
+  width: 100%;
   margin-bottom: 10px;
+  overflow-x: hidden;
 }
 
 @media (max-width: 992px) {
@@ -141,7 +143,7 @@
   }
   .phone-sidebar {
     display: block;
-    position: fixed;
+    position: absolute;
     left: 0;
     right: 0;
     bottom: -10px;

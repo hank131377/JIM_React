@@ -86,13 +86,26 @@
 .store-search-target {
   background-color: red;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .store {
-    margin-left: 0px;
+    margin: 0;
+  }
+  .store-title {
+    width: 85vw;
   }
   .store-title p {
     font-size: 32px;
     margin-top: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .store {
+    margin-left: 0px;
+    width: 90vw;
+  }
+  .store-table {
+    width: 90vw;
   }
   .store-title {
     width: 100%;

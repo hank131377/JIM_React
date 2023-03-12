@@ -1,19 +1,11 @@
 import { FaBook } from 'react-icons/fa'
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { RiDeleteBin6Fill, RiEditBoxFill } from 'react-icons/ri'
-import { useNavigate } from 'react-router-dom'
-import { checkToken, useContextValue } from './../../ContextDashbard'
-import { confirmAlert } from 'react-confirm-alert'
-import 'react-confirm-alert/src/react-confirm-alert.css'
-import StroeEdit from './StroeEdit'
-import Button from 'react-bootstrap/Button'
+import { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
+import 'react-confirm-alert/src/react-confirm-alert.css'
+
+import { useContextValue } from './../../ContextDashbard'
 const StoreOrder = ({ orderSid }) => {
-  const navigate = useNavigate()
-  const getBackData = useContextValue()
-  const [render, setRender] = useState(true)
-  const [storeOrderList, setStoreOrderList] = useState([])
+  const { getBackData } = useContextValue()
   const [orderData, setOrderData] = useState([])
   const [lgShow, setLgShow] = useState(false)
   return (
@@ -22,13 +14,12 @@ const StoreOrder = ({ orderSid }) => {
         style={{ cursor: 'pointer' }}
         onClick={() => {
           getBackData(
-            `http://localhost:3005/storeOredrData/${orderSid}`,
+            `http://localhost:3005/store/storeOredrData/${orderSid}`,
             setOrderData
           )
           setLgShow(true)
         }}
       />
-      {console.log(orderData)}
       <Modal
         size="lg"
         show={lgShow}

@@ -5,7 +5,7 @@ import { useContextValue } from '../../ContextDashbard'
 const OrdersList = () => {
   const [search, setSearch] = useSearchParams()
   const [orderListData, setOrderListData] = useState([])
-  const getBackData = useContextValue()
+  const { getBackData } = useContextValue()
   useEffect(() => {
     getBackData(
       `http://localhost:3005/orders?sid=${search.get('sid')}`,
@@ -29,7 +29,7 @@ const OrdersList = () => {
               <p>遊玩人數：{search.get('people')}人</p>
               <p className="text-danger">總金額：NT$ {search.get('cash')}</p>
             </div>
-            <div>
+            <div className="orderInfo-img">
               <img
                 src={`${
                   v.gamesImages.length < 20

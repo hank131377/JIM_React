@@ -1,20 +1,20 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { RiDeleteBin6Fill, RiEditBoxFill } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom'
-import { checkToken, useContextValue } from './../../ContextDashbard'
+import axios from 'axios'
+import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
+
+import { checkToken, useContextValue } from './../../ContextDashbard'
 import StroeEdit from './StroeEdit'
 const StoreGameList = () => {
   const navigate = useNavigate()
-  const getBackData = useContextValue()
-  console.log(checkToken()?.sid)
+  const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [gamelist, setGameList] = useState([])
   useEffect(() => {
     getBackData(
-      `http://localhost:3005/getstoredata/${checkToken()?.sid}`,
+      `http://localhost:3005/store/getstoredata/${checkToken()?.sid}`,
       setGameList
     )
   }, [render])
@@ -26,10 +26,9 @@ const StoreGameList = () => {
         {
           label: '是',
           onClick: async () => {
-            console.log('準備刪除')
             try {
               const r = await axios.delete(
-                `http://localhost:3005/delstoredata/${gameSid}`
+                `http://localhost:3005/store/delstoredata/${gameSid}`
               )
               if (!!r.data.affectedRows) {
                 alert('刪除成功')
@@ -47,10 +46,9 @@ const StoreGameList = () => {
   }
   const storeSwitch = async (gameSid, close) => {
     let str = !!close ? 0 : 1
-    console.log(str)
     try {
       const r = await axios.put(
-        `http://localhost:3005/gameswitch/${gameSid}?close=${str}`
+        `http://localhost:3005/store/gameswitch/${gameSid}?close=${str}`
       )
       setRender(!render)
     } catch (error) {}
@@ -90,7 +88,6 @@ const StoreGameList = () => {
                   <td className="phonehidden">{v.gamesPrice}</td>
                   <td>
                     <StroeEdit sid={v.gamesSid} />
-                    {/* <RiEditBoxFill /> */}
                   </td>
                   <td>
                     <div className="form-check form-switch pb-1 d-flex justify-content-center">

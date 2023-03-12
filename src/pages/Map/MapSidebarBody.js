@@ -34,7 +34,6 @@ const MapSidebarBody = ({ mapData }) => {
                 className="accordion-header game-title"
                 id={`flush-heading${v.storeSid}`}
               >
-                {/* <img src={`/storeimages/${v.storeLogo}`} alt="" /> */}
                 <img
                   src={`${
                     v.storeLogo.length < 20
@@ -93,8 +92,7 @@ const MapSidebarBody = ({ mapData }) => {
                         </p>
                         <p>
                           <FaFeatherAlt className="map-icon" />
-                          {k.feature01}
-                          {k.feature02}
+                          {k.feature01} {k.feature02}
                         </p>
                         <p>
                           <FaDollarSign className="map-icon" />

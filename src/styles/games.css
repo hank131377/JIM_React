@@ -1,5 +1,4 @@
 .game-index {
-  /* z-index: -1; */
   margin-top: 120px;
 }
 
@@ -12,15 +11,11 @@
   background-color: #7f7f7f;
 }
 
-.game-search::placeholder {
-  color: #ffffff;
-}
-
 .game-select {
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  background: url('./../../../public/icon/arrow_down _icon.png') no-repeat right
+  background: url('./../..//public/icon/arrow_down _icon.png') no-repeat right
     center transparent;
   background-size: 30px;
   border: 0px;
@@ -35,12 +30,12 @@
   color: #ffffff;
 }
 
-.game-searchbar.close {
-  display: none !important;
+.game-search::placeholder {
+  color: #ffffff;
 }
 
-.subtitle span {
-  margin-left: 20px;
+.game-searchbar.close {
+  display: none !important;
 }
 .game-card {
   border-radius: 0 0 20px 20px;
@@ -69,15 +64,36 @@
   display: flex;
   color: #ffffff;
 }
+.subtitle span {
+  margin-left: 20px;
+}
+
 .game-card-underline {
   border-bottom: solid 1px gray;
 }
 
+.game-blood {
+  height: 25px;
+}
+.game-blood img {
+  height: 100%;
+  object-fit: contain;
+}
+
+.game-comment-list {
+  width: 40vw;
+}
+
 .game-single-img {
   width: 30vw;
-  aspect-ratio: 1/1;
-  background-size: cover;
-  background-position: center center;
+  height: 700px;
+}
+
+.game-single-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .game-navlink {
@@ -102,51 +118,39 @@
   border-bottom: solid 3px red;
   color: red;
 }
-.game-comment-list {
-  min-width: 38vw;
-}
-.game-comment-list {
-  /* min-width: 680px; */
-}
+
 @media (max-width: 1400px) {
   .game-index {
     margin-top: 60px !important;
-  }
-  .game-single-img {
-    width: 70vw;
-    aspect-ratio: 2/1;
   }
 }
 @media (max-width: 1200px) {
   .game-search {
     width: 50vw;
-    /* margin-bottom: 20px; */
+  }
+  .game-comment-list {
+    width: 85vw;
+  }
+  .game-single-img {
+    width: 80vw;
+    aspect-ratio: 2/1;
   }
 }
 
 @media (max-width: 768px) {
   .game-search {
     width: 70vw;
-    /* margin-bottom: 20px; */
   }
   .game-select {
     margin-bottom: 20px;
   }
-  /* .game-toggle-button {
-    margin-left: 20px;
-  } */
+
   .game-searchbar ul {
     margin-left: 20px;
     margin-bottom: 20px;
     flex-wrap: wrap;
   }
-  /* .game-searchbar ul li {
-    margin-bottom: 5px;
-  } */
-  /* .game-single-img {
-    width: 280px;
-  } */
-  .game-comment-list {
-    min-width: 50vw;
+  .game-info-content {
+    width: 85vw;
   }
 }

@@ -1,12 +1,10 @@
-import React, { useMemo } from 'react'
-import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
-import { FaCheckSquare, FaRegWindowClose } from 'react-icons/fa'
-import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
-import { useContextValue, checkToken } from '../../ContextDashbard'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+
+import { useContextValue, checkToken } from '../../ContextDashbard'
 const Input = ({
   register,
   errors,
@@ -59,9 +57,8 @@ const Select = ({ register, errors, id, idText, rules, children }) => {
   )
 }
 const StoreInformation = ({ name }) => {
-  console.log(checkToken(), 99999999999)
   const { sid } = checkToken()
-  const getBackData = useContextValue()
+  const { getBackData, setRender, render } = useContextValue()
   const {
     register,
     handleSubmit,
@@ -74,22 +71,22 @@ const StoreInformation = ({ name }) => {
   } = useForm({
     mode: 'onTouched',
   })
-  const watchForm = useWatch({
-    control,
-  })
   const navigate = useNavigate()
-  useEffect(() => {
-    console.log('state', watch())
-    console.log('errors', errors)
-  }, [watchForm])
+  // const watchForm = useWatch({
+  //   control,
+  // })
+  // useEffect(() => {
+  //   console.log('state', watch())
+  //   console.log('errors', errors)
+  // }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
-      console.log('準備更新')
       const r = await axios.post(
-        `http://localhost:3005/editStoreInfo/${sid}`,
+        `http://localhost:3005/store/editStoreInfo/${sid}`,
         data
       )
       if (r.data.affectedRows) {
+        setRender(!render)
         alert('更新成功')
         navigate('/store')
       }
@@ -99,7 +96,7 @@ const StoreInformation = ({ name }) => {
   const [imgUrl, setImgUrl] = useState()
   const [storeInfo, setStoreInfo] = useState([])
   useEffect(() => {
-    getBackData(`http://localhost:3005/storeInfo/${sid}`, setStoreInfo)
+    getBackData(`http://localhost:3005/store/storeInfo/${sid}`, setStoreInfo)
   }, [])
   useEffect(() => {
     setImgUrl(storeInfo[0]?.storeLogo)
@@ -147,54 +144,12 @@ const StoreInformation = ({ name }) => {
       <div>
         <p>工作室資料</p>
       </div>
-      <form onSubmit={handleSubmit(submit)}>
-        <div className="my-3 d-sm-flex justify-content-around align-items-center">
-          <div>
-            <label htmlFor={'Logo'} className="form-label btn btn-danger">
-              {'更改工作室圖標'}
-            </label>
-            <input
-              style={{ opacity: 0 }}
-              id={'Logo'}
-              type={'file'}
-              className={`form-control  ${errors['Logo'] && 'is-invalid'}`}
-              name={'Logo'}
-              {...register('Logo', {
-                required: {
-                  value: false,
-                  message: '請上傳Logo圖片',
-                },
-                validate: {
-                  checkUrl: async (v) => {
-                    const formData = new FormData()
-                    formData.append('photos', v[0])
-                    if (!!v[0].name) {
-                      const r = await axios.post(
-                        'http://localhost:3005/post',
-                        formData
-                      )
-                      if (!!r.data.length) {
-                        const fileLoad = (e) => {
-                          setImgUrl(e.target.result)
-                        }
-                        const file = v[0]
-                        const fileReader = new FileReader()
-                        fileReader.addEventListener('load', fileLoad)
-                        fileReader.readAsDataURL(file)
-                        setValue('LogoImg', r.data[0].filename)
-                      }
-                    }
-                  },
-                },
-              })}
-            />
-            {errors['Logo'] && (
-              <div id="validationServer03Feedback" className="invalid-feedback">
-                {errors['Logo']?.message}
-              </div>
-            )}
-          </div>
-          <div className="mt-3 mt-sm-0">
+      <form
+        onSubmit={handleSubmit(submit)}
+        className="d-flex flex-column align-items-center"
+      >
+        <div className="my-3 d-flex flex-column justify-content-around align-items-center">
+          <div className="mb-3 mt-sm-0">
             <img
               src={
                 imgUrl?.length > 20
@@ -210,8 +165,57 @@ const StoreInformation = ({ name }) => {
               }}
             />
           </div>
+          <div>
+            <div>
+              <label htmlFor={'Logo'} className="form-label">
+                {'更改工作室圖標'}
+              </label>
+              <input
+                id={'Logo'}
+                type={'file'}
+                className={`form-control  ${errors['Logo'] && 'is-invalid'}`}
+                name={'Logo'}
+                {...register('Logo', {
+                  required: {
+                    value: false,
+                    message: '請上傳Logo圖片',
+                  },
+                  validate: {
+                    checkUrl: async (v) => {
+                      const formData = new FormData()
+                      formData.append('photos', v[0])
+                      if (!!v[0]?.name) {
+                        const r = await axios.post(
+                          'http://localhost:3005/post',
+                          formData
+                        )
+                        if (!!r.data.length) {
+                          const fileLoad = (e) => {
+                            setImgUrl(e.target.result)
+                          }
+                          const file = v[0]
+                          const fileReader = new FileReader()
+                          fileReader.addEventListener('load', fileLoad)
+                          fileReader.readAsDataURL(file)
+                          setValue('LogoImg', r.data[0].filename)
+                        }
+                      }
+                    },
+                  },
+                })}
+              />
+              {errors['Logo'] && (
+                <div
+                  id="validationServer03Feedback"
+                  className="invalid-feedback"
+                >
+                  {errors['Logo']?.message}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <label htmlFor={'account'} className="form-label">
             {'工作室帳號'}
           </label>
@@ -224,7 +228,7 @@ const StoreInformation = ({ name }) => {
             disabled={true}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <div className="position-relative">
             <Input
               register={register}
@@ -264,7 +268,7 @@ const StoreInformation = ({ name }) => {
             </div>
           </div>
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <label htmlFor={'store'} className="form-label">
             {'工作室名稱'}
           </label>
@@ -277,7 +281,7 @@ const StoreInformation = ({ name }) => {
             disabled={true}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <Input
             register={register}
             errors={errors}
@@ -296,7 +300,7 @@ const StoreInformation = ({ name }) => {
             }}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <Input
             register={register}
             errors={errors}
@@ -311,26 +315,8 @@ const StoreInformation = ({ name }) => {
             }}
           />
         </div>
-        {/* <div className="mb-3">
-          <Input
-            register={register}
-            errors={errors}
-            id={'phone'}
-            idText={'負責人手機'}
-            type={'tel'}
-            rules={{
-              required: {
-                value: true,
-                message: '負責人手機為必填',
-              },
-              pattern: {
-                value: /^09\d{8}$/,
-                message: '請填寫正確手機格式',
-              },
-            }}
-          />
-        </div> */}
-        <div className="mb-3">
+
+        <div className="mb-3 w-75">
           <label htmlFor={'identity'} className="form-label">
             {'身分證'}
           </label>
@@ -343,7 +329,7 @@ const StoreInformation = ({ name }) => {
             disabled={true}
           />
         </div>
-        <div className="mb-3 d-flex justify-content-evenly">
+        <div className="mb-3 d-flex justify-content-evenly w-75">
           <div className="w-50">
             <Select
               register={register}
@@ -380,7 +366,7 @@ const StoreInformation = ({ name }) => {
             />
           </div>
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <Input
             register={register}
             errors={errors}
@@ -400,7 +386,7 @@ const StoreInformation = ({ name }) => {
             }}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <Input
             register={register}
             errors={errors}
@@ -420,7 +406,7 @@ const StoreInformation = ({ name }) => {
             }}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <Input
             register={register}
             errors={errors}
@@ -440,7 +426,7 @@ const StoreInformation = ({ name }) => {
             }}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-75">
           <label htmlFor="remark" className="form-label">
             資訊
           </label>

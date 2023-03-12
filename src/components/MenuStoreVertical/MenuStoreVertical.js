@@ -1,51 +1,32 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import './MenuStoreVertical.css'
 const MenuHorizontal = () => {
-  const [num, setNum] = useState(1)
+  const { action } = useParams()
   return (
     <div className="Menu-horizontal">
-      <ul className="list-unstyled text-center d-xl-block d-flex justify-content-evenly text-nowrap">
+      <ul className="list-unstyled text-center d-flex flex-sm-column flex-row justify-content-evenly text-nowrap a">
         <li>
-          <NavLink
-            to="/store"
-            className={num == 1 ? 'clicked' : ''}
-            onClick={() => {
-              setNum(1)
-            }}
-          >
+          <NavLink to="/store" className={!action ? 'clicked' : ''}>
             訂單紀錄
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/store/gamelist"
-            className={num == 2 ? 'clicked' : ''}
-            onClick={() => {
-              setNum(2)
-            }}
+            className={action == 'gamelist' ? 'clicked' : ''}
           >
             遊戲管理
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/store/add"
-            className={num == 3 ? 'clicked' : ''}
-            onClick={() => {
-              setNum(3)
-            }}
-          >
+          <NavLink to="/store/add" className={action == 'add' ? 'clicked' : ''}>
             新增遊戲
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/store/information"
-            className={num == 4 ? 'clicked' : ''}
-            onClick={() => {
-              setNum(4)
-            }}
+            className={action == 'information' ? 'clicked' : ''}
           >
             工作室資料
           </NavLink>

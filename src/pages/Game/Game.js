@@ -1,98 +1,19 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react'
+import { useEffect, useMemo, useReducer, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 import { useContextValue } from '../../ContextDashbard'
 import Loading from '../../components/Loading/Loading'
 import GotopButton from '../../components/GotopButton/GotopButton'
-import './Game.css'
+import LogoHorizontal from '../../components/LogoHorizontal/LogoHorizontal'
 import {
   GameSequentialSearch,
   GameBinarySearch,
   GameList,
 } from './GameComponent'
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'searchKey': {
-      return { ...state, searchKey: action.payload }
-    }
-    case 'city': {
-      return { ...state, city: action.payload }
-    }
-    case 'minLimit': {
-      return { ...state, minLimit: action.payload }
-    }
-    case 'difficulty': {
-      return { ...state, difficulty: action.payload }
-    }
-    case 'type': {
-      return { ...state, type: action.payload }
-    }
-    case 'cash': {
-      return { ...state, cash: action.payload }
-    }
-    case 'time': {
-      return { ...state, time: action.payload }
-    }
-    case 'other': {
-      return { ...state, other: action.payload }
-    }
-    case 'order': {
-      return { ...state, order: action.payload }
-    }
-    case 'currentPage': {
-      return { ...state, currentPage: action.payload }
-    }
-    case 'searchSwitch': {
-      return { ...state, searchSwitch: action.payload }
-    }
-    default:
-      return state
-  }
-}
-
-const Searchreducer = (state, action) => {
-  switch (action.type) {
-    case 'searchKey': {
-      return { ...state, searchKey: action.payload }
-    }
-    case 'city': {
-      return { ...state, city: action.payload }
-    }
-    case 'minLimit': {
-      return { ...state, minLimit: action.payload }
-    }
-    case 'difficulty': {
-      return { ...state, difficulty: action.payload }
-    }
-    case 'type': {
-      return { ...state, type: action.payload }
-    }
-    case 'cash': {
-      return { ...state, cash: action.payload }
-    }
-    case 'time': {
-      return { ...state, time: action.payload }
-    }
-    case 'other': {
-      return { ...state, other: action.payload }
-    }
-    case 'order': {
-      return { ...state, order: action.payload }
-    }
-    case 'currentPage': {
-      return { ...state, currentPage: action.payload }
-    }
-    case 'searchSwitch': {
-      return { ...state, searchSwitch: action.payload }
-    }
-    default:
-      return state
-  }
-}
+import { reducer, Searchreducer } from './GameModel'
 
 const Game = () => {
-  const getBackData = useContextValue()
+  const { getBackData } = useContextValue()
   const [gameData, setGameData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [state, dispatch] = useReducer(reducer, {
@@ -112,16 +33,15 @@ const Game = () => {
   const [Searchstate, Searchdispatch] = useReducer(Searchreducer, {
     searchKey: '',
     city: '',
-    minLimit: 10,
+    minLimit: 12,
     difficulty: '',
     type: '',
-    cash: 83727,
+    cash: 10000,
     time: '',
     other: '',
     order: 'gamesPrice',
     switch: 'ASC',
   })
-
   const [searchParam, setSearchParam] = useSearchParams()
   const searchbarRef = useRef(null)
   const cardbodyRef = useRef(null)
@@ -174,42 +94,41 @@ const Game = () => {
     }
   }, [isLoading])
 
+  const peopleMinNun = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+  const gameDataSort = useMemo(() => {
+    return gameData.sort((a, b) => {
+      return state.searchSwitch ? a.rate - b.rate : b.rate - a.rate
+    })
+  }, [gameData, state.searchSwitch])
+
   return (
     <>
       <div className="game-index">
+        <LogoHorizontal />
         <GotopButton />
         {isLoading ? <Loading /> : ''}
-        <div className="container d-flex flex-xl-row flex-column align-items-center">
-          <GameSequentialSearch
-            state={state}
-            dispatch={dispatch}
-            Searchdispatch={Searchdispatch}
-            searchParam={searchParam}
-            searchbarRef={searchbarRef}
-          />
-        </div>
-        <div
-          className="container align-items-center mt-3 game-searchbar close"
-          ref={searchbarRef}
-        >
-          <GameBinarySearch
-            state={state}
-            dispatch={dispatch}
-            Searchdispatch={Searchdispatch}
-          />
-        </div>
-        <div className="container mt-5">
-          <div
-            className="row row-cols-1 row-cols-lg-2 row-cols-xl-4 g-3"
-            ref={cardbodyRef}
-          >
-            <GameList
-              cardbodyRef={cardbodyRef}
-              gameData={gameData}
-              state={state}
-            />
-          </div>
-        </div>
+        <GameSequentialSearch
+          state={state}
+          dispatch={dispatch}
+          Searchdispatch={Searchdispatch}
+          searchParam={searchParam}
+          searchbarRef={searchbarRef}
+          peopleMinNun={peopleMinNun}
+        />
+        <GameBinarySearch
+          state={state}
+          dispatch={dispatch}
+          Searchdispatch={Searchdispatch}
+          searchbarRef={searchbarRef}
+          Searchstate={Searchstate}
+        />
+        <GameList
+          cardbodyRef={cardbodyRef}
+          gameData={gameData}
+          state={state}
+          gameDataSort={gameDataSort}
+        />
       </div>
     </>
   )

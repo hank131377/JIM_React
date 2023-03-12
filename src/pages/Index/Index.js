@@ -2,62 +2,48 @@ import { useEffect, useState } from 'react'
 
 import { useContextValue } from '../../ContextDashbard'
 import Logo from '../../components/Logo/Logo'
-import { ShowPage, HotSelect } from './IndexComponent'
-import './indes.css'
+import { ShowPage, HotSelect } from './IndexPagition'
 
 const Index = () => {
-  const getBackData = useContextValue()
-  const [indexData, setIndexData] = useState()
-  const [nowData, setNowData] = useState([])
+  const { getBackData } = useContextValue()
+  const [indexData, setIndexData] = useState([])
   const [hotData, setHotData] = useState([])
   const [targetNum, setTargetNum] = useState(1)
   const [page, setPage] = useState(1)
+  const limit = 12
   useEffect(() => {
-    getBackData('http://localhost:3005/index/?litim=12', setIndexData)
+    getBackData(`http://localhost:3005/index/?litim=${limit}`, setIndexData)
   }, [])
 
-  const getNowData = () => {
-    setNowData(
-      indexData?.filter((v, i) => {
-        return i + 1 == targetNum
-      })
-    )
-  }
   const getHotData = () => {
     const singlePage = indexData?.slice((page - 1) * 4, page * 4)
     setHotData(singlePage)
   }
 
   useEffect(() => {
-    getNowData()
     getHotData()
   }, [indexData, targetNum, page])
 
   const changePage = (method) => {
-    const limit = indexData.length / 4
+    const once = indexData.length / 4
     if (method) {
-      setPage((page % limit) + 1)
+      setPage((page % once) + 1)
     } else {
-      page === 1 ? setPage(page * limit) : setPage((page - 1) % limit)
+      page === 1 ? setPage(page * once) : setPage((page - 1) % once)
     }
   }
 
   return (
     <>
-      <div className="d-flex align-items-center justify-content-between">
+      <div className="d-flex flex-xl-row flex-column align-items-center justify-content-between">
         <Logo />
-        <div className="container">
-          <ShowPage nowData={nowData} />
-        </div>
+        <ShowPage indexData={indexData} limit={limit} />
       </div>
-      <p className="index-hot">熱門推薦</p>
-      <div className="position-relative d-flex flex-xl-row flex-column mb-3 index-cards">
-        <HotSelect
-          hotData={hotData}
-          changePage={changePage}
-          setTargetNum={setTargetNum}
-        />
-      </div>
+      <HotSelect
+        hotData={hotData}
+        changePage={changePage}
+        setTargetNum={setTargetNum}
+      />
     </>
   )
 }

@@ -10,3 +10,12 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@media (max-width: 1200px) {
+  /* .logo {
+    display: none;
+  } */
+  /* .logo-horizontal {
+    width: 350px;
+  } */
+}

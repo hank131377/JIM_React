@@ -1,81 +1,20 @@
-import { RiDeleteBin6Fill, RiEditBoxFill } from 'react-icons/ri'
-import React, { useMemo } from 'react'
+import { RiEditBoxFill } from 'react-icons/ri'
+import React from 'react'
 import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaCheckSquare, FaRegWindowClose } from 'react-icons/fa'
 import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
-import { useContextValue, checkToken } from '../../ContextDashbard'
-import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-const Select = ({
-  register,
-  errors,
-  id,
-  idText,
-  rules,
-  children,
-  disabled,
-}) => {
-  return (
-    <>
-      <label htmlFor={id} className="form-label">
-        {idText}
-      </label>
-      <select
-        disabled={disabled}
-        id={id}
-        {...register(id, rules)}
-        className={`form-select ${errors[id] ? 'is-invalid' : ''}`}
-      >
-        {children}
-      </select>
-      {errors[id] && (
-        <div id="validationServer03Feedback" className="invalid-feedback">
-          {errors[id]?.message}
-        </div>
-      )}
-    </>
-  )
-}
-const Input = ({
-  register,
-  errors,
-  id,
-  idText,
-  type,
-  rules,
-  placeholder = '',
-}) => {
-  return (
-    <>
-      <label htmlFor={id} className="form-label">
-        {idText}
-      </label>
-      <input
-        id={id}
-        type={type}
-        className={`form-control ${errors[id] && 'is-invalid'}`}
-        name={id}
-        {...register(id, rules)}
-        placeholder={placeholder}
-      />
-      {errors[id] && (
-        <div id="validationServer03Feedback" className="invalid-feedback">
-          {errors[id]?.message}
-        </div>
-      )}
-    </>
-  )
-}
+
+import { useContextValue, checkToken } from '../../ContextDashbard'
+import { Select, Input } from './StoreComponent'
+
 const StroeEdit = ({ sid }) => {
-  //   console.log(checkToken())
   const [editData, setEditData] = useState([])
-  const getBackData = useContextValue()
-  // useEffect(() => {
-  //   getBackData(`http://localhost:3005/getEditData/${sid}`, setEditData)
-  // }, [])
+  const { getBackData } = useContextValue()
+
   const {
     register,
     handleSubmit,
@@ -88,14 +27,14 @@ const StroeEdit = ({ sid }) => {
   } = useForm({
     mode: 'onTouched',
   })
-  const watchForm = useWatch({
-    control,
-  })
   const navigate = useNavigate()
-  useEffect(() => {
-    console.log('state', watch())
-    console.log('errors', errors)
-  }, [watchForm])
+  // const watchForm = useWatch({
+  //   control,
+  // })
+  // useEffect(() => {
+  //   console.log('state', watch())
+  //   console.log('errors', errors)
+  // }, [watchForm])
   useEffect(() => {
     setImgUrl(editData[0]?.gamesImages)
     setValue('name', editData[0]?.gamesName)
@@ -114,7 +53,10 @@ const StroeEdit = ({ sid }) => {
   }, [editData])
   const submit = async (data) => {
     if (errors !== []) {
-      const r = await axios.put(`http://localhost:3005/editData/${sid}`, data)
+      const r = await axios.put(
+        `http://localhost:3005/store/editData/${sid}`,
+        data
+      )
       if (r.data.affectedRows) {
         alert('修改成功')
         navigate('/store')
@@ -146,9 +88,6 @@ const StroeEdit = ({ sid }) => {
     { value: 3, name: '時境解謎' },
   ])
   const [colse, setColse] = useState(-1)
-  //   var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
-  //     keyboard: false
-  //   })
   const [lgShow, setLgShow] = useState(false)
 
   return (
@@ -156,11 +95,13 @@ const StroeEdit = ({ sid }) => {
       <RiEditBoxFill
         style={{ cursor: 'pointer' }}
         onClick={() => {
-          getBackData(`http://localhost:3005/getEditData/${sid}`, setEditData)
+          getBackData(
+            `http://localhost:3005/store/getEditData/${sid}`,
+            setEditData
+          )
           setLgShow(true)
         }}
       />
-      {/* <Button onClick={() => setLgShow(true)}>Large modal</Button> */}
       <Modal
         size="lg"
         show={lgShow}
@@ -567,7 +508,6 @@ const StroeEdit = ({ sid }) => {
                   </div>
                 </div>
               </div>
-
               <button type="submit" className="w-50 btn btn-danger mb-3">
                 修改
               </button>

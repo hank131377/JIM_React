@@ -1,5 +1,5 @@
 .logo {
-  width: 100px;
+  width: 50px;
 }
 
 .logo p {
@@ -13,4 +13,13 @@
   background: linear-gradient(to right, #ffffff 50%, #262626 50%);
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 1199px) {
+  /* .logo {
+    display: none;
+  } */
+  .logo {
+    width: 90vw;
+  }
 }

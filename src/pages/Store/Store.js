@@ -1,33 +1,27 @@
-import { FaBook } from 'react-icons/fa'
+import { useEffect, useMemo, useState } from 'react'
 import axios from 'axios'
-import React, { useEffect, useMemo, useState } from 'react'
-import { RiDeleteBin6Fill, RiEditBoxFill } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom'
-import { checkToken, useContextValue } from './../../ContextDashbard'
-import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
-import StroeEdit from './StroeEdit'
-import Modal from 'react-bootstrap/Modal'
+
+import { checkToken, useContextValue } from './../../ContextDashbard'
 import StoreOrder from './StoreOrder'
 const Store = () => {
-  console.log(checkToken().sid)
   const navigate = useNavigate()
-  const getBackData = useContextValue()
+  const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [storeOrderList, setStoreOrderList] = useState([])
   const [orderData, setOrderData] = useState([])
   useEffect(() => {
     getBackData(
-      `  http://localhost:3005/getStoreOrderData/${checkToken()?.sid}`,
+      `  http://localhost:3005/store/getStoreOrderData/${checkToken()?.sid}`,
       setStoreOrderList
     )
   }, [render])
   const storeSwitch = async (orderSid, state) => {
     let str = !!state ? 0 : 1
-    console.log(str, 55555555555)
     try {
       const r = await axios.put(
-        `http://localhost:3005/storeOredrSwitch/${orderSid}?state=${str}`
+        `http://localhost:3005/store/storeOredrSwitch/${orderSid}?state=${str}`
       )
       setRender(!render)
     } catch (error) {}
@@ -113,11 +107,11 @@ const Store = () => {
             }}
           />
         </div>
-        <table className="table mt-3 store-table">
+        <table className="table mt-3 store-table text-nowrap">
           <thead>
             <tr>
               <th>日期</th>
-              <th>訂單編號</th>
+              <th className="phonehidden">訂單編號</th>
               <th className="phonehidden">遊戲名稱</th>
               <th>訂單狀態</th>
               <th className="phonehidden">訂購人</th>
@@ -126,11 +120,10 @@ const Store = () => {
           </thead>
           <tbody>
             {filterStateData.map((v, i) => {
-              console.log(v)
               return (
                 <tr key={v.orderSid}>
                   <td>{v.orderDate}</td>
-                  <td>{v.orderSid}</td>
+                  <td className="phonehidden">{v.orderSid}</td>
                   <td className="phonehidden">{v.gamesName}</td>
                   <td>
                     <div className="form-check form-switch pb-1 d-flex justify-content-center">
