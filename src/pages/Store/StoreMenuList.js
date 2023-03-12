@@ -8,12 +8,12 @@ const StoreMenuList = () => {
   const { action } = useParams()
   let currentPage = ''
   switch (action) {
-    case 'add': {
-      currentPage = <StoreAdd />
-      break
-    }
     case 'gamelist': {
       currentPage = <StoreGameList />
+      break
+    }
+    case 'add': {
+      currentPage = <StoreAdd />
       break
     }
     case 'information': {

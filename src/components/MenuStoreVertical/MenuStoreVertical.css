@@ -38,7 +38,7 @@
   }
 }
 @media (max-width: 576px) {
-  .a {
+  .horizontal {
     display: flex !important;
     flex-direction: column !important;
   }

@@ -1,16 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
 import { checkToken, useContextValue } from './../../ContextDashbard'
 import StoreOrder from './StoreOrder'
 const Store = () => {
-  const navigate = useNavigate()
   const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [storeOrderList, setStoreOrderList] = useState([])
-  const [orderData, setOrderData] = useState([])
   useEffect(() => {
     getBackData(
       `  http://localhost:3005/store/getStoreOrderData/${checkToken()?.sid}`,
@@ -44,12 +41,12 @@ const Store = () => {
       <div className="store-list-body text-center py-5">
         <p>訂單紀錄</p>
         <div className="my-3 float-end">
-          <label>訂單編號：</label>
+          <label htmlFor="search">訂單編號：</label>
           <input
             className="me-3 mb-3"
             type="text"
             name=""
-            id=""
+            id="search"
             onChange={(e) => {
               setKeyWord(e.target.value)
             }}
