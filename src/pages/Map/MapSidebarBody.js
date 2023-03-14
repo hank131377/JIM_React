@@ -101,7 +101,10 @@ const MapSidebarBody = ({ mapData }) => {
                             className="map-icon"
                             style={{ marginLeft: '10px' }}
                           />
-                          5(565)
+                          {k?.commentAvg
+                            ? `${parseInt(k.commentAvg * 10) / 10}`
+                            : '暫無評價'}
+                          {k?.commentSum ? `(${k.commentSum})` : ''}
                         </p>
                         <Link
                           to={`/game/${k.gamesSid}`}
