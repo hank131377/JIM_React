@@ -5,7 +5,7 @@ import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
-import { checkToken, useContextValue } from './../../ContextDashbard'
+import { checkToken, useContextValue, swalAlert } from './../../ContextDashbard'
 import StroeEdit from './StroeEdit'
 const StoreGameList = () => {
   const navigate = useNavigate()
@@ -31,7 +31,7 @@ const StoreGameList = () => {
                 `http://localhost:3005/store/delstoredata/${gameSid}`
               )
               if (!!r.data.affectedRows) {
-                alert('刪除成功')
+                swalAlert('刪除成功', '刪除成功', 'success', '確認')
                 navigate('/store')
               }
             } catch (error) {}
@@ -39,7 +39,7 @@ const StoreGameList = () => {
         },
         {
           label: '否',
-          onClick: () => alert('已取消刪除'),
+          onClick: () => swalAlert('已取消刪除', '已取消刪除', 'error', '確認'),
         },
       ],
     })

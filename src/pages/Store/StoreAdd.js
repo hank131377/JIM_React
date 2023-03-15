@@ -4,68 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaCheckSquare, FaRegWindowClose } from 'react-icons/fa'
+
+import { checkToken, swalAlert } from '../../ContextDashbard'
+import { Input, Select } from './StoreComponent'
 import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
-import { checkToken } from '../../ContextDashbard'
-const Select = ({
-  register,
-  errors,
-  id,
-  idText,
-  rules,
-  children,
-  disabled,
-}) => {
-  return (
-    <>
-      <label htmlFor={id} className="form-label">
-        {idText}
-      </label>
-      <select
-        disabled={disabled}
-        id={id}
-        {...register(id, rules)}
-        className={`form-select ${errors[id] ? 'is-invalid' : ''}`}
-      >
-        {children}
-      </select>
-      {errors[id] && (
-        <div id="validationServer03Feedback" className="invalid-feedback">
-          {errors[id]?.message}
-        </div>
-      )}
-    </>
-  )
-}
-const Input = ({
-  register,
-  errors,
-  id,
-  idText,
-  type,
-  rules,
-  placeholder = '',
-}) => {
-  return (
-    <>
-      <label htmlFor={id} className="form-label">
-        {idText}
-      </label>
-      <input
-        id={id}
-        type={type}
-        className={`form-control ${errors[id] && 'is-invalid'}`}
-        name={id}
-        {...register(id, rules)}
-        placeholder={placeholder}
-      />
-      {errors[id] && (
-        <div id="validationServer03Feedback" className="invalid-feedback">
-          {errors[id]?.message}
-        </div>
-      )}
-    </>
-  )
-}
 
 const StoreAdd = () => {
   const {
@@ -92,7 +34,7 @@ const StoreAdd = () => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/store/putgame', data)
       if (r.data.affectedRows) {
-        alert('新增成功')
+        swalAlert('新增成功', '新增成功', 'success', '確認')
         navigate('/store')
       }
     }
@@ -503,7 +445,7 @@ const StoreAdd = () => {
           </div>
         </div>
 
-        <button className="w-75 signin-botton">新增遊戲</button>
+        <button className="w-75 registerSubmit">新增遊戲</button>
       </form>
     </div>
   )

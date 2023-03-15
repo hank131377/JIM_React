@@ -83,13 +83,18 @@
   color: #ffffff;
 }
 
-.signin-botton {
-  font-size: 32px;
-  border-radius: 20px;
-  margin: 10px 0;
-  padding: 10px;
-  background: red;
-  color: #ffffff;
+.registerSubmit {
+  margin-top: 20px;
+  width: 50%;
+  height: 75px;
+  border-radius: 15px;
+  padding: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border: 3px solid rgba(255, 255, 255, 0.8) !important;
+  margin-bottom: 50px;
+  color: #fff;
 }
 
 @media (max-width: 1400px) {

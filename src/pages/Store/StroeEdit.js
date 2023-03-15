@@ -8,7 +8,7 @@ import { FaCheckSquare, FaRegWindowClose } from 'react-icons/fa'
 import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
 import Modal from 'react-bootstrap/Modal'
 
-import { useContextValue, checkToken } from '../../ContextDashbard'
+import { useContextValue, checkToken, swalAlert } from '../../ContextDashbard'
 import { Select, Input } from './StoreComponent'
 
 const StroeEdit = ({ sid }) => {
@@ -58,7 +58,7 @@ const StroeEdit = ({ sid }) => {
         data
       )
       if (r.data.affectedRows) {
-        alert('修改成功')
+        swalAlert('修改成功', '修改成功', 'success', '確認')
         navigate('/store')
       }
     }

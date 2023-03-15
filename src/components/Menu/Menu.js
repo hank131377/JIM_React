@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { NavLink, useNavigate, Link } from 'react-router-dom'
 import { FaEquals } from 'react-icons/fa'
 
-import { checkToken, useContextValue } from '../../ContextDashbard'
+import { checkToken, useContextValue, swalAlert } from '../../ContextDashbard'
 import './Menu.css'
 const Menu = () => {
   const { getBackData, render } = useContextValue()
@@ -134,7 +134,7 @@ const Menu = () => {
               className="btn btn-outline-danger mx-3"
               onClick={() => {
                 localStorage.removeItem('token')
-                alert('登出成功')
+                swalAlert('登出成功', '登出成功', 'success', '確認')
                 navigate('/')
               }}
             >

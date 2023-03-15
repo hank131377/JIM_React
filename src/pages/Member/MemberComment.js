@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { FaPenAlt } from 'react-icons/fa'
 import { FaStar, FaRegStar } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import { checkToken, useContextValue } from './../../ContextDashbard'
+import { checkToken, useContextValue, swalAlert } from './../../ContextDashbard'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import Button from 'react-bootstrap/Button'
@@ -102,7 +102,7 @@ const MemberComment = ({ orderSid }) => {
           data
         )
         if (r.data.affectedRows) {
-          alert('更新成功')
+          swalAlert('更新成功', '更新成功', 'success', '確認')
           navigate('/member')
         }
       } else {
@@ -112,7 +112,7 @@ const MemberComment = ({ orderSid }) => {
         )
 
         if (r.data.affectedRows) {
-          alert('評價完成')
+          swalAlert('評價完成', '評價完成', 'success', '確認')
           navigate('/member')
         }
       }

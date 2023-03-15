@@ -4,7 +4,7 @@ import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
-import { checkToken, useContextValue } from '../../ContextDashbard'
+import { checkToken, useContextValue, swalAlert } from '../../ContextDashbard'
 const Input = ({
   register,
   errors,
@@ -110,7 +110,10 @@ const SigninChange = ({ name, chceked, setChceked }) => {
     <div className="d-flex text-center justify-content-center signin-router">
       <div
         className="w-100"
-        style={{ background: chceked ? 'red' : '', borderRadius: '20px 0 0 0' }}
+        style={{
+          background: chceked ? '#7f7f7f' : '',
+          borderRadius: '20px 0 0 0',
+        }}
       >
         <div
           className="signin-router-right"
@@ -123,7 +126,10 @@ const SigninChange = ({ name, chceked, setChceked }) => {
       </div>
       <div
         className="w-100"
-        style={{ background: chceked ? '' : 'red', borderRadius: '0 20px 0 0' }}
+        style={{
+          background: chceked ? '' : '#7f7f7f',
+          borderRadius: '0 20px 0 0',
+        }}
       >
         <div
           className="signin-router-left"
@@ -164,12 +170,12 @@ const SigninStortIn = ({ name }) => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/signin/store', data)
       if (!!r.data.error) {
-        alert(r.data.error)
+        swalAlert(r.data.error, r.data.error, 'error', '確認')
       }
       if (r.data.code === 200) {
         localStorage.setItem('token', JSON.stringify(r.data))
         setRender(!render)
-        alert('登入成功')
+        swalAlert('登入成功', '登入成功', 'success', '確認')
         navigate('/')
       }
     }
@@ -240,7 +246,7 @@ const SigninStortIn = ({ name }) => {
           </div>
         </div>
 
-        <button className="w-75 signin-botton">SIGN IN</button>
+        <button className="w-75 registerSubmit">SIGN IN</button>
       </form>
     </div>
   )
@@ -272,12 +278,11 @@ const SigninMemberIn = ({ name }) => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/signin/member', data)
       if (!!r.data.error) {
-        alert(r.data.error)
+        swalAlert(r.data.error, r.data.error, 'error', '確認')
       }
       if (r.data.code === 200) {
         localStorage.setItem('token', JSON.stringify(r.data))
-        setRender(!render)
-        alert('登入成功')
+        swalAlert('登入成功', '登入成功', 'success', '確認')
         navigate('/')
       }
     }
@@ -348,7 +353,7 @@ const SigninMemberIn = ({ name }) => {
           </div>
         </div>
 
-        <button className="w-75 signin-botton">SIGN IN</button>
+        <button className="w-75 registerSubmit">SIGN IN</button>
       </form>
     </div>
   )
@@ -382,7 +387,7 @@ const SigninStoreRegister = ({ name }) => {
         data
       )
       if (r.data.affectedRows) {
-        alert('新增成功')
+        swalAlert('新增成功', '新增成功', 'success', '確認')
         navigate('/')
       }
     }
@@ -766,7 +771,7 @@ const SigninStoreRegister = ({ name }) => {
           )}
         </div>
 
-        <button className="w-75 signin-botton">SIGN UP</button>
+        <button className="w-75 registerSubmit">SIGN UP</button>
       </form>
     </div>
   )
@@ -800,7 +805,7 @@ const SigninMemberRegister = ({ name }) => {
         data
       )
       if (r.data.affectedRows) {
-        alert('新增成功')
+        swalAlert('新增成功', '新增成功', 'success', '確認')
         navigate('/')
       }
     }
@@ -1106,7 +1111,7 @@ const SigninMemberRegister = ({ name }) => {
             />
           </div>
         </div>
-        <button className="w-75 signin-botton">SIGN UP</button>
+        <button className="w-75 registerSubmit">SIGN UP</button>
       </form>
     </div>
   )

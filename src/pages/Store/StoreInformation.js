@@ -4,59 +4,10 @@ import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
-import { useContextValue, checkToken } from '../../ContextDashbard'
-const Input = ({
-  register,
-  errors,
-  id,
-  idText,
-  type,
-  rules,
-  placeholder = '',
-}) => {
-  return (
-    <>
-      <label htmlFor={id} className="form-label">
-        {idText}
-      </label>
-      <input
-        id={id}
-        type={type}
-        className={`form-control ${errors[id] && 'is-invalid'}`}
-        name={id}
-        {...register(id, rules)}
-        placeholder={placeholder}
-      />
-      {errors[id] && (
-        <div id="validationServer03Feedback" className="invalid-feedback">
-          {errors[id]?.message}
-        </div>
-      )}
-    </>
-  )
-}
-const Select = ({ register, errors, id, idText, rules, children }) => {
-  return (
-    <>
-      <label htmlFor={id} className="form-label">
-        {idText}
-      </label>
-      <select
-        id={id}
-        {...register(id, rules)}
-        className={`form-select ${errors[id] ? 'is-invalid' : ''}`}
-      >
-        {children}
-      </select>
-      {errors[id] && (
-        <div id="validationServer03Feedback" className="invalid-feedback">
-          {errors[id]?.message}
-        </div>
-      )}
-    </>
-  )
-}
-const StoreInformation = ({ name }) => {
+import { useContextValue, checkToken, swalAlert } from '../../ContextDashbard'
+import { Input, Select } from './StoreComponent'
+
+const StoreInformation = () => {
   const { sid } = checkToken()
   const { getBackData, setRender, render } = useContextValue()
   const {
@@ -87,7 +38,7 @@ const StoreInformation = ({ name }) => {
       )
       if (r.data.affectedRows) {
         setRender(!render)
-        alert('更新成功')
+        swalAlert('修改成功', '修改成功', 'success', '確認')
         navigate('/store')
       }
     }
@@ -448,7 +399,7 @@ const StoreInformation = ({ name }) => {
           )}
         </div>
 
-        <button className="w-75 signin-botton">修改資料</button>
+        <button className="w-75 registerSubmit">修改資料</button>
       </form>
     </div>
   )

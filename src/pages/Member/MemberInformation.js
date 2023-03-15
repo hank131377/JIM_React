@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import { useContextValue, checkToken } from '../../ContextDashbard'
+import { useContextValue, checkToken, swalAlert } from '../../ContextDashbard'
 import moment from 'moment/moment'
 import { Input, CheckboxRadio } from './MemberModel'
 
@@ -38,7 +38,7 @@ const MemberInformation = () => {
       )
       if (r.data.affectedRows) {
         setRender(!render)
-        alert('更新成功')
+        swalAlert('更新成功', '更新成功', 'success', '確認')
         navigate('/member')
       }
     }
@@ -101,7 +101,7 @@ const MemberInformation = () => {
               name={'Logo'}
               {...register('Logo', {
                 required: {
-                  value: true,
+                  value: false,
                   message: '請上傳Logo圖片',
                 },
                 validate: {
@@ -323,7 +323,7 @@ const MemberInformation = () => {
             }}
           />
         </div>
-        <button className="w-75 signin-botton">修改資料</button>
+        <button className="w-75 registerSubmit">修改資料</button>
       </form>
     </div>
   )

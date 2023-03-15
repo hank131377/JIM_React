@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 import axios from 'axios'
-
+import Swal from 'sweetalert2'
 const getBackData = async (url, medhod) => {
   try {
     const r = await axios.get(url)
@@ -15,7 +15,7 @@ const Context = createContext(null)
 const ContextDashbard = ({ children }) => {
   const [render, setRender] = useState(false)
   return (
-    <Context.Provider value={{ getBackData, render, setRender }}>
+    <Context.Provider value={{ getBackData, render, setRender, swalAlert }}>
       <div className="index">{children}</div>
     </Context.Provider>
   )
@@ -30,3 +30,13 @@ const checkToken = () => {
 }
 
 export { checkToken }
+
+const swalAlert = (title, text, icon, button) => {
+  Swal.fire({
+    title: title,
+    text: text,
+    icon: icon,
+    confirmButtonText: button,
+  })
+}
+export { swalAlert }
