@@ -23,13 +23,13 @@ const StoreAdd = () => {
     mode: 'onTouched',
   })
   const navigate = useNavigate()
-  // const watchForm = useWatch({
-  //   control,
-  // })
-  // useEffect(() => {
-  //   console.log('state', watch())
-  //   console.log('errors', errors)
-  // }, [watchForm])
+  const watchForm = useWatch({
+    control,
+  })
+  useEffect(() => {
+    console.log('state', watch())
+    console.log('errors', errors)
+  }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/store/putgame', data)
@@ -63,7 +63,8 @@ const StoreAdd = () => {
         return v.value !== +getValues().feature01
       })
     }
-  }, [getValues().feature01])
+  }, [watch().feature01])
+  console.log(watch().min, 5)
   const [num, setNum] = useState(0)
   const otherSelect = useRef([
     { value: 1, name: '密室逃脫' },
@@ -108,11 +109,13 @@ const StoreAdd = () => {
                       checkUrl: async (v) => {
                         const formData = new FormData()
                         formData.append('photos', v[0])
+
                         if (!!v[0].name) {
                           const r = await axios.post(
                             'http://localhost:3005/post',
                             formData
                           )
+
                           if (!!r.data.length) {
                             const fileLoad = (e) => {
                               setImgUrl(e.target.result)
@@ -122,6 +125,7 @@ const StoreAdd = () => {
                             fileReader.addEventListener('load', fileLoad)
                             fileReader.readAsDataURL(file)
                             setValue('LogoImg', r.data[0].filename)
+                            setValue('originalLogos', v[0].name)
                           }
                         }
                       },
@@ -332,7 +336,7 @@ const StoreAdd = () => {
             >
               <option value="">請選擇最多人數</option>
               {[...Array(12)].map((v, i) => {
-                if (i < 11 && getValues().min > i) return
+                if (i < 11 && watch().min > i) return
                 return (
                   <React.Fragment key={i}>
                     <option value={i + 1}>{i + 1}人</option>

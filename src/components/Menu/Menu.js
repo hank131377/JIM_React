@@ -26,6 +26,7 @@ const Menu = () => {
   }, [render])
   return (
     <div className="menu">
+      {console.log(logoData, 99999999999999999)}
       <div className=" d-flex justify-content-between p-5 pb-0">
         <ul className="navigation p-0" ref={navigationRef}>
           <li>
@@ -106,22 +107,24 @@ const Menu = () => {
             checkToken()?.target == 'store' ? (
               <Link to="/store">
                 <img
-                  src={`${
-                    checkToken()?.logo.length < 20
-                      ? `/storeimages/${checkToken()?.logo}`
-                      : logoData[0]?.storeLogo
-                  }`}
+                  // src={`${
+                  //   checkToken()?.logo.length < 20
+                  //     ? `/storeimages/${checkToken()?.logo}`
+                  //     : logoData[0]?.storeLogo
+                  // }`}
+                  src={`/storeimages/${logoData[0]?.storeLogo}`}
                   alt=""
                 />
               </Link>
             ) : (
               <Link to="/member">
                 <img
-                  src={`${
-                    checkToken()?.logo.length < 20
-                      ? `/storeimages/${checkToken()?.logo}`
-                      : logoData[0]?.memHeadshot
-                  }`}
+                  // src={`${
+                  //   checkToken()?.logo.length < 20
+                  //     ? `/storeimages/${checkToken()?.logo}`
+                  //     : logoData[0]?.memHeadshot
+                  // }`}
+                  src={`/storeimages/${logoData[0]?.memHeadshot}`}
                   alt=""
                 />
               </Link>

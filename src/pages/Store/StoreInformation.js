@@ -149,6 +149,7 @@ const StoreInformation = () => {
                           fileReader.addEventListener('load', fileLoad)
                           fileReader.readAsDataURL(file)
                           setValue('LogoImg', r.data[0].filename)
+                          setValue('originalLogos', v[0].name)
                         }
                       }
                     },

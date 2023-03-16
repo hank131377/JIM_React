@@ -122,6 +122,7 @@ const MemberInformation = () => {
                         fileReader.addEventListener('load', fileLoad)
                         fileReader.readAsDataURL(file)
                         setValue('LogoImg', r.data[0].filename)
+                        setValue('originalLogos', v[0].name)
                       }
                     }
                   },
@@ -269,8 +270,7 @@ const MemberInformation = () => {
               errors={errors}
               id={'birther'}
               idText={'生日'}
-              type={'text'}
-              placeholder={'ex：1999-01-01'}
+              type={'date'}
               rules={{
                 required: {
                   value: true,

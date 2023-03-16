@@ -13,7 +13,7 @@ import { Select, Input } from './StoreComponent'
 
 const StroeEdit = ({ sid }) => {
   const [editData, setEditData] = useState([])
-  const { getBackData } = useContextValue()
+  const { getBackData, setRender, render } = useContextValue()
 
   const {
     register,
@@ -58,6 +58,7 @@ const StroeEdit = ({ sid }) => {
         data
       )
       if (r.data.affectedRows) {
+        setRender(!render)
         swalAlert('修改成功', '修改成功', 'success', '確認')
         navigate('/store')
       }
@@ -175,6 +176,7 @@ const StroeEdit = ({ sid }) => {
                                   fileReader.addEventListener('load', fileLoad)
                                   fileReader.readAsDataURL(file)
                                   setValue('LogoImg', r.data[0].filename)
+                                  setValue('originalLogos', v[0].name)
                                 }
                               }
                             },
