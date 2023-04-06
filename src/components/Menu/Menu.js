@@ -8,6 +8,7 @@ const Menu = () => {
   const { getBackData, render } = useContextValue()
   const navigationRef = useRef(null)
   const menuModelRef = useRef(null)
+  const menuButtonRef = useRef(null)
   const navigate = useNavigate()
   const [logoData, setLogoData] = useState([])
   useEffect(() => {
@@ -26,12 +27,11 @@ const Menu = () => {
   }, [render])
   return (
     <div className="menu">
-      {console.log(logoData, 99999999999999999)}
       <div className=" d-flex justify-content-between p-5 pb-0">
         <ul className="navigation p-0" ref={navigationRef}>
           <li>
             <NavLink
-              to="/"
+              to="/index"
               className={({ isActive }) => {
                 return isActive ? 'clicked' : ''
               }}
@@ -95,13 +95,17 @@ const Menu = () => {
             }}
           ></span>
         </ul>
-        <FaEquals
-          className=" phone-navigation"
-          style={{ fontSize: '30px' }}
-          onClick={() => {
-            menuModelRef.current.style.display = 'block'
-          }}
-        />
+        <div ref={menuButtonRef}>
+          <FaEquals
+            className="phone-navigation"
+            style={{ fontSize: '30px', cursor: 'pointer' }}
+            onClick={() => {
+              menuModelRef.current.style.display = 'block'
+              menuButtonRef.current.style.color = 'black'
+            }}
+          />
+        </div>
+
         <div>
           {!!checkToken()?.token ? (
             checkToken()?.target == 'store' ? (
@@ -157,11 +161,12 @@ const Menu = () => {
           aria-label="Close"
           onClick={() => {
             menuModelRef.current.style.display = 'none'
+            menuButtonRef.current.style.color = 'white'
           }}
         ></button>
         <ul className="p-0 py-5 text-center phone-navigation h-100">
           <li>
-            <NavLink to="/">首頁</NavLink>
+            <NavLink to="/index">首頁</NavLink>
           </li>
           <li>
             <NavLink to="/game">遊戲總覽</NavLink>

@@ -17,7 +17,7 @@ const Map = () => {
     <MapDashbard>
       <MapSidebar mapData={mapData} />
       <MapContent mapData={mapData} />
-      <MapPhone mapData={mapData} />
+      {/* <MapPhone mapData={mapData} /> */}
     </MapDashbard>
   )
 }

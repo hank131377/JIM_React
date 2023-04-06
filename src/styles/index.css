@@ -16,6 +16,7 @@ body {
 .index {
   margin: 120px;
   margin-bottom: 30px;
+  overflow-x: hidden;
 }
 
 .index-body {

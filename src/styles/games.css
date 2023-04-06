@@ -1,6 +1,6 @@
-.game-index {
+/* .game-index {
   margin-top: 120px;
-}
+} */
 
 .game-search {
   width: 400px;
@@ -120,9 +120,9 @@
 }
 
 @media (max-width: 1400px) {
-  .game-index {
+  /* .game-index {
     margin-top: 60px !important;
-  }
+  } */
 }
 @media (max-width: 1200px) {
   .game-search {

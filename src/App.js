@@ -23,12 +23,17 @@ import {
   Member,
   MemberMenuList,
 } from './All'
+import IndexGame from './pages/Index/IndexGame'
+import IndexList from './pages/Index/IndexList'
 const App = () => {
   return (
     <ContextDashbard>
       <Menu />
       <Routes>
-        <Route path="/" element={<Index />}></Route>
+        <Route path="/" element={<Index />}>
+          <Route index element={<IndexList />}></Route>
+          <Route path=":part" element={<IndexList />}></Route>
+        </Route>
         <Route path="/game" element={<GameIndex />}>
           <Route index element={<Game />}></Route>
           <Route path=":id" element={<GameSinglePage />}>

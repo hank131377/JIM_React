@@ -58,41 +58,47 @@ const Game = () => {
     })
   }, [Searchstate])
 
-  useEffect(() => {
-    const clientMove = (e) => {
-      const height =
-        window.window.scrollY >
-        cardbodyRef.current.offsetHeight +
-          cardbodyRef.current.offsetTop -
-          window.innerHeight
-      if (
-        cardbodyRef.current.offsetHeight < 11850 &&
-        height &&
-        gameData.length >= 200
-      ) {
-        setIsLoading(true)
-        state.currentPage++
-        dispatch({
-          type: 'currentPage',
-          value: state.currentPage,
-        })
-        setTimeout(() => {
-          setIsLoading(false)
-        }, 2000)
-      }
-    }
-    window.addEventListener('scroll', clientMove, false)
-    return () => window.removeEventListener('scroll', clientMove)
-  }, [gameData, searchParam, Searchstate])
+  // useEffect(() => {
+  //   const clientMove = (e) => {
+  //     const height =
+  //       window.window.scrollY >
+  //       cardbodyRef.current.offsetHeight +
+  //         cardbodyRef.current.offsetTop -
+  //         window.innerHeight
+  //     if (
+  //       cardbodyRef.current.offsetHeight < 11850 &&
+  //       height &&
+  //       gameData.length >= 200
+  //     ) {
+  //       setIsLoading(true)
+  //       state.currentPage++
+  //       dispatch({
+  //         type: 'currentPage',
+  //         value: state.currentPage,
+  //       })
+  //       setTimeout(() => {
+  //         setIsLoading(false)
+  //       }, 2000)
+  //     }
+  //   }
+  //   window.addEventListener('scroll', clientMove, false)
+  //   return () => window.removeEventListener('scroll', clientMove)
+  // }, [gameData, searchParam, Searchstate])
 
   useEffect(() => {
     const body = document.querySelector('body')
-    if (isLoading) {
-      body.style.overflow = 'hidden'
-    } else {
+    // if (isLoading) {
+    //   body.style.overflow = 'hidden'
+    // } else {
+    //   body.style.overflow = 'auto'
+    // }
+    body.style.overflow = 'hidden'
+    setIsLoading(true)
+    setTimeout(() => {
+      setIsLoading(false)
       body.style.overflow = 'auto'
-    }
-  }, [isLoading])
+    }, 2000)
+  }, [])
 
   const peopleMinNun = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 

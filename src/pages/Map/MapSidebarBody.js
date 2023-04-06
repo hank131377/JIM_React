@@ -26,7 +26,10 @@ const MapSidebarBody = ({ mapData }) => {
   }, [searchKeyword, mapData])
   return (
     <div>
-      <div className="accordion accordion-flush" id="accordionFlushExample">
+      <div
+        className="accordion accordion-flush stores"
+        id="accordionFlushExample"
+      >
         {[...searchData].map((v, i) => {
           return (
             <div className="accordion-item" key={v.storeSid}>
@@ -81,11 +84,14 @@ const MapSidebarBody = ({ mapData }) => {
               >
                 {[...v.game].map((k, i) => {
                   return (
-                    <div className="accordion-body d-flex game-body" key={i}>
-                      <div className="left me-3">
+                    <div
+                      className="accordion-body d-flex game-body flex-column align-items-center flex-sm-row"
+                      key={i}
+                    >
+                      <div className="">
                         <img src={`/gamesImages/${k.gamesImages}`} alt="" />
                       </div>
-                      <div className="right">
+                      <div className="">
                         <p>
                           <FaTrophy className="map-icon" />
                           {k.gamesName}
@@ -108,7 +114,7 @@ const MapSidebarBody = ({ mapData }) => {
                         </p>
                         <Link
                           to={`/game/${k.gamesSid}`}
-                          className="btn btn-outline-secondary"
+                          className="btn btn-outline-danger"
                         >
                           立刻前往
                         </Link>

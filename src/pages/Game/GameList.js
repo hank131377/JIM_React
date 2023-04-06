@@ -12,11 +12,15 @@ const GameList = ({ state, cardbodyRef, gameDataSort }) => {
         ref={cardbodyRef}
       >
         {gameDataSort.map((v, i) => {
-          if (state.currentPage * 20 < i) return
           return (
             <div className="col game-card" key={v.gamesSid}>
               <div>
-                <Link to={`/game/${v.gamesSid}`}>
+                <Link
+                  to={`/game/${v.gamesSid}`}
+                  onClick={() => {
+                    document.documentElement.scrollTop = 0
+                  }}
+                >
                   <img
                     src={`${
                       v.gamesImages.length < 20

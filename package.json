@@ -15,6 +15,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "framer-motion": "^10.10.0",
     "leaflet": "^1.9.3",
     "moment": "^2.29.4",
     "prettier": "^2.8.4",
