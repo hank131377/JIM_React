@@ -80,7 +80,7 @@ const GameOver = ({ sum }) => {
                   <div className="card_content">
                     <img
                       className="box_img"
-                      src={`/images/gamesImages/${currentNum.img1_id1}`}
+                      src={`/Images/gamesImages/${currentNum.img1_id1}`}
                       alt=""
                     ></img>
                   </div>
@@ -98,7 +98,7 @@ const GameOver = ({ sum }) => {
                   <div className="card_content">
                     <img
                       className="box_img"
-                      src={`/images/gamesImages/${currentNum.img2_id2}`}
+                      src={`/Images/gamesImages/${currentNum.img2_id2}`}
                       alt=""
                     ></img>
                   </div>
@@ -116,7 +116,7 @@ const GameOver = ({ sum }) => {
                   <div className="card_content">
                     <img
                       className="box_img"
-                      src={`/images/gamesImages/${currentNum.img3_id3}`}
+                      src={`/Images/gamesImages/${currentNum.img3_id3}`}
                       alt=""
                     ></img>
                   </div>

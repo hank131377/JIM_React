@@ -26,8 +26,8 @@ const GameSinglePage = () => {
                   <img
                     src={`${
                       v.gamesImages.length < 10
-                        ? `/gamesImages/${v.gamesImages}`
-                        : `${v.gamesImages}`
+                        ? `/Images/gamesImages/${v.gamesImages}`
+                        : `/uploads/${v.gamesImages}`
                     }`}
                     alt=""
                   />

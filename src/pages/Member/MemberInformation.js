@@ -79,7 +79,7 @@ const MemberInformation = () => {
               src={
                 imgUrl?.length > 20
                   ? imgUrl
-                  : `/storeimages/${memberInfo[0]?.memHeadshot}`
+                  : `/Images/storeimages/${memberInfo[0]?.memHeadshot}`
               }
               alt=""
               style={{

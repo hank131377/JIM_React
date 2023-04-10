@@ -40,8 +40,8 @@ const MapSidebarBody = ({ mapData }) => {
                 <img
                   src={`${
                     v.storeLogo.length < 20
-                      ? `/storeimages/${v.storeLogo}`
-                      : `${v.storeLogo}`
+                      ? `/Images/storeimages/${v.storeLogo}`
+                      : `/uploads/${v.storeLogo}`
                   }`}
                   alt=""
                 />
@@ -89,7 +89,10 @@ const MapSidebarBody = ({ mapData }) => {
                       key={i}
                     >
                       <div className="">
-                        <img src={`/gamesImages/${k.gamesImages}`} alt="" />
+                        <img
+                          src={`/Images/gamesImages/${k.gamesImages}`}
+                          alt=""
+                        />
                       </div>
                       <div className="">
                         <p>

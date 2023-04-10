@@ -116,7 +116,7 @@ const Menu = () => {
                   //     ? `/storeimages/${checkToken()?.logo}`
                   //     : logoData[0]?.storeLogo
                   // }`}
-                  src={`/storeimages/${logoData[0]?.storeLogo}`}
+                  src={`/Images/storeimages/${logoData[0]?.storeLogo}`}
                   alt=""
                 />
               </Link>
@@ -128,7 +128,7 @@ const Menu = () => {
                   //     ? `/storeimages/${checkToken()?.logo}`
                   //     : logoData[0]?.memHeadshot
                   // }`}
-                  src={`/storeimages/${logoData[0]?.memHeadshot}`}
+                  src={`/Images/storeimages/${logoData[0]?.memHeadshot}`}
                   alt=""
                 />
               </Link>

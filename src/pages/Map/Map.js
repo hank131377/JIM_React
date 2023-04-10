@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import { useContextValue } from '../../ContextDashbard'
-import { MapSidebar, MapContent, MapPhone } from './MapComponent'
+import { MapSidebar, MapContent } from './MapComponent'
 import MapDashbard from './MapDashbard'
 
 const Map = () => {
@@ -17,7 +17,6 @@ const Map = () => {
     <MapDashbard>
       <MapSidebar mapData={mapData} />
       <MapContent mapData={mapData} />
-      {/* <MapPhone mapData={mapData} /> */}
     </MapDashbard>
   )
 }

@@ -29,7 +29,7 @@ const GameComment = () => {
                   src={
                     imgUrl?.length > 20
                       ? imgUrl
-                      : `/storeimages/${gameCommentData[0]?.memHeadshot}`
+                      : `/Images/storeimages/${gameCommentData[0]?.memHeadshot}`
                   }
                   alt=""
                   style={{

@@ -33,8 +33,8 @@ const OrdersList = () => {
               <img
                 src={`${
                   v.gamesImages.length < 20
-                    ? `/gamesImages/${v.gamesImages}`
-                    : `${v.gamesImages}`
+                    ? `/Images/gamesImages/${v.gamesImages}`
+                    : `/uploads/${v.gamesImages}`
                 }`}
                 alt=""
               />
