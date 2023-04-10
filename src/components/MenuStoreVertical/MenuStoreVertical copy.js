@@ -4,7 +4,7 @@ const MenuHorizontal = () => {
   const { action } = useParams()
   return (
     <div className="Menu-horizontal">
-      <ul className="list-unstyled text-center d-flex flex-column flex-lg-row flex-xxl-column justify-content-evenly text-nowrap horizontal">
+      <ul className="list-unstyled text-center d-flex flex-sm-column flex-row justify-content-evenly text-nowrap horizontal">
         <li>
           <NavLink to="/store" className={!action ? 'clicked' : ''}>
             訂單紀錄

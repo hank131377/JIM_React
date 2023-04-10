@@ -8,12 +8,12 @@ import { FaCheckSquare, FaRegWindowClose } from 'react-icons/fa'
 import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
 import Modal from 'react-bootstrap/Modal'
 
-import { useContextValue, checkToken, swalAlert } from '../../ContextDashbard'
-import { Select, Input } from './StoreComponent'
+import { useContextValue, checkToken } from '../../ContextDashbard'
+import { Select, Input, swalAlert } from './StoreComponent'
 
 const StroeEdit = ({ sid }) => {
   const [editData, setEditData] = useState([])
-  const { getBackData, setRender, render } = useContextValue()
+  const { getBackData } = useContextValue()
 
   const {
     register,
@@ -36,7 +36,9 @@ const StroeEdit = ({ sid }) => {
   //   console.log('errors', errors)
   // }, [watchForm])
   useEffect(() => {
+    console.log(editData[0])
     setImgUrl(editData[0]?.gamesImages)
+    setValue('LogoImg', editData[0]?.gamesImages)
     setValue('name', editData[0]?.gamesName)
     setValue('remark', editData[0]?.gamesContent)
     setValue('difficulty', editData[0]?.gamesDifficulty)
@@ -58,8 +60,7 @@ const StroeEdit = ({ sid }) => {
         data
       )
       if (r.data.affectedRows) {
-        setRender(!render)
-        swalAlert('修改成功', '修改成功', 'success', '確認')
+        swalAlert('修改成功', '', 'success', '確認')
         navigate('/store')
       }
     }
@@ -110,17 +111,17 @@ const StroeEdit = ({ sid }) => {
         aria-labelledby={sid}
         style={{ padding: '0' }}
       >
-        <Modal.Header className="bg-danger">
+        <Modal.Header className="">
           <Modal.Title id={sid} style={{ color: '#000000' }}>
             遊戲編號：{editData[0]?.gamesSid}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ color: '#000000', padding: '5px' }}>
           <div
-            className="d-flex justify-content-center bg-secondary"
+            className="d-flex justify-content-center"
             style={{ color: '#ffffff' }}
           >
-            <form onSubmit={handleSubmit(submit)}>
+            <form onSubmit={handleSubmit(submit)} className="stores">
               <input
                 type="text"
                 name="sid"
@@ -133,16 +134,20 @@ const StroeEdit = ({ sid }) => {
                   <label htmlFor={'Logo'} className="form-label">
                     {'Logo'}
                   </label>
-                  <div className="my-3 mt-sm-0">
-                    <img
-                      className="store-edit-img"
-                      src={
-                        imgUrl?.length > 20
-                          ? imgUrl
-                          : `/gamesImages/${editData[0]?.gamesImages}`
-                      }
-                      alt=""
-                    />
+                  <div className="my-3 mt-sm-0 d-flex justify-content-center">
+                    {!!imgUrl?.length ? (
+                      <img
+                        className="store-edit-img"
+                        src={
+                          imgUrl?.length > 20
+                            ? `/Images/uploads/${imgUrl}`
+                            : `/Images/gamesImages/${imgUrl}`
+                        }
+                        alt=""
+                      />
+                    ) : (
+                      <div className="store-add-img" alt="" />
+                    )}
                   </div>
                   <div className="d-flex flex-column align-items-center">
                     <div className="w-50 store-add-button">
@@ -168,15 +173,15 @@ const StroeEdit = ({ sid }) => {
                                   formData
                                 )
                                 if (!!r.data.length) {
-                                  const fileLoad = (e) => {
-                                    setImgUrl(e.target.result)
-                                  }
-                                  const file = v[0]
-                                  const fileReader = new FileReader()
-                                  fileReader.addEventListener('load', fileLoad)
-                                  fileReader.readAsDataURL(file)
+                                  // const fileLoad = (e) => {
+                                  //   setImgUrl(e.target.result)
+                                  // }
+                                  // const file = v[0]
+                                  // const fileReader = new FileReader()
+                                  // fileReader.addEventListener('load', fileLoad)
+                                  // fileReader.readAsDataURL(file)
+                                  setImgUrl(r.data[0].filename)
                                   setValue('LogoImg', r.data[0].filename)
-                                  setValue('originalLogos', v[0].name)
                                 }
                               }
                             },
@@ -239,7 +244,7 @@ const StroeEdit = ({ sid }) => {
                   <div className="mb-3">
                     <label className="form-label">難度</label>
                   </div>
-                  <div className="diff">
+                  <div className="diff d-flex justify-content-center">
                     {[...Array(5)].map((v, i) => {
                       return (
                         <React.Fragment key={i}>
@@ -259,10 +264,10 @@ const StroeEdit = ({ sid }) => {
                             className="form-check-label px-2 px-sm-3"
                             htmlFor={i}
                             onClick={() => {
-                              setNum(i)
+                              setNum(i + 1)
                             }}
                           >
-                            {num >= i ? <BloodSvg /> : <UnfillBlood />}
+                            {num - 1 >= i ? <BloodSvg /> : <UnfillBlood />}
                           </label>
                           {errors['difficulty'] && (
                             <div className="invalid-feedback">
@@ -471,7 +476,7 @@ const StroeEdit = ({ sid }) => {
                       }}
                     >
                       <FaRegWindowClose
-                        fill={colse == 0 ? 'red' : '#FFFFFF'}
+                        fill={colse == 0 ? 'red' : '#000000'}
                         style={{ cursor: 'pointer' }}
                       />
                     </label>
@@ -498,7 +503,7 @@ const StroeEdit = ({ sid }) => {
                       }}
                     >
                       <FaCheckSquare
-                        fill={colse == 1 ? 'red' : '#FFFFFF'}
+                        fill={colse == 1 ? 'red' : '#000000'}
                         style={{ cursor: 'pointer' }}
                       />
                     </label>

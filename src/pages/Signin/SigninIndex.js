@@ -1,11 +1,10 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import LogoHorizontal from '../../components/LogoHorizontal/LogoHorizontal'
-
+// import LogoHorizontal from '../../components/LogoHorizontal/LogoHorizontal'
 const SigninIndex = () => {
   return (
-    <div className="index" style={{ marginTop: '50px' }}>
-      <LogoHorizontal />
+    <div className="singinAndMap">
+      {/* <LogoHorizontal /> */}
       <Outlet />
     </div>
   )

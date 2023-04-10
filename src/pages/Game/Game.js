@@ -111,7 +111,7 @@ const Game = () => {
   return (
     <>
       <div className="game-index">
-        <LogoHorizontal />
+        {/* <LogoHorizontal /> */}
         <GotopButton />
         {isLoading ? <Loading /> : ''}
         <GameSequentialSearch

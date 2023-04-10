@@ -4,45 +4,68 @@ import axios from 'axios'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
-
-import { checkToken, useContextValue, swalAlert } from './../../ContextDashbard'
+import Swal from 'sweetalert2'
+import { checkToken, useContextValue } from './../../ContextDashbard'
 import StroeEdit from './StroeEdit'
+import { swalAlert } from './StoreComponent'
 const StoreGameList = () => {
+  const { sid } = checkToken('token')
+
   const navigate = useNavigate()
   const { getBackData } = useContextValue()
   const [render, setRender] = useState(true)
   const [gamelist, setGameList] = useState([])
   useEffect(() => {
-    getBackData(
-      `http://localhost:3005/store/getstoredata/${checkToken()?.sid}`,
-      setGameList
-    )
+    getBackData(`http://localhost:3005/store/getstoredata/${sid}`, setGameList)
   }, [render])
   const delData = async (gameSid, gamesName) => {
-    confirmAlert({
-      title: `遊戲編號：${gameSid}`,
-      message: `是否刪除遊戲名稱：${gamesName}`,
-      buttons: [
-        {
-          label: '是',
-          onClick: async () => {
-            try {
-              const r = await axios.delete(
-                `http://localhost:3005/store/delstoredata/${gameSid}`
-              )
-              if (!!r.data.affectedRows) {
-                swalAlert('刪除成功', '刪除成功', 'success', '確認')
-                navigate('/store')
-              }
-            } catch (error) {}
-          },
-        },
-        {
-          label: '否',
-          onClick: () => swalAlert('已取消刪除', '已取消刪除', 'error', '確認'),
-        },
-      ],
+    // swalConfirm(`是否刪除遊戲名稱：${gamesName}`, render, setRender, gameSid)
+    Swal.fire({
+      title: `是否刪除遊戲名稱：${gamesName}`,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: '是',
+      denyButtonText: `否`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const r = await axios.delete(
+            `http://localhost:3005/store/delstoredata/${gameSid}`
+          )
+          if (!!r.data.affectedRows) {
+            swalAlert('刪除成功', '', 'success', '確認')
+            navigate('/store')
+          }
+        } catch (error) {}
+      } else if (result.isDenied) {
+        swalAlert('已取消刪除', '已取消刪除', 'success', '確認')
+      }
     })
+    // confirmAlert({
+    //   title: `遊戲編號：${gameSid}`,
+    //   message: `是否刪除遊戲名稱：${gamesName}`,
+    //   buttons: [
+    //     {
+    //       label: '是',
+    //       onClick: async () => {
+    //         try {
+    //           const r = await axios.delete(
+    //             `http://localhost:3005/store/delstoredata/${gameSid}`
+    //           )
+    //           if (!!r.data.affectedRows) {
+    //             swalAlert('刪除成功', '', 'success', '確認')
+    //             navigate('/store')
+    //           }
+    //         } catch (error) {}
+    //       },
+    //     },
+    //     {
+    //       label: '否',
+    //       onClick: () =>
+    //         swalAlert('已取消刪除', '', 'success', '確認'),
+    //     },
+    //   ],
+    // })
   }
   const storeSwitch = async (gameSid, close) => {
     let str = !!close ? 0 : 1
@@ -55,8 +78,8 @@ const StoreGameList = () => {
   }
 
   return (
-    <div className="store-list-body text-center py-5">
-      <p>遊戲管理</p>
+    <div className="store-list-body text-center py-5 px-2 px-sm-5 stores">
+      <p className="store-subtitle">遊戲管理</p>
       <table className="table mt-3 store-table">
         <thead>
           <tr>

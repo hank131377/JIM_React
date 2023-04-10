@@ -4,11 +4,10 @@ import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 
-import { useContextValue, checkToken, swalAlert } from '../../ContextDashbard'
-import { Input, Select } from './StoreComponent'
-
+import { useContextValue, checkToken } from '../../ContextDashbard'
+import { Select, Input, swalAlert } from './StoreComponent'
 const StoreInformation = () => {
-  const { sid } = checkToken()
+  const { sid } = checkToken('token')
   const { getBackData, setRender, render } = useContextValue()
   const {
     register,
@@ -38,7 +37,7 @@ const StoreInformation = () => {
       )
       if (r.data.affectedRows) {
         setRender(!render)
-        swalAlert('修改成功', '修改成功', 'success', '確認')
+        swalAlert('更新成功', '', 'success', '確認')
         navigate('/store')
       }
     }
@@ -48,9 +47,11 @@ const StoreInformation = () => {
   const [storeInfo, setStoreInfo] = useState([])
   useEffect(() => {
     getBackData(`http://localhost:3005/store/storeInfo/${sid}`, setStoreInfo)
-  }, [])
+  }, [render])
   useEffect(() => {
+    console.log(storeInfo[0])
     setImgUrl(storeInfo[0]?.storeLogo)
+    setValue('LogoImg', storeInfo[0]?.storeLogo)
     setValue('Logo', storeInfo[0]?.storeLogo)
     setValue('account', storeInfo[0]?.storeAccount)
     setValue('password', storeInfo[0]?.storePassword)
@@ -62,7 +63,9 @@ const StoreInformation = () => {
     setValue('county', storeInfo[0]?.storeCity)
     setValue('address', storeInfo[0]?.storeAddress)
     setValue('email', storeInfo[0]?.storeEmail)
-    setValue('time', storeInfo[0]?.storeTime)
+    // setValue('time', storeInfo[0]?.storeTime)
+    setValue('timeStart', storeInfo[0]?.timeStart)
+    setValue('timeEnd', storeInfo[0]?.timeEnd)
     setValue('website', storeInfo[0]?.storeWebsite)
     setValue('remark', storeInfo[0]?.storeNews)
   }, [storeInfo])
@@ -91,36 +94,32 @@ const StoreInformation = () => {
     '連江縣',
   ])
   return (
-    <div className="signin-router-body text-center py-5">
+    <div className="store-add-body text-center py-5 stores">
       <div>
-        <p>工作室資料</p>
+        <p className="store-subtitle">工作室資料</p>
       </div>
-      <form
-        onSubmit={handleSubmit(submit)}
-        className="d-flex flex-column align-items-center"
-      >
+      <form onSubmit={handleSubmit(submit)}>
         <div className="my-3 d-flex flex-column justify-content-around align-items-center">
-          <div className="mb-3 mt-sm-0">
-            <img
-              src={
-                imgUrl?.length > 20
-                  ? imgUrl
-                  : `/storeimages/${storeInfo[0]?.storeLogo}`
-              }
-              alt=""
-              style={{
-                width: '250px',
-                aspectRatio: '1/1',
-                objectFit: 'cover',
-                objectPosition: 'center center',
-              }}
-            />
+          <label htmlFor={'Logo'} className="form-label">
+            {'工作室圖標'}
+          </label>
+          <div className="mb-3 mt-sm-0 store-add-img">
+            {!!imgUrl?.length ? (
+              <img
+                className="store-add-img"
+                src={
+                  imgUrl?.length > 20
+                    ? `/Images/uploads/${imgUrl}`
+                    : `/Images/storeimages/${imgUrl}`
+                }
+                alt=""
+              />
+            ) : (
+              ''
+            )}
           </div>
           <div>
             <div>
-              <label htmlFor={'Logo'} className="form-label">
-                {'更改工作室圖標'}
-              </label>
               <input
                 id={'Logo'}
                 type={'file'}
@@ -141,15 +140,16 @@ const StoreInformation = () => {
                           formData
                         )
                         if (!!r.data.length) {
-                          const fileLoad = (e) => {
-                            setImgUrl(e.target.result)
-                          }
-                          const file = v[0]
-                          const fileReader = new FileReader()
-                          fileReader.addEventListener('load', fileLoad)
-                          fileReader.readAsDataURL(file)
+                          // const fileLoad = (e) => {
+                          //   console.log(e.target.result)
+                          //   setImgUrl(e.target.result)
+                          // }
+                          // const file = v[0]
+                          // const fileReader = new FileReader()
+                          // fileReader.addEventListener('load', fileLoad)
+                          // fileReader.readAsDataURL(file)
+                          setImgUrl(r.data[0].filename)
                           setValue('LogoImg', r.data[0].filename)
-                          setValue('originalLogos', v[0].name)
                         }
                       }
                     },
@@ -167,7 +167,7 @@ const StoreInformation = () => {
             </div>
           </div>
         </div>
-        <div className="mb-3 w-75">
+        <div className="mb-3">
           <label htmlFor={'account'} className="form-label">
             {'工作室帳號'}
           </label>
@@ -180,7 +180,7 @@ const StoreInformation = () => {
             disabled={true}
           />
         </div>
-        <div className="mb-3 w-75">
+        <div className="mb-3">
           <div className="position-relative">
             <Input
               register={register}
@@ -220,7 +220,7 @@ const StoreInformation = () => {
             </div>
           </div>
         </div>
-        <div className="mb-3 w-75">
+        <div className="mb-3">
           <label htmlFor={'store'} className="form-label">
             {'工作室名稱'}
           </label>
@@ -233,7 +233,7 @@ const StoreInformation = () => {
             disabled={true}
           />
         </div>
-        <div className="mb-3 w-75">
+        <div className="mb-3">
           <Input
             register={register}
             errors={errors}
@@ -252,7 +252,7 @@ const StoreInformation = () => {
             }}
           />
         </div>
-        <div className="mb-3 w-75">
+        <div className="mb-3">
           <Input
             register={register}
             errors={errors}
@@ -268,7 +268,7 @@ const StoreInformation = () => {
           />
         </div>
 
-        <div className="mb-3 w-75">
+        <div className="mb-3">
           <label htmlFor={'identity'} className="form-label">
             {'身分證'}
           </label>
@@ -281,7 +281,7 @@ const StoreInformation = () => {
             disabled={true}
           />
         </div>
-        <div className="mb-3 d-flex justify-content-evenly w-75">
+        <div className="mb-3 d-flex justify-content-evenly">
           <div className="w-50">
             <Select
               register={register}
@@ -318,7 +318,7 @@ const StoreInformation = () => {
             />
           </div>
         </div>
-        <div className="mb-3 w-75">
+        <div className="mb-3">
           <Input
             register={register}
             errors={errors}
@@ -338,7 +338,7 @@ const StoreInformation = () => {
             }}
           />
         </div>
-        <div className="mb-3 w-75">
+        {/* <div className="mb-3">
           <Input
             register={register}
             errors={errors}
@@ -357,8 +357,40 @@ const StoreInformation = () => {
               },
             }}
           />
+        </div> */}
+        <div className="mb-3 d-flex justify-content-evenly w-100">
+          <div className="w-50">
+            <Input
+              register={register}
+              errors={errors}
+              id={'timeStart'}
+              idText={'開始時間'}
+              type={'time'}
+              rules={{
+                required: {
+                  value: true,
+                  message: '請選擇營業開始時間',
+                },
+              }}
+            ></Input>
+          </div>
+          <div className="w-50">
+            <Input
+              register={register}
+              errors={errors}
+              id={'timeEnd'}
+              idText={'結束時間'}
+              type={'time'}
+              rules={{
+                required: {
+                  value: true,
+                  message: '請選擇營業結束時間',
+                },
+              }}
+            />
+          </div>
         </div>
-        <div className="mb-3 w-75">
+        <div className="mb-3">
           <Input
             register={register}
             errors={errors}
@@ -378,7 +410,7 @@ const StoreInformation = () => {
             }}
           />
         </div>
-        <div className="mb-3 w-75">
+        <div className="mb-3">
           <label htmlFor="remark" className="form-label">
             資訊
           </label>
@@ -400,7 +432,12 @@ const StoreInformation = () => {
           )}
         </div>
 
-        <button className="w-75 registerSubmit">修改資料</button>
+        <button
+          className="w-75 btn m-registerSubmit"
+          style={{ color: '#FFFFFF' }}
+        >
+          修改資料
+        </button>
       </form>
     </div>
   )

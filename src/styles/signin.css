@@ -1,3 +1,11 @@
+.Signins {
+  margin-top: 120px;
+}
+
+.signin-router-body form {
+  color: #ffffff;
+}
+
 .signin-outcard {
   border-radius: 20px;
   margin: 0px 15px;
@@ -43,6 +51,7 @@
 .signin-router p {
   margin: 0;
   padding: 10px 0;
+  font-size: 20px;
 }
 
 .signin-router-right {
@@ -83,8 +92,15 @@
   color: #ffffff;
 }
 
-.registerSubmit {
-  margin-top: 20px;
+.signin-botton {
+  font-size: 32px;
+  border-radius: 20px;
+  margin: 10px 0;
+  padding: 10px;
+  background: red;
+  color: #ffffff;
+}
+.m-registerSubmit {
   width: 50%;
   height: 75px;
   border-radius: 15px;
@@ -96,7 +112,9 @@
   margin-bottom: 50px;
   color: #fff;
 }
-
+.m-registerSubmit:hover {
+  background-color: #ef403f !important;
+}
 @media (max-width: 1400px) {
   .signin-outcard {
     margin-bottom: 25px;
@@ -111,10 +129,20 @@
 }
 
 @media (max-width: 768px) {
+  .signin-outcard {
+    margin: 0;
+    margin-bottom: 25px;
+  }
   .signin-router-outbody {
-    width: 70vw;
+    width: 90vw;
   }
   .signin-router-botton {
-    width: 60vw;
+    width: 80vw;
+  }
+  .Signins {
+    margin: 0;
+  }
+  .Signinr {
+    padding: 0 10px;
   }
 }

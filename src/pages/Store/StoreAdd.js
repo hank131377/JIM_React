@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaCheckSquare, FaRegWindowClose } from 'react-icons/fa'
-
-import { checkToken, swalAlert } from '../../ContextDashbard'
-import { Input, Select } from './StoreComponent'
 import BloodSvg, { UnfillBlood } from '../../svg/BloodSvg'
+import { checkToken } from '../../ContextDashbard'
+import { Select, Input, swalAlert } from './StoreComponent'
 
 const StoreAdd = () => {
+  const { sid } = checkToken('token')
   const {
     register,
     handleSubmit,
@@ -23,18 +23,18 @@ const StoreAdd = () => {
     mode: 'onTouched',
   })
   const navigate = useNavigate()
-  const watchForm = useWatch({
-    control,
-  })
-  useEffect(() => {
-    console.log('state', watch())
-    console.log('errors', errors)
-  }, [watchForm])
+  // const watchForm = useWatch({
+  //   control,
+  // })
+  // useEffect(() => {
+  //   console.log('state', watch())
+  //   console.log('errors', errors)
+  // }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/store/putgame', data)
       if (r.data.affectedRows) {
-        swalAlert('新增成功', '新增成功', 'success', '確認')
+        swalAlert('新增成功', '', 'success', '確認')
         navigate('/store')
       }
     }
@@ -64,7 +64,6 @@ const StoreAdd = () => {
       })
     }
   }, [watch().feature01])
-  console.log(watch().min, 5)
   const [num, setNum] = useState(0)
   const otherSelect = useRef([
     { value: 1, name: '密室逃脫' },
@@ -73,28 +72,34 @@ const StoreAdd = () => {
   ])
   const [colse, setColse] = useState(-1)
   return (
-    <div className="store-add-body text-center py-5">
+    <div className="store-add-body text-center py-5 stores">
       <div>
-        <p>新增遊戲</p>
+        <p className="store-subtitle">新增遊戲</p>
       </div>
       <form onSubmit={handleSubmit(submit)}>
-        <input
-          type="text"
-          name="sid"
-          value={checkToken()?.sid}
-          {...register('sid')}
-          hidden
-        />
-        <div className="my-3 ">
+        <input type="text" name="sid" value={sid} {...register('sid')} hidden />
+        <div className="my-3">
           <div>
             <label htmlFor={'Logo'} className="form-label">
               {'Logo'}
             </label>
-            <div className="my-3 mt-sm-0">
-              <img className="store-add-img" src={imgUrl} alt="" />
+            <div className="my-3 mt-sm-0 ">
+              {!!imgUrl?.length ? (
+                <img
+                  className="store-add-img"
+                  src={
+                    imgUrl?.length > 20
+                      ? `/Images/uploads/${imgUrl}`
+                      : `/Images/storeimages/${imgUrl}`
+                  }
+                  alt=""
+                />
+              ) : (
+                <div className="store-add-img" alt="" />
+              )}
             </div>
             <div className="d-flex flex-column align-items-center">
-              <div className="w-50 store-add-button">
+              <div>
                 <input
                   id={'Logo'}
                   type={'file'}
@@ -109,23 +114,21 @@ const StoreAdd = () => {
                       checkUrl: async (v) => {
                         const formData = new FormData()
                         formData.append('photos', v[0])
-
                         if (!!v[0].name) {
                           const r = await axios.post(
                             'http://localhost:3005/post',
                             formData
                           )
-
                           if (!!r.data.length) {
-                            const fileLoad = (e) => {
-                              setImgUrl(e.target.result)
-                            }
-                            const file = v[0]
-                            const fileReader = new FileReader()
-                            fileReader.addEventListener('load', fileLoad)
-                            fileReader.readAsDataURL(file)
+                            // const fileLoad = (e) => {
+                            //   setImgUrl(e.target.result)
+                            // }
+                            // const file = v[0]
+                            // const fileReader = new FileReader()
+                            // fileReader.addEventListener('load', fileLoad)
+                            // fileReader.readAsDataURL(file)
+                            setImgUrl(r.data[0].filename)
                             setValue('LogoImg', r.data[0].filename)
-                            setValue('originalLogos', v[0].name)
                           }
                         }
                       },
@@ -449,7 +452,7 @@ const StoreAdd = () => {
           </div>
         </div>
 
-        <button className="w-75 registerSubmit">新增遊戲</button>
+        <button className="w-75 btn btn-danger">新增遊戲</button>
       </form>
     </div>
   )

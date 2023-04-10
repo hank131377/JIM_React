@@ -6,7 +6,7 @@ import MenuStoreVertical from '../../components/MenuStoreVertical/MenuStoreVerti
 const StoreIndex = () => {
   return (
     <>
-      <LogoHorizontal />
+      {/* <LogoHorizontal /> */}
       <div className="d-flex flex-column flex-xxl-row justify-content-center align-items-center align-items-xxl-start">
         <MenuStoreVertical />
         <div className="store">

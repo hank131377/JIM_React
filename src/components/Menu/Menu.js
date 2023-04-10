@@ -141,8 +141,8 @@ const Menu = () => {
               className="btn btn-outline-danger mx-3"
               onClick={() => {
                 localStorage.removeItem('token')
-                swalAlert('登出成功', '登出成功', 'success', '確認')
-                navigate('/')
+                swalAlert('登出成功', '', 'success', '確認')
+                navigate('/index')
               }}
             >
               登出

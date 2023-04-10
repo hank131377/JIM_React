@@ -3,8 +3,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm, useWatch } from 'react-hook-form'
 import axios from 'axios'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import Swal from 'sweetalert2'
 
-import { checkToken, useContextValue, swalAlert } from '../../ContextDashbard'
+import { checkToken, useContextValue } from '../../ContextDashbard'
+import moment from 'moment/moment'
+const swalAlert = (title, text, icon, button) => {
+  Swal.fire({
+    title: title,
+    text: text,
+    icon: icon,
+    confirmButtonText: button,
+  })
+}
 const Input = ({
   register,
   errors,
@@ -105,6 +115,22 @@ const SigninRouter = ({ name, nameen, url }) => {
   )
 }
 
+const MemberRouter = ({ name, nameen, url }) => {
+  return (
+    <div className="py-5 signin-outcard">
+      <Link to={`/signin/member`}>
+        <div className="text-center signin-card">
+          <p className="signin-card-ch">{name}</p>
+          <p className="signin-card-en">{nameen}</p>
+        </div>
+        <div className="text-center">
+          <p>由此前往：{name}註冊/登入</p>
+          <p>{nameen} SIGN UP/ SIGN IN FROM HERE</p>
+        </div>
+      </Link>
+    </div>
+  )
+}
 const SigninChange = ({ name, chceked, setChceked }) => {
   return (
     <div className="d-flex text-center justify-content-center signin-router">
@@ -168,24 +194,43 @@ const SigninStortIn = ({ name }) => {
   // }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
+      console.log(data)
       const r = await axios.post('http://localhost:3005/signin/store', data)
       if (!!r.data.error) {
-        swalAlert(r.data.error, r.data.error, 'error', '確認')
+        swalAlert(r.data.error, '', 'error', '確認')
       }
       if (r.data.code === 200) {
+        swalAlert('成功登入', '', 'success', '確認')
+
+        // Swal.fire({
+        //   title: '成功登入',
+        //   text: `成功登入`,
+        //   icon: 'success',
+        //   confirmButtonText: '確認',
+        // })
+        localStorage.removeItem('memberAuth')
         localStorage.setItem('token', JSON.stringify(r.data))
         setRender(!render)
-        swalAlert('登入成功', '登入成功', 'success', '確認')
-        navigate('/')
+        navigate('/store')
       }
     }
   }
   const [eyeIcon, setEyeIcon] = useState(true)
+  const ql = () => {
+    setValue('account', 'jimjim6666')
+    setValue('password', '12345678')
+  }
   return (
     <div className="d-flex flex-column align-items-center signin-router-body text-center py-5">
       <div>
-        <p>{name}登入</p>
-        <span>SIGN IN</span>
+        <p
+          onClick={() => {
+            ql()
+          }}
+        >
+          {name}登入
+        </p>
+        <span style={{ color: '#FFFFFF' }}>SIGN IN</span>
       </div>
       <form onSubmit={handleSubmit(submit)}>
         <div className="mb-3">
@@ -246,7 +291,7 @@ const SigninStortIn = ({ name }) => {
           </div>
         </div>
 
-        <button className="w-75 registerSubmit">SIGN IN</button>
+        <button className="w-75 m-registerSubmit mt-3">SIGN IN</button>
       </form>
     </div>
   )
@@ -278,12 +323,13 @@ const SigninMemberIn = ({ name }) => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/signin/member', data)
       if (!!r.data.error) {
-        swalAlert(r.data.error, r.data.error, 'error', '確認')
+        alert(r.data.error)
       }
       if (r.data.code === 200) {
         localStorage.setItem('token', JSON.stringify(r.data))
-        swalAlert('登入成功', '登入成功', 'success', '確認')
-        navigate('/')
+        setRender(!render)
+        swalAlert('登入成功', '', 'success', '確認')
+        navigate('/firstPage')
       }
     }
   }
@@ -353,7 +399,7 @@ const SigninMemberIn = ({ name }) => {
           </div>
         </div>
 
-        <button className="w-75 registerSubmit">SIGN IN</button>
+        <button className="w-75 m-registerSubmit mt-3">SIGN IN</button>
       </form>
     </div>
   )
@@ -373,13 +419,13 @@ const SigninStoreRegister = ({ name }) => {
     mode: 'onTouched',
   })
   const navigate = useNavigate()
-  // const watchForm = useWatch({
-  //   control,
-  // })
-  // useEffect(() => {
-  //   console.log('state', watch())
-  //   console.log('errors', errors)
-  // }, [watchForm])
+  const watchForm = useWatch({
+    control,
+  })
+  useEffect(() => {
+    // console.log('state', watch())
+    // console.log('errors', errors)
+  }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
       const r = await axios.post(
@@ -387,8 +433,8 @@ const SigninStoreRegister = ({ name }) => {
         data
       )
       if (r.data.affectedRows) {
-        swalAlert('新增成功', '新增成功', 'success', '確認')
-        navigate('/')
+        swalAlert('註冊成功', '', 'success', '確認')
+        navigate('/signin')
       }
     }
   }
@@ -554,22 +600,23 @@ const SigninStoreRegister = ({ name }) => {
         },
       },
     },
-    {
-      id: 'time',
-      idText: '營業時間',
-      type: 'text',
-      placeholder: 'ex：10:00-21:00',
-      rules: {
-        required: {
-          value: true,
-          message: '營業時間為必填',
-        },
-        pattern: {
-          value: /^\d{2}:\d{2}-\d{2}:\d{2}$/,
-          message: '請輸入正確的營業時間格式',
-        },
-      },
-    },
+    // {
+    //   id: 'time',
+    //   idText: '營業時間',
+    //   type: 'text',
+    //   placeholder: 'ex：10:00-21:00',
+    //   rules: {
+    //     required: {
+    //       value: true,
+    //       message: '營業時間為必填',
+    //     },
+    //     pattern: {
+    //       value:
+    //         /([01]?[0-9]|2[0-3]):[0-5][0-9]-([01]?[0-9]|2[0-3]):[0-5][0-9]/,
+    //       message: '請輸入正確的營業時間格式',
+    //     },
+    //   },
+    // },
     {
       id: 'website',
       idText: '官網',
@@ -588,17 +635,50 @@ const SigninStoreRegister = ({ name }) => {
       },
     },
   ]
+
+  const quickRegistration = () => {
+    setValue('account', 'jimjim6666', { shouldValidate: true })
+    setValue('password', '12345678', { shouldValidate: true })
+    setValue('store', '笨蛋工作室密室逃脫澎湖店', { shouldValidate: true })
+    setValue('mobile', '06-12345678', { shouldValidate: true })
+    setValue('leader', '店長', { shouldValidate: true })
+    setValue('identity', 'A123456789', { shouldValidate: true })
+    setValue('email', 'hahaha999@gmail.com', { shouldValidate: true })
+    setValue(
+      'website',
+      'https://www.stupidparticle.com/?utm_source=EscapeBar&utm_medium=referral&utm_campaign=EscapeBarFirmPage',
+      { shouldValidate: true }
+    )
+    setValue('email', 'hahaha999@gmail.com', { shouldValidate: true })
+    setValue('county', '澎湖縣', { shouldValidate: true })
+    setValue('address', '澎湖縣西嶼鄉98號', { shouldValidate: true })
+    setValue('timeStart', '07:00', { shouldValidate: true })
+    setValue('timeEnd', '15:00', { shouldValidate: true })
+    setValue('lat', '23.564590', { shouldValidate: true })
+    setValue('lon', '119.482186', { shouldValidate: true })
+    setValue(
+      'remark',
+      '我們致力於將腦中的故事情境，無論是歡樂、溫馨或是驚悚、刺激，還是糾結、痛心的劇情，都能夠以電影般的特效呈現，在設計中不斷挑戰自己，期待能夠在每一款遊戲中創造出更多種不同的可能性。也期望每一位玩家不僅是因為遊戲體驗能夠笑著離開，更會因為智慧獵人每一位獨特的說書者「透明人」感到記憶深刻。',
+      { shouldValidate: true }
+    )
+  }
   return (
     <div className="signin-router-body text-center py-5">
-      <div>
+      <div
+        onClick={() => {
+          quickRegistration()
+        }}
+      >
         <p>{name}註冊</p>
-        <span>SIGN UP</span>
+        <span style={{ color: '#FFFFFF' }}>SIGN UP</span>
       </div>
       <form
         onSubmit={handleSubmit(submit)}
         className="d-flex flex-column align-items-center"
       >
-        <div className="my-3 d-sm-flex flex-column justify-content-center align-items-center">
+        <input type="text" name="" id="" hidden {...register('lat')} />
+        <input type="text" name="" id="" hidden {...register('lon')} />
+        <div className="my-3 d-flex flex-column justify-content-center align-items-center">
           <div className="mt-3 w-75 h-50">
             <img
               src={imgUrl}
@@ -611,14 +691,14 @@ const SigninStoreRegister = ({ name }) => {
               }}
             />
           </div>
-          <div>
+          <div className="d-flex flex-column align-items-center">
             <label htmlFor={'Logo'} className="form-label">
               {'Logo'}
             </label>
             <input
               id={'Logo'}
               type={'file'}
-              className={`form-control  ${errors['Logo'] && 'is-invalid'}`}
+              className={`form-control w-75  ${errors['Logo'] && 'is-invalid'}`}
               name={'Logo'}
               {...register('Logo', {
                 required: {
@@ -642,8 +722,8 @@ const SigninStoreRegister = ({ name }) => {
                         const fileReader = new FileReader()
                         fileReader.addEventListener('load', fileLoad)
                         fileReader.readAsDataURL(file)
+
                         setValue('LogoImg', r.data[0].filename)
-                        setValue('originalLogos', v[0].name)
                       }
                     }
                   },
@@ -750,6 +830,38 @@ const SigninStoreRegister = ({ name }) => {
             />
           </div>
         </div>
+        <div className="mb-3 d-flex justify-content-evenly w-75">
+          <div className="w-50">
+            <Input
+              register={register}
+              errors={errors}
+              id={'timeStart'}
+              idText={'開始時間'}
+              type={'time'}
+              rules={{
+                required: {
+                  value: true,
+                  message: '請選擇營業開始時間',
+                },
+              }}
+            ></Input>
+          </div>
+          <div className="w-50">
+            <Input
+              register={register}
+              errors={errors}
+              id={'timeEnd'}
+              idText={'結束時間'}
+              type={'time'}
+              rules={{
+                required: {
+                  value: true,
+                  message: '請選擇營業結束時間',
+                },
+              }}
+            />
+          </div>
+        </div>
         <div className="mb-3 w-75">
           <label htmlFor="remark" className="form-label">
             資訊
@@ -772,7 +884,7 @@ const SigninStoreRegister = ({ name }) => {
           )}
         </div>
 
-        <button className="w-75 registerSubmit">SIGN UP</button>
+        <button className="w-75 m-registerSubmit">SIGN UP</button>
       </form>
     </div>
   )
@@ -806,8 +918,8 @@ const SigninMemberRegister = ({ name }) => {
         data
       )
       if (r.data.affectedRows) {
-        swalAlert('新增成功', '新增成功', 'success', '確認')
-        navigate('/')
+        swalAlert('新增成功', '', 'success', '確認')
+        navigate('/firstPage')
       }
     }
   }
@@ -990,7 +1102,6 @@ const SigninMemberRegister = ({ name }) => {
                         fileReader.addEventListener('load', fileLoad)
                         fileReader.readAsDataURL(file)
                         setValue('LogoImg', r.data[0].filename)
-                        setValue('originalLogos', v[0].name)
                       }
                     }
                   },
@@ -1093,27 +1204,27 @@ const SigninMemberRegister = ({ name }) => {
             ></CheckboxRadio>
           </div>
           <div className="w-50">
-            <Input
-              register={register}
-              errors={errors}
+            <label htmlFor={'birther'} className="form-label">
+              {'生日'}
+            </label>
+            <input
               id={'birther'}
-              idText={'生日'}
-              type={'text'}
-              placeholder={'ex：1999-01-01'}
-              rules={{
-                required: {
-                  value: true,
-                  message: '生日為必填',
-                },
-                pattern: {
-                  value: /^[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$/,
-                  message: '請填寫正確生日格式',
-                },
-              }}
+              type={'date'}
+              max={moment().format('YYYY-MM-DD')}
+              className={`form-control ${errors['birther'] && 'is-invalid'}`}
+              name={'birther'}
+              {...register('birther', {
+                required: { value: true, message: '生日為必填' },
+              })}
             />
+            {errors['birther'] && (
+              <div id="validationServer03Feedback" className="invalid-feedback">
+                {errors['birther']?.message}
+              </div>
+            )}
           </div>
         </div>
-        <button className="w-75 registerSubmit">SIGN UP</button>
+        <button className="w-75 m-registerSubmit">SIGN UP</button>
       </form>
     </div>
   )
@@ -1126,4 +1237,5 @@ export {
   SigninMemberIn,
   SigninStoreRegister,
   SigninMemberRegister,
+  MemberRouter,
 }
