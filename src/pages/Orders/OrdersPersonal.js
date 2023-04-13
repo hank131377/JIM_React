@@ -148,7 +148,6 @@ const OrdersPersonal = () => {
                 discount={discount}
                 setdiscountPriceId={setdiscountPriceId}
               >
-                <option value="0">不使用優惠券</option>
                 {discount.map((v, i) => {
                   return (
                     <option key={v.discountID} value={v.discountID}>

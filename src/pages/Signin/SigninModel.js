@@ -329,7 +329,7 @@ const SigninMemberIn = ({ name }) => {
         localStorage.setItem('token', JSON.stringify(r.data))
         setRender(!render)
         swalAlert('登入成功', '', 'success', '確認')
-        navigate('/firstPage')
+        navigate('/index')
       }
     }
   }
@@ -919,7 +919,7 @@ const SigninMemberRegister = ({ name }) => {
       )
       if (r.data.affectedRows) {
         swalAlert('新增成功', '', 'success', '確認')
-        navigate('/firstPage')
+        navigate('/signin')
       }
     }
   }
@@ -1172,37 +1172,40 @@ const SigninMemberRegister = ({ name }) => {
           )
         })}
         <div className="mb-5 d-flex justify-content-evenly align-items-center w-75">
-          <div className="d-sm-flex">
+          <div>
             <div className="form-label pe-3">性別</div>
-            <CheckboxRadio
-              type="radio"
-              name="gender"
-              id="male"
-              value={'男'}
-              register={register}
-              errors={errors}
-              rules={{
-                required: {
-                  value: true,
-                },
-              }}
-              labelText="男"
-            ></CheckboxRadio>
-            <CheckboxRadio
-              type="radio"
-              name="gender"
-              id="female"
-              value={'女'}
-              register={register}
-              errors={errors}
-              rules={{
-                required: {
-                  value: true,
-                },
-              }}
-              labelText="女"
-            ></CheckboxRadio>
+            <div className="d-sm-flex">
+              <CheckboxRadio
+                type="radio"
+                name="gender"
+                id="male"
+                value={'男'}
+                register={register}
+                errors={errors}
+                rules={{
+                  required: {
+                    value: true,
+                  },
+                }}
+                labelText="男"
+              ></CheckboxRadio>
+              <CheckboxRadio
+                type="radio"
+                name="gender"
+                id="female"
+                value={'女'}
+                register={register}
+                errors={errors}
+                rules={{
+                  required: {
+                    value: true,
+                  },
+                }}
+                labelText="女"
+              ></CheckboxRadio>
+            </div>
           </div>
+
           <div className="w-50">
             <label htmlFor={'birther'} className="form-label">
               {'生日'}

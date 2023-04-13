@@ -26,8 +26,8 @@ const Member = () => {
   }, [memberOrderList, state, keyWord])
 
   return (
-    <div className="store-list-body text-center py-5">
-      <p>訂單紀錄</p>
+    <div className="store-list-body text-center py-5 px-5 stores">
+      <p className="store-subtitle">訂單紀錄</p>
       <div className="my-3 float-end">
         <label>訂單編號：</label>
         <input

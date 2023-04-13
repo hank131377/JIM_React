@@ -28,7 +28,7 @@ const OrdersPayComplete = () => {
             <p>預約日期：{v.orderDate}</p>
             <p>訂單總額：NT$ {v.checkPrice}</p>
             <div className="py-3">
-              <Link to="/" className="mx-5 btn btn-outline-danger">
+              <Link to="/index" className="mx-5 btn btn-outline-danger">
                 回首頁
               </Link>
             </div>

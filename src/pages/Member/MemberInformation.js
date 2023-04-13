@@ -23,13 +23,13 @@ const MemberInformation = () => {
     mode: 'onTouched',
   })
   const navigate = useNavigate()
-  // const watchForm = useWatch({
-  //   control,
-  // })
-  // useEffect(() => {
-  //   console.log('state', watch())
-  //   console.log('errors', errors)
-  // }, [watchForm])
+  const watchForm = useWatch({
+    control,
+  })
+  useEffect(() => {
+    console.log('state', watch())
+    console.log('errors', errors)
+  }, [watchForm])
   const submit = async (data) => {
     if (errors !== []) {
       const r = await axios.post(
@@ -52,6 +52,7 @@ const MemberInformation = () => {
   }, [])
   useEffect(() => {
     setImgUrl(memberInfo[0]?.memHeadshot)
+    setValue('LogoImg', memberInfo[0]?.memHeadshot)
     setValue('Logo', memberInfo[0]?.memHeadshot)
     setValue('account', memberInfo[0]?.memAccount)
     setValue('password', memberInfo[0]?.memPassword)
@@ -59,15 +60,15 @@ const MemberInformation = () => {
     setValue('nick', memberInfo[0]?.memNickName)
     setValue('identity', memberInfo[0]?.memIdentity)
     setValue('gender', memberInfo[0]?.memGender)
-    setValue('birther', moment(memberInfo[0]?.memBirth).format('Y-M-D'))
+    setValue('birther', moment(memberInfo[0]?.memBirth).format('YYYY-MM-DD'))
     setValue('phone', memberInfo[0]?.memMobile)
     setValue('email', memberInfo[0]?.memEmail)
   }, [memberInfo])
 
   return (
-    <div className="signin-router-body text-center py-5">
+    <div className="store-add-body text-center py-5 stores">
       <div>
-        <p>個人資料</p>
+        <p className="store-subtitle">個人資料</p>
       </div>
       <form
         onSubmit={handleSubmit(submit)}
@@ -76,10 +77,11 @@ const MemberInformation = () => {
         <div className="my-3 d-flex flex-column justify-content-around align-items-center">
           <div className="mb-3 mt-sm-0">
             <img
+              className="store-add-img"
               src={
                 imgUrl?.length > 20
-                  ? imgUrl
-                  : `/Images/storeimages/${memberInfo[0]?.memHeadshot}`
+                  ? `/Images/uploads/${imgUrl}`
+                  : `/Images/storeimages/${imgUrl}`
               }
               alt=""
               style={{
@@ -114,15 +116,15 @@ const MemberInformation = () => {
                         formData
                       )
                       if (!!r.data.length) {
-                        const fileLoad = (e) => {
-                          setImgUrl(e.target.result)
-                        }
-                        const file = v[0]
-                        const fileReader = new FileReader()
-                        fileReader.addEventListener('load', fileLoad)
-                        fileReader.readAsDataURL(file)
+                        // const fileLoad = (e) => {
+                        //   setImgUrl(e.target.result)
+                        // }
+                        // const file = v[0]
+                        // const fileReader = new FileReader()
+                        // fileReader.addEventListener('load', fileLoad)
+                        // fileReader.readAsDataURL(file)
+                        setImgUrl(r.data[0].filename)
                         setValue('LogoImg', r.data[0].filename)
-                        setValue('originalLogos', v[0].name)
                       }
                     }
                   },
@@ -233,37 +235,42 @@ const MemberInformation = () => {
           />
         </div>
         <div className="mb-5 d-flex justify-content-evenly align-items-center w-75">
-          <div className="d-sm-flex">
-            <div className="form-label pe-3">性別</div>
-            <CheckboxRadio
-              type="radio"
-              name="gender"
-              id="male"
-              value={'男'}
-              register={register}
-              errors={errors}
-              rules={{
-                required: {
-                  value: true,
-                },
-              }}
-              labelText="男"
-            ></CheckboxRadio>
-            <CheckboxRadio
-              type="radio"
-              name="gender"
-              id="female"
-              value={'女'}
-              register={register}
-              errors={errors}
-              rules={{
-                required: {
-                  value: true,
-                },
-              }}
-              labelText="女"
-            ></CheckboxRadio>
+          <div>
+            <div className="form-label pe-3" style={{ color: '#FFFFFF' }}>
+              性別
+            </div>
+            <div className="d-sm-flex">
+              <CheckboxRadio
+                type="radio"
+                name="gender"
+                id="male"
+                value={'男'}
+                register={register}
+                errors={errors}
+                rules={{
+                  required: {
+                    value: true,
+                  },
+                }}
+                labelText="男"
+              ></CheckboxRadio>
+              <CheckboxRadio
+                type="radio"
+                name="gender"
+                id="female"
+                value={'女'}
+                register={register}
+                errors={errors}
+                rules={{
+                  required: {
+                    value: true,
+                  },
+                }}
+                labelText="女"
+              ></CheckboxRadio>
+            </div>
           </div>
+
           <div className="w-50">
             <Input
               register={register}
@@ -271,14 +278,11 @@ const MemberInformation = () => {
               id={'birther'}
               idText={'生日'}
               type={'date'}
+              max={moment().format('YYYY-MM-DD')}
               rules={{
                 required: {
                   value: true,
                   message: '生日為必填',
-                },
-                pattern: {
-                  value: /^[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]$/,
-                  message: '請填寫正確生日格式',
                 },
               }}
             />
@@ -323,7 +327,12 @@ const MemberInformation = () => {
             }}
           />
         </div>
-        <button className="w-75 registerSubmit">修改資料</button>
+        <button
+          className="w-75 btn m-registerSubmit"
+          style={{ color: '#FFFFFF' }}
+        >
+          修改資料
+        </button>
       </form>
     </div>
   )

@@ -27,8 +27,8 @@ const MemberCollect = () => {
     }
   }
   return (
-    <div className="store-list-body text-center py-5">
-      <p>收藏</p>
+    <div className="store-list-body text-center py-5 px-5 stores">
+      <p className="store-subtitle">收藏</p>
       <table className="table mt-3 store-table text-nowrap">
         <thead>
           <tr>

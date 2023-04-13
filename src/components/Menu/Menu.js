@@ -132,7 +132,11 @@ const Menu = () => {
                   //     ? `/storeimages/${checkToken()?.logo}`
                   //     : logoData[0]?.memHeadshot
                   // }`}
-                  src={`/Images/storeimages/${logoData[0]?.memHeadshot}`}
+                  src={
+                    logoData[0]?.memHeadshot.length > 20
+                      ? `/Images/uploads/${logoData[0]?.memHeadshot}`
+                      : `/Images/${logoData[0]?.memHeadshot}`
+                  }
                   alt=""
                 />
               </Link>
