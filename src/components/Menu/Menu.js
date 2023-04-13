@@ -116,7 +116,11 @@ const Menu = () => {
                   //     ? `/storeimages/${checkToken()?.logo}`
                   //     : logoData[0]?.storeLogo
                   // }`}
-                  src={`/Images/storeimages/${logoData[0]?.storeLogo}`}
+                  src={
+                    logoData[0]?.storeLogo.length > 20
+                      ? `/Images/uploads/${logoData[0]?.storeLogo}`
+                      : `/Images/storeimages/${logoData[0]?.storeLogo}`
+                  }
                   alt=""
                 />
               </Link>

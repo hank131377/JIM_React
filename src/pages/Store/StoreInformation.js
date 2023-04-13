@@ -366,6 +366,7 @@ const StoreInformation = () => {
               id={'timeStart'}
               idText={'開始時間'}
               type={'time'}
+              step="300"
               rules={{
                 required: {
                   value: true,

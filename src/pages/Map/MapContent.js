@@ -45,7 +45,7 @@ const MapContent = ({ mapData }) => {
                         src={`${
                           v.storeLogo.length < 20
                             ? `/Images/storeimages/${v.storeLogo}`
-                            : `/uploads/${v.storeLogo}`
+                            : `/Images/uploads/${v.storeLogo}`
                         }`}
                         alt=""
                       />

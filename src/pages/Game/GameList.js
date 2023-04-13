@@ -25,7 +25,7 @@ const GameList = ({ state, cardbodyRef, gameDataSort }) => {
                     src={`${
                       v.gamesImages.length < 20
                         ? `/Images/gamesImages/${v.gamesImages}`
-                        : `/uploads/${v.gamesImages}`
+                        : `/Images/uploads/${v.gamesImages}`
                     }`}
                     alt=""
                     className="w-100"
