@@ -25,6 +25,14 @@ const MenuMemberVertical = () => {
             個人資料
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/member/coupon"
+            className={action == 'coupon' ? 'clicked' : ''}
+          >
+            優惠券
+          </NavLink>
+        </li>
       </ul>
     </div>
   )

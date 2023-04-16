@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { useOutletContext, useSearchParams } from 'react-router-dom'
 
-import { useContextValue } from '../../ContextDashbard'
+import { useContextValue, checkToken } from '../../ContextDashbard'
 import { Input, RadioBoxCheck, Select } from './OrdersModel'
 
 const OrdersPersonal = () => {
@@ -38,7 +38,10 @@ const OrdersPersonal = () => {
     }
   }
   useEffect(() => {
-    getBackData(`http://localhost:3005/orders/discount`, setDiscount)
+    getBackData(
+      `http://localhost:3005/orders/discount?sid=${checkToken().sid}`,
+      setDiscount
+    )
   }, [])
 
   // const watchForm = useWatch({

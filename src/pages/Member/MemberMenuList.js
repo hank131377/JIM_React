@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import Member from './Member'
 import { MemberCollect, MemberInformation } from './MemberComponent'
+import MemberCoupon from './MemberCoupon'
 const MemberMenuList = () => {
   const { action } = useParams()
   let currentPage = ''
@@ -12,6 +13,10 @@ const MemberMenuList = () => {
     }
     case 'information': {
       currentPage = <MemberInformation />
+      break
+    }
+    case 'coupon': {
+      currentPage = <MemberCoupon />
       break
     }
     default: {
