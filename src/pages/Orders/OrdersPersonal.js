@@ -153,7 +153,7 @@ const OrdersPersonal = () => {
               >
                 {discount.map((v, i) => {
                   return (
-                    <option key={v.discountID} value={v.discountID}>
+                    <option key={i} value={v.discountID}>
                       {v.discountName}
                     </option>
                   )

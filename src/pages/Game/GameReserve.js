@@ -6,7 +6,7 @@ import {
   MdOutlineRemoveCircle,
 } from 'react-icons/md'
 import moment from 'moment'
-import { checkToken, useContextValue } from '../../ContextDashbard'
+import { checkToken, useContextValue, swalAlert } from '../../ContextDashbard'
 
 const GameReserve = () => {
   const { getBackData } = useContextValue()
@@ -139,7 +139,7 @@ const GameReserve = () => {
             } else {
               if (target == -1) {
                 e.preventDefault()
-                alert('請選擇時段')
+                swalAlert('請選擇時段', '', 'error', '確認')
               }
             }
           }}
