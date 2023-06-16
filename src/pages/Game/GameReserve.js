@@ -135,7 +135,7 @@ const GameReserve = () => {
           onClick={(e) => {
             if (checkToken()?.target !== 'member') {
               e.preventDefault()
-              return alert('請先登入會員')
+              return swalAlert('請先登入會員', '', 'error', '確認')
             } else {
               if (target == -1) {
                 e.preventDefault()
