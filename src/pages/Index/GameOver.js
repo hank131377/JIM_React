@@ -16,9 +16,9 @@ const GameOver = ({ sum }) => {
         .toUpperCase()
         .slice(0, 5)
       setText(discountRand)
-      // const r = await axios.get(
-      //   `http://localhost:3005/firstpage/gameover/${discountRand}`
-      // )
+      const r = await axios.get(
+        `http://localhost:3005/orders/gameover/${discountRand}`
+      )
       // console.log(discountRand)
     })()
   }, [])

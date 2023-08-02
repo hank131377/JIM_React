@@ -20,10 +20,7 @@ const MapContent = ({ mapData }) => {
       // chunkedLoading
       // iconCreateFunction={markerClusterGroupIcon}
       >
-        <Marker
-          position={[25.03387410019818, 121.54339144016454]}
-          icon={nowIcon}
-        >
+        <Marker position={[25.045948, 121.467032]} icon={nowIcon}>
           <Popup>
             <div>
               <p>現在的位置</p>

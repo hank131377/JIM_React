@@ -326,7 +326,7 @@ const SigninMemberIn = ({ name }) => {
     if (errors !== []) {
       const r = await axios.post('http://localhost:3005/signin/member', data)
       if (!!r.data.error) {
-        alert(r.data.error)
+        swalAlert('帳號或密碼錯誤', '', 'error', '確認')
       }
       if (r.data.code === 200) {
         localStorage.setItem('token', JSON.stringify(r.data))

@@ -19,17 +19,15 @@ const GameComment = () => {
     <div className="w-100">
       {gameCommentData.length !== 0 ? (
         gameCommentData.map((v, i) => {
-          {
-            console.log(v)
-          }
+          console.log(v.memHeadshot)
           return (
             <div className="d-flex" key={v.ordersid}>
               <div className="me-3">
                 <img
                   src={
-                    imgUrl?.length > 20
-                      ? imgUrl
-                      : `/Images/storeimages/${gameCommentData[0]?.memHeadshot}`
+                    !!v.memHeadshot.length > 20
+                      ? `/Images/storeimages/${gameCommentData[0]?.memHeadshot}`
+                      : `/Images/uploads/${gameCommentData[0]?.memHeadshot}`
                   }
                   alt=""
                   style={{
